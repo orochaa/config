@@ -1,0 +1,14 @@
+{
+	"makeSut": {
+		"scope": "javascript,typescript",
+		"prefix": "makeSut",
+		"body": [
+			"const makeSut = (): SutTypes => {",
+			"  const sut = new Class()",
+			"  return {",
+			"    sut",
+			"  }",
+			"}",
+		],
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"create new test suit": {
+		"scope": "javascript,typescript",
+		"prefix": "test",
+		"body": [
+			"describe('', () => {",
+			"  it('should ', async () => {",
+			"    const { sut } = makeSut()",
+			"    await sut.handle()",
+			"    expect().toBe()",
+			"  })",
+			"})"
+		],
+	}
+}
