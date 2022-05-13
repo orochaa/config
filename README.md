@@ -20,7 +20,7 @@ To create new snippets:
 > ## Jest
 ```
   # Dowload Jest:
-  npm install -D jest ts-jest
+  npm install -D jest
 ```
 ```
   # Copy Scripts to package.json on scripts section:
