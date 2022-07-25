@@ -17,10 +17,12 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
 
+  "prettier.endOfLine": "crlf",
+  "prettier.arrowParens": "avoid",
   "prettier.bracketSpacing": true,
+  "prettier.useTabs": false,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.useTabs": false,
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1,
@@ -49,7 +51,8 @@
   },
 
   "[prisma]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Prisma.prisma"
   },
 
   "files.associations": {
@@ -116,7 +119,6 @@
   },
 
   "workbench.colorTheme": "Omni",
-  "window.menuBarVisibility": "toggle",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "tabnine.experimentalAutoImports": true,
   "cSpell.enableFiletypes": [
@@ -146,15 +148,21 @@
   "liveServer.settings.donotVerifyTags": true,
   "cSpell.userWords": [
     "chakra",
+    "cread",
+    "Cread",
     "decrypter",
+    "encrypter",
     "Encrypter",
     "hasher",
     "lcov",
     "middlewares",
     "mockdate",
     "prefetch",
+    "Procs",
+    "Recaptcha",
     "rocketseat",
     "suts",
+    "uniftec",
     "upsert",
     "usecases"
   ],
@@ -173,5 +181,7 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "security.workspace.trust.untrustedFiles": "newWindow",
-  "material-icon-theme.folders.color": "#6633cc"
+  "material-icon-theme.folders.color": "#6633cc",
+  "window.menuBarVisibility": "compact",
+  "editor.renderWhitespace": "none"
 }
