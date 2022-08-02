@@ -13,6 +13,8 @@
 	r = !git remote
  rr = !git remote rename
 	b = !git branch -v
+ ck = !git checkout
+ amend = !git add . && git commit --amend
 
 [core]
 	editor = code
