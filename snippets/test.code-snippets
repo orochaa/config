@@ -1,15 +1,66 @@
 {
-	"create new test suit": {
-		"scope": "javascript,typescript",
-		"prefix": "test",
-		"body": [
-			"describe('', () => {",
-			"  it('should ', async () => {",
-			"    const { sut } = makeSut()",
-			"    await sut.handle()",
-			"    expect().toBe()",
-			"  })",
-			"})"
-		],
-	}
+  "sut": {
+    "scope": "javascript,typescript",
+    "prefix": "sut",
+    "body": ["type SutTypes = {", "  sut: Class", "}"],
+		"description": "Create Test Sut Type"
+  },
+
+  "test": {
+    "scope": "javascript,typescript",
+    "prefix": "test",
+    "body": [
+      "describe('$1', () => {",
+      "  it('should $2', async () => {",
+      "    const { sut } = makeSut()",
+      "    await sut.handle()",
+      "    expect().toBe()",
+      "  })",
+      "})"
+    ],
+		"description": "Create test suite"
+  },
+
+  "it": {
+    "scope": "javascript,typescript",
+    "prefix": "it",
+    "body": [
+      "it('should $0', async () => {",
+      "  const { sut } = makeSut()",
+      "  await sut.handle()",
+      "  expect().toBe()",
+      "})"
+    ],
+		"description": "Create test"
+  },
+
+  "makeSut": {
+    "scope": "javascript,typescript",
+    "prefix": "makeSut",
+    "body": [
+      "const makeSut = (): SutTypes => {",
+      "  const sut = new ${0:Class}()",
+      "  return {",
+      "    sut",
+      "  }",
+      "}"
+    ],
+		"description": "Create sut factory"
+  },
+
+  "exception": {
+    "scope": "javascript,typescript",
+    "prefix": "exception",
+    "body": [
+      "const suts = [].concat(",
+      "  new ${1:Class}(",
+      "    { ${2:method}: ()  => throwError() }",
+      "  )",
+      ")",
+      "for (const sut of suts) {",
+      "  const promise = sut.${2:method}()",
+      "  await expect(promise).rejects.toThrow()",
+      "}"
+    ]
+  }
 }

@@ -5,6 +5,7 @@
     "target": "es2021",
     "esModuleInterop": true,
     "baseUrl": "src",
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["*"],
       "@/tests/*": ["../__tests__/*"]
