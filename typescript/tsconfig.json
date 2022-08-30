@@ -2,10 +2,10 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "es2021",
+    "target": "ES2022",
     "esModuleInterop": true,
-    "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
       "@/tests/*": ["../__tests__/*"]

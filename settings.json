@@ -17,12 +17,11 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
 
-  "prettier.endOfLine": "crlf",
-  "prettier.arrowParens": "avoid",
   "prettier.bracketSpacing": true,
-  "prettier.useTabs": false,
+  "prettier.arrowParens": "avoid",
   "prettier.semi": false,
   "prettier.singleQuote": true,
+  "prettier.useTabs": false,
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1,
@@ -80,6 +79,7 @@
   "screencastMode.onlyKeyboardShortcuts": true,
 
   "material-icon-theme.folders.associations": {
+    "slide": "svelte",
     "main": "core",
     "infra": "app",
     "presentation": "api",
@@ -104,7 +104,8 @@
     "mappers": "meta",
     "_shared": "shared",
     "eslint-config": "tools",
-    "kube": "kubernetes"
+    "kube": "kubernetes",
+    "nginx": "terraform"
   },
 
   "material-icon-theme.files.associations": {
@@ -119,6 +120,7 @@
   },
 
   "workbench.colorTheme": "Omni",
+  "window.menuBarVisibility": "toggle",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "tabnine.experimentalAutoImports": true,
   "cSpell.enableFiletypes": [
@@ -151,20 +153,20 @@
     "cread",
     "Cread",
     "decrypter",
-    "encrypter",
     "Encrypter",
     "hasher",
     "lcov",
     "middlewares",
     "mockdate",
+    "postgres",
     "prefetch",
     "Procs",
-    "Recaptcha",
     "rocketseat",
     "suts",
     "uniftec",
     "upsert",
-    "usecases"
+    "usecases",
+    "youtube"
   ],
   "javascript.updateImportsOnFileMove.enabled": "always",
   "terminal.integrated.showExitAlert": false,
@@ -182,6 +184,13 @@
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "security.workspace.trust.untrustedFiles": "newWindow",
   "material-icon-theme.folders.color": "#6633cc",
-  "window.menuBarVisibility": "compact",
-  "editor.renderWhitespace": "none"
+  "liveServer.settings.donotShowInfoMsg": true,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "workbench.editor.untitled.hint": "hidden",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "debug.onTaskErrors": "abort"
 }
