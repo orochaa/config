@@ -3,16 +3,18 @@
     "scope": "javascriptreact,typescriptreact",
     "prefix": "comp",
     "body": [
-      "export function $1 () {",
+      "export function ${1:Component} (props: ${1:Component}Props) {",
       "  return (",
-      "    <${0:Main} />",
+      "    <${2:Main}>",
+      "      $0",
+      "    </${2:Main}>",
       "  )",
       "}",
       ""
     ],
     "description": "Create React component function"
   },
-  
+
   "styles": {
     "scope": "javascriptreact,typescriptreact",
     "prefix": "styled",
@@ -44,4 +46,3 @@
     "description": "Create React TypeScript Functional Component"
   }
 }
-

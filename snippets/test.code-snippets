@@ -1,8 +1,8 @@
 {
   "sut": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "sut",
-    "body": ["type SutTypes = {", "  sut: Class", "}"],
+    "body": ["interface SutTypes {", "  sut: ${0:Class}", "}"],
 		"description": "Create Test Sut Type"
   },
 
@@ -13,8 +13,8 @@
       "describe('$1', () => {",
       "  it('should $2', async () => {",
       "    const { sut } = makeSut()",
-      "    await sut.handle()",
-      "    expect().toBe()",
+      "    await sut.${3:method}(${4:mockRequest()})",
+      "    expect(${5:result}).${6:toBe}($0)",
       "  })",
       "})"
     ],
@@ -25,10 +25,10 @@
     "scope": "javascript,typescript",
     "prefix": "it",
     "body": [
-      "it('should $0', async () => {",
+      "it('should $1', async () => {",
       "  const { sut } = makeSut()",
-      "  await sut.handle()",
-      "  expect().toBe()",
+      "  await sut.${2:method}(${3:mockRequest()})",
+      "  expect(${4:result}).${5:toBe}($0)",
       "})"
     ],
 		"description": "Create test"
@@ -39,7 +39,7 @@
     "prefix": "makeSut",
     "body": [
       "const makeSut = (): SutTypes => {",
-      "  const sut = new ${0:Class}()",
+      "  const sut = new ${1:Class}($0)",
       "  return {",
       "    sut",
       "  }",
@@ -52,15 +52,17 @@
     "scope": "javascript,typescript",
     "prefix": "exception",
     "body": [
-      "const suts = [].concat(",
-      "  new ${1:Class}(",
-      "    { ${2:method}: ()  => throwError() }",
+      "it('should throw if any dependency throws', async () => {",
+      "  const suts: ${1:Class}[] = [].concat(",
+      "    new ${1:Class}(",
+      "      { ${2:method}: ()  => throwError() }",
+      "    )",
       "  )",
-      ")",
-      "for (const sut of suts) {",
-      "  const promise = sut.${2:method}()",
-      "  await expect(promise).rejects.toThrow()",
-      "}"
+      "  for (const sut of suts) {",
+      "    const promise = sut.${3:method}()",
+      "    await expect(promise).rejects.toThrow()",
+      "  }",
+      "})"
     ]
   }
 }
