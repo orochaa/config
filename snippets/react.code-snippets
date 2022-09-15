@@ -3,6 +3,12 @@
     "scope": "javascriptreact,typescriptreact",
     "prefix": "comp",
     "body": [
+      "import React from 'react'",
+      "",
+      "interface ${1:Component}Props {",
+      "  ",
+      "}",
+      "",
       "export function ${1:Component} (props: ${1:Component}Props) {",
       "  return (",
       "    <${2:Main}>",

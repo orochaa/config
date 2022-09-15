@@ -79,6 +79,7 @@
   "screencastMode.onlyKeyboardShortcuts": true,
 
   "material-icon-theme.folders.associations": {
+    "adapters": "plugin",
     "slide": "svelte",
     "main": "core",
     "infra": "app",
@@ -150,12 +151,19 @@
   "liveServer.settings.donotVerifyTags": true,
   "cSpell.userWords": [
     "chakra",
+    "contentist",
+    "Contentist",
+    "contentists",
     "cread",
     "Cread",
     "decrypter",
+    "Ecommerce",
     "Encrypter",
+    "esports",
     "hasher",
     "lcov",
+    "malabi",
+    "microservices",
     "middlewares",
     "mockdate",
     "postgres",
