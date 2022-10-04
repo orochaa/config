@@ -9,7 +9,7 @@
       "  ",
       "}",
       "",
-      "export function ${1:Component} (props: ${1:Component}Props) {",
+      "export function ${1:Component} (props: ${1:Component}Props): JSX.Element {",
       "  return (",
       "    <${2:Main}>",
       "      $0",
