@@ -3,39 +3,43 @@
     "scope": "typescript",
     "prefix": "sut",
     "body": ["interface SutTypes {", "  sut: ${0:Class}", "}"],
-		"description": "Create Test Sut Type"
+    "description": "Create Test Sut Type"
   },
 
   "test": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "test",
     "body": [
       "describe('$1', () => {",
       "  it('should $2', async () => {",
-      "    const { sut } = makeSut()",
-      "    await sut.${3:method}(${4:mockRequest()})",
-      "    expect(${5:result}).${6:toBe}($0)",
+      "    const { sut, $5 } = makeSut()",
+      "    const request = mockRequest()",
+      "    await sut.${3:method}(request)",
+      "    expect($5.calledTimes).toBe(1)",
+      "    expect($5.$6).${7:toBe}($0)",
       "  })",
       "})"
     ],
-		"description": "Create test suite"
+    "description": "Create test suite"
   },
 
   "it": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "it",
     "body": [
       "it('should $1', async () => {",
-      "  const { sut } = makeSut()",
-      "  await sut.${2:method}(${3:mockRequest()})",
-      "  expect(${4:result}).${5:toBe}($0)",
+      "  const { sut, $4 } = makeSut()",
+      "  const request = mockRequest()",
+      "  await sut.${3:method}(request)",
+      "  expect($4.calledTimes).toBe(1)",
+      "  expect($4.$5).${6:toBe}($0)",
       "})"
     ],
-		"description": "Create test"
+    "description": "Create test"
   },
 
   "makeSut": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "makeSut",
     "body": [
       "const makeSut = (): SutTypes => {",
@@ -45,19 +49,19 @@
       "  }",
       "}"
     ],
-		"description": "Create sut factory"
+    "description": "Create sut factory"
   },
 
   "exception": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "exception",
     "body": [
       "it('should throw if any dependency throws', async () => {",
-      "  const suts: ${1:Class}[] = [].concat(",
+      "  const suts: ${1:Class}[] = [",
       "    new ${1:Class}(",
-      "      { ${2:method}: ()  => throwError() }",
+      "      { ${2:method}: () => throwError() }",
       "    )",
-      "  )",
+      "  ]",
       "  for (const sut of suts) {",
       "    const promise = sut.${3:method}()",
       "    await expect(promise).rejects.toThrow()",
