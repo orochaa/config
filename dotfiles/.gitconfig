@@ -14,6 +14,7 @@
  rr = !git remote rename
 	b = !git branch -v
  ck = !git checkout
+ cl = !git clone https://github.com
  amend = !git add . && git commit --amend
 
 [core]

@@ -1,9 +1,10 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
-  "extends": ["standard-with-typescript", "prettier"],
+  "extends": ["standard-with-typescript"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -11,5 +12,19 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/method-signature-style": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "multiline-ternary": "off",
+    "import/export": "off"
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"]
+    }
+  ]
 }

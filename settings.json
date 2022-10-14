@@ -19,12 +19,14 @@
 
   "prettier.bracketSpacing": true,
   "prettier.arrowParens": "avoid",
+  "prettier.endOfLine": "crlf",
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.useTabs": false,
+  "prettier.printWidth": 80,
 
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1,
+  "files.autoSaveDelay": 10,
 
   "explorer.compactFolders": false,
   "editor.renderLineHighlight": "gutter",
@@ -32,7 +34,6 @@
   "extensions.ignoreRecommendations": true,
 
   "breadcrumbs.enabled": true,
-  "editor.parameterHints.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
 
@@ -72,9 +73,7 @@
   "git.enableSmartCommit": true,
   "liveshare.featureSet": "insiders",
 
-  "typescript.tsserver.log": "off",
   "javascript.suggest.autoImports": true,
-  "typescript.suggest.autoImports": true,
   "material-icon-theme.activeIconPack": "nest",
   "screencastMode.onlyKeyboardShortcuts": true,
 
@@ -122,7 +121,6 @@
 
   "workbench.colorTheme": "Omni",
   "window.menuBarVisibility": "toggle",
-  "typescript.updateImportsOnFileMove.enabled": "never",
   "tabnine.experimentalAutoImports": true,
   "cSpell.enableFiletypes": [
     "!asciidoc",
@@ -200,5 +198,16 @@
   },
   "code-runner.clearPreviousOutput": true,
   "code-runner.runInTerminal": true,
-  "debug.onTaskErrors": "abort"
+  "debug.onTaskErrors": "abort",
+  "git.autofetch": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  "typescript.tsserver.log": "off",
+  "typescript.suggest.autoImports": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescriptHero.imports.organizeOnSave": false,
+  "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
+  "typescriptHero.imports.multiLineWrapThreshold": 80,
+  "typescriptHero.imports.insertSemicolons": false
 }

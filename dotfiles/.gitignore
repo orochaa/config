@@ -1,9 +1,7 @@
+node_modules
+coverage
+.vs*
 .env
-yarn-lock
+dist
+yarn.lock
 package-lock.json
-
-.vscode/
-node_modules/
-coverage/
-dist/
-out/

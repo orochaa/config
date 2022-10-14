@@ -12,11 +12,11 @@
     "body": [
       "describe('$1', () => {",
       "  it('should $2', async () => {",
-      "    const { sut, $5 } = makeSut()",
+      "    const { sut, $5Spy } = makeSut()",
       "    const request = mockRequest()",
       "    await sut.${3:method}(request)",
-      "    expect($5.calledTimes).toBe(1)",
-      "    expect($5.$6).${7:toBe}($0)",
+      "    expect($5Spy.calledTimes).toBe(1)",
+      "    expect($5Spy.$6).${7:toBe}($0)",
       "  })",
       "})"
     ],
@@ -28,11 +28,11 @@
     "prefix": "it",
     "body": [
       "it('should $1', async () => {",
-      "  const { sut, $4 } = makeSut()",
+      "  const { sut, $4Spy } = makeSut()",
       "  const request = mockRequest()",
       "  await sut.${3:method}(request)",
-      "  expect($4.calledTimes).toBe(1)",
-      "  expect($4.$5).${6:toBe}($0)",
+      "  expect($4Spy.calledTimes).toBe(1)",
+      "  expect($4Spy.$5).${6:toBe}($0)",
       "})"
     ],
     "description": "Create test"
@@ -63,7 +63,8 @@
       "    )",
       "  ]",
       "  for (const sut of suts) {",
-      "    const promise = sut.${3:method}()",
+      "    const request = mockRequest()",
+      "    const promise = sut.${3:method}(request)",
       "    await expect(promise).rejects.toThrow()",
       "  }",
       "})"

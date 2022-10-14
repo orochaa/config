@@ -1,38 +1,38 @@
 {
-  "controller": {
-    "scope": "typescript",
-    "prefix": "controller",
-    "body": [
-      "import { IController, HttpResponse } from '@/presentation/protocols'",
-      "",
-      "export class $1Controller implements IController {",
-      "  constructor (",
-      "    private readonly $1: I$1",
-      "  ) {}",
-      "",
-      "  async handle (request: $1Controller.Request): Promise<HttpResponse> {",
-      "    const result = await this.$1.()",
-      "    return ok()",
-      "  }",
-      "}",
-      "",
-      "export namespace $1Controller {",
-      "  export interface Request {",
-      "    ",
-      "  }",
-      "}",
-      ""
-    ]
-  },
-  "validRequest": {
-    "scope": "typescript",
-    "prefix": "validRequest",
-    "body": [
-      "const error = await this.validation.validate(request)",
-      "if (error) {",
-      "  return badRequest(error)",
-      "}",
-      "$0"
-    ]
-  }
+	"controller": {
+		"scope": "typescript",
+		"prefix": "controller",
+		"body": [
+			"import { IController, HttpResponse } from '@/presentation/protocols'",
+			"",
+			"export class $1Controller implements IController {",
+			"  constructor (",
+			"    private readonly $1: I$1",
+			"  ) {}",
+			"",
+			"  async handle (request: $1Controller.Request): Promise<HttpResponse> {",
+			"    const result = await this.$1.()",
+			"    return ok()",
+			"  }",
+			"}",
+			"",
+			"export namespace $1Controller {",
+			"  export interface Request {",
+			"    ",
+			"  }",
+			"}",
+			""
+		]
+	},
+	"validRequest": {
+		"scope": "typescript",
+		"prefix": "validRequest",
+		"body": [
+			"const error = await this.validation.validate(request)",
+			"if (error) {",
+			"  return badRequest(error)",
+			"}",
+			"$0"
+		]
+	}
 }

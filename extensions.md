@@ -4,6 +4,7 @@
 - ESLint
 - Prettier
 - Code Spell Checker
+- Typescript Hero
 
 ## HighLighters
 - Prisma

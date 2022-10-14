@@ -1,9 +1,0 @@
-*.html
-yarn-lock
-package-lock.json
-
-.vscode/
-node_modules/
-coverage/
-dist/
-out/
