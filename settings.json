@@ -109,8 +109,10 @@
   },
 
   "material-icon-theme.files.associations": {
+    "vitest.config.ts": "vite",
     "ormconfig.json": "database",
     "tsconfig.json": "tune",
+    "tsconfig.build.json": "json",
     "*.proto": "3d",
     "*.webpack.js": "webpack"
   },
@@ -169,6 +171,7 @@
     "Procs",
     "rocketseat",
     "suts",
+    "testid",
     "uniftec",
     "upsert",
     "usecases",

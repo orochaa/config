@@ -1,0 +1,68 @@
+{
+  "setup": {
+    "scope": "typescriptreact",
+    "prefix": "setup",
+    "body": [
+      "import '@testing-library/jest-dom'",
+      "",
+      "import { render, RenderResult } from '@testing-library/react'",
+      "import { describe, expect, it } from 'vitest'",
+      "$0"
+    ]
+  },
+
+  "makeSut": {
+    "scope": "typescriptreact",
+    "prefix": "makeSut",
+    "body": [
+      "const makeSut = (props: ${1:Component}Props): RenderResult =>",
+      "  render(<${1:Component} {...props} />)",
+      "$0"
+    ]
+  },
+
+  "mockProps": {
+    "scope": "typescriptreact",
+    "prefix": "mockProps",
+    "body": [
+      "const mockProps = (): ${1:Component}Props => ({",
+      "  $0",
+      "})",
+      ""
+    ]
+  },
+
+  "test": {
+    "scope": "typescriptreact",
+    "prefix": "test",
+    "body": [
+      "describe('$1', () => {",
+      "  it('should be rendered in DOM', async () => {",
+      "    const props = mockProps()",
+      "    const sut = makeSut(props)",
+      "",
+      "    const ${2:component} = sut.getByTestId('$3')",
+      "",
+      "    expect(${2:component}).toBeInTheDocument()",
+      "  })",
+      "})",
+      ""
+    ]
+  },
+
+  "it": {
+    "scope": "typescriptreact",
+    "prefix": "it",
+    "body": [
+      "it('should $1', async () => {",
+      "  const props = mockProps()",
+      "  const sut = makeSut(props)",
+      "",
+      "  const ${2:component} = sut.getByTestId('$3')",
+      "",
+      "  expect(${2:component}).toBe()",
+      "})",
+    ]
+  }
+}
+

@@ -6,7 +6,7 @@
     "test": "jest --runInBand --no-cache",
     "test:w": "npm test -- --watch",
     "test:ci": "npm test -- --silent --coverage --bail=false",
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "build:w": "npm run build -- -w",
     "prisma": "prisma generate",
     "prisma:dev": "npm run prisma && prisma migrate dev",

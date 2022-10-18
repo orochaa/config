@@ -12,6 +12,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
+  "ignorePatterns": ["**/*.js", "**/*.css", "**/*.html"],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
@@ -24,7 +25,14 @@
     {
       "files": ["__tests__/**"],
       "plugins": ["jest"],
-      "extends": ["plugin:jest/recommended"]
+      "extends": ["plugin:jest/all"],
+      "rules": {
+        "jest/prefer-lowercase-title": "off",
+        "jest/prefer-expect-assertions": "off",
+        "jest/require-to-throw-message": "off",
+        "jest/no-hooks": "off",
+        "jest/max-expects": ["error", { "max": 10 }]
+      }
     }
   ]
 }
