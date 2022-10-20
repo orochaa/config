@@ -5,23 +5,36 @@
     "body": [
       "import '@testing-library/jest-dom'",
       "",
+      "import { faker } from '@faker-js/faker'",
       "import { render, RenderResult } from '@testing-library/react'",
-      "import { describe, expect, it } from 'vitest'",
+      "",
       "$0"
     ]
   },
 
-  "makeSut": {
+  "sut": {
     "scope": "typescriptreact",
-    "prefix": "makeSut",
+    "prefix": "sut",
     "body": [
-      "const makeSut = (props: ${1:Component}Props): RenderResult =>",
-      "  render(<${1:Component} {...props} />)",
+      "interface Sut {",
+      "  sut: RenderResult",
+      "  ${2:component}: HTMLElement",
+      "}",
+      "",
+      "const makeSut = (props: ${1:Component}Props): Sut => {",
+      "  const sut = render(<${1:Component} {...props} />)",
+      "  const $2 = sut.getByTestId('$2')",
+      "  return {",
+      "    sut,",
+      "    $2",
+      "  }",
+      "}",
+      "",
       "$0"
     ]
   },
 
-  "mockProps": {
+  "mockProperties": {
     "scope": "typescriptreact",
     "prefix": "mockProps",
     "body": [
@@ -32,18 +45,37 @@
     ]
   },
 
+  "mockComponent": {
+    "scope": "typescriptreact",
+    "prefix": "mockComp",
+    "body": [
+      "interface TestProps {",
+      "  ",
+      "}",
+      "",
+      "function TestComponent (props: TestProps): JSX.Element {",
+      "  const { $1, $2 } = useContext($3Context)",
+      "  return (",
+      "    <button data-testid=\"$1Button\" onClick={() => $2() }>",
+      "      <p>{$1?.}</p>",
+      "    </button>",
+      "  )",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+
   "test": {
     "scope": "typescriptreact",
     "prefix": "test",
     "body": [
       "describe('$1', () => {",
-      "  it('should be rendered in DOM', async () => {",
+      "  it('should be rendered on DOM', () => {",
       "    const props = mockProps()",
-      "    const sut = makeSut(props)",
+      "    const { ${0:component} } = makeSut(props)",
       "",
-      "    const ${2:component} = sut.getByTestId('$3')",
-      "",
-      "    expect(${2:component}).toBeInTheDocument()",
+      "    expect($0).toBeInTheDocument()",
       "  })",
       "})",
       ""
@@ -54,13 +86,13 @@
     "scope": "typescriptreact",
     "prefix": "it",
     "body": [
-      "it('should $1', async () => {",
+      "it('should $1', () => {",
       "  const props = mockProps()",
-      "  const sut = makeSut(props)",
+      "  const { sut } = makeSut(props)",
       "",
-      "  const ${2:component} = sut.getByTestId('$3')",
+      "  const ${2:component} = sut.getByTestId('$2')",
       "",
-      "  expect(${2:component}).toBe()",
+      "  expect($2).to$0()",
       "})",
     ]
   }
