@@ -1,7 +1,7 @@
 {
-  "Jsx Component": {
+  "jsxComponent": {
     "scope": "javascriptreact,typescriptreact",
-    "prefix": "comp",
+    "prefix": ["comp", "component"],
     "body": [
       "import React from 'react'",
       "",
@@ -18,10 +18,9 @@
       "}",
       ""
     ],
-    "description": "Create React component function"
   },
 
-  "styles": {
+  "styledComponent": {
     "scope": "javascriptreact,typescriptreact",
     "prefix": "styled",
     "body": [
@@ -32,7 +31,6 @@
       "`;",
       ""
     ],
-    "description": "Create React Styled Component file"
   },
 
   "componentFunctionalTypescript": {
@@ -49,6 +47,14 @@
       "",
       "export default ${1:${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};"
     ],
-    "description": "Create React TypeScript Functional Component"
+  },
+
+  "reactState": {
+    "scope": "typescriptreact",
+    "prefix": ["stt", "state"],
+    "body": [
+      "const [$1, set$2] = useState<$3>($4)",
+      "$0"
+    ]
   }
 }

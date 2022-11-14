@@ -1,8 +1,16 @@
 {
   "terminal.integrated.fontSize": 14,
-
+  "terminal.integrated.showExitAlert": false,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  
+  "workbench.colorTheme": "Omni",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.untitled.hint": "hidden",
+
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideTabs": false,
 
   "editor.tabSize": 2,
   "editor.fontSize": 16,
@@ -10,12 +18,40 @@
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
   "editor.semanticHighlighting.enabled": false,
-
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
+  "editor.renderLineHighlight": "gutter",
+  "editor.suggestSelection": "first",
+
+  "javascript.format.enable": false,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.suggest.autoImports": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.semicolons": "remove",
+
+  "typescript.format.enable": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.tsserver.log": "off",
+  "typescript.suggest.autoImports": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.semicolons": "remove",
+
+  "typescriptHero.imports.organizeOnSave": false,
+  "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
+  "typescriptHero.imports.multiLineTrailingComma": false,
+  "typescriptHero.imports.multiLineWrapThreshold": 80,
+  "typescriptHero.imports.stringQuoteStyle": "'",
+  "typescriptHero.imports.insertSemicolons": false,
+  "typescriptHero.imports.removeTrailingIndex": true,
+  "typescriptHero.imports.grouping": ["Plains", "Modules", "Workspace"],
+  "typescriptHero.imports.insertSpaceBeforeAndAfterImportBraces": true,
+  "typescriptHero.imports.disableImportRemovalOnOrganize": false,
+  "typescriptHero.imports.disableImportsSorting": false,
+  "typescriptHero.imports.ignoredFromRemoval": ["react"],
 
   "prettier.bracketSpacing": true,
   "prettier.arrowParens": "avoid",
@@ -24,44 +60,35 @@
   "prettier.singleQuote": true,
   "prettier.useTabs": false,
   "prettier.printWidth": 80,
+  "prettier.trailingComma": "none",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
 
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 10,
-
-  "explorer.compactFolders": false,
-  "editor.renderLineHighlight": "gutter",
-  "workbench.editor.labelFormat": "short",
-  "extensions.ignoreRecommendations": true,
-
-  "breadcrumbs.enabled": true,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true
-    // "**/node_modules": true
-  },
+  "files.autoSaveDelay": 300,
 
   "[prisma]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
 
-  "files.associations": {
-    ".sequelizerc": "javascript",
-    ".stylelintrc": "json",
-    ".prettierrc": "json",
-    "*.tsx": "typescriptreact",
-    ".env.*": "dotenv"
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
   },
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
+  },
+
+  "explorer.compactFolders": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "extensions.ignoreRecommendations": false,
+
+  "breadcrumbs.enabled": true,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
@@ -73,10 +100,27 @@
   "git.enableSmartCommit": true,
   "liveshare.featureSet": "insiders",
 
-  "javascript.suggest.autoImports": true,
-  "material-icon-theme.activeIconPack": "nest",
   "screencastMode.onlyKeyboardShortcuts": true,
 
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+    // "**/node_modules": true
+  },
+
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json",
+    "*.tsx": "typescriptreact",
+    ".env*": "dotenv"
+  },
+  
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
     "adapters": "plugin",
     "slide": "svelte",
@@ -107,7 +151,6 @@
     "kube": "kubernetes",
     "nginx": "terraform"
   },
-
   "material-icon-theme.files.associations": {
     "vitest.config.ts": "vite",
     "ormconfig.json": "database",
@@ -116,14 +159,10 @@
     "*.proto": "3d",
     "*.webpack.js": "webpack"
   },
-
   "material-icon-theme.languages.associations": {
     "dotenv": "tune"
   },
-
-  "workbench.colorTheme": "Omni",
-  "window.menuBarVisibility": "toggle",
-  "tabnine.experimentalAutoImports": true,
+  
   "cSpell.enableFiletypes": [
     "!asciidoc",
     "!c",
@@ -144,13 +183,14 @@
     "!scss"
   ],
   "cSpell.language": "en,pt",
-  "editor.suggestSelection": "first",
   "codesnap.backgroundColor": "transparent",
   "codesnap.transparentBackground": true,
   "codesnap.boxShadow": "0 0 0",
   "liveServer.settings.donotVerifyTags": true,
   "cSpell.userWords": [
+    "acad",
     "chakra",
+    "clsx",
     "contentist",
     "Contentist",
     "contentists",
@@ -160,6 +200,9 @@
     "Ecommerce",
     "Encrypter",
     "esports",
+    "ftec",
+    "Ftec",
+    "gmail",
     "hasher",
     "lcov",
     "malabi",
@@ -175,10 +218,9 @@
     "uniftec",
     "upsert",
     "usecases",
+    "whatsapp",
     "youtube"
   ],
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.showExitAlert": false,
 
   "splitHTMLAttributes.closingBracketOnNewLine": true,
   "todo-tree.general.tags": [
@@ -192,25 +234,11 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "security.workspace.trust.untrustedFiles": "newWindow",
-  "material-icon-theme.folders.color": "#6633cc",
   "liveServer.settings.donotShowInfoMsg": true,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-  "workbench.editor.untitled.hint": "hidden",
-  "[cpp]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools"
-  },
   "code-runner.clearPreviousOutput": true,
   "code-runner.runInTerminal": true,
   "debug.onTaskErrors": "abort",
-  "git.autofetch": true,
   "diffEditor.ignoreTrimWhitespace": false,
-
-  "typescript.tsserver.log": "off",
-  "typescript.suggest.autoImports": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescriptHero.imports.organizeOnSave": false,
-  "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
-  "typescriptHero.imports.multiLineWrapThreshold": 80,
-  "typescriptHero.imports.insertSemicolons": false
+  "window.menuBarVisibility": "compact",
+  "tabnine.experimentalAutoImports": true
 }

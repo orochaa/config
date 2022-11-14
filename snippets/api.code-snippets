@@ -24,7 +24,7 @@
 			""
 		]
 	},
-	
+
 	"validRequest": {
 		"scope": "typescript",
 		"prefix": "validRequest",
@@ -34,6 +34,21 @@
 			"  return badRequest(error)",
 			"}",
 			"$0"
+		]
+	},
+
+	"makeController": {
+		"scope": "typescript",
+		"prefix": "makeController",
+		"body": [
+			"import { makeLogControllerDecorator } from '@/main/composers/decorators'",
+			"import { IController } from '@/presentation/protocols'",
+			"",
+			"export const make$1Controller = (): IController => {",
+			"$0",
+			"const validation = make$1Validation()",
+			"const controller = new $1Controller(validation)",
+			"return makeLogControllerDecorator(controller)"
 		]
 	}
 }

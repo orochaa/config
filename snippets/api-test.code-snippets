@@ -1,19 +1,19 @@
 {
   "sut": {
     "scope": "typescript",
-    "prefix": "sut",
-    "body": ["interface SutTypes {", "  sut: ${0:Class}", "}"],
-    "description": "Create Test Sut Type"
-  },
-
-  "makeSut": {
-    "scope": "typescript",
-    "prefix": "makeSut",
+    "prefix": ["sut", "makeSut"],
     "body": [
-      "const makeSut = (): SutTypes => {",
-      "  const sut = new ${1:Class}($0)",
+      "interface Sut {",
+      "  sut: ${1:Class}",
+      "  $2: $3",
+      "}",
+      "",
+      "const makeSut = (): Sut => {",
+      "  const $2 = $4$3",
+      "  const sut = new ${1:Class}($2)",
       "  return {",
       "    sut",
+      "    $2",
       "  }",
       "}",
       ""
@@ -22,13 +22,15 @@
 
   "test": {
     "scope": "typescript",
-    "prefix": "test",
+    "prefix": ["test", "describe"],
     "body": [
       "describe('$1', () => {",
       "  it('should $2', async () => {",
       "    const { sut, $5Spy } = makeSut()",
       "    const request = mockRequest()",
+      "",
       "    await sut.${3:method}(request)",
+      "",
       "    expect($5Spy.calledTimes).toBe(1)",
       "    expect($5Spy.$6).${7:toBe}($0)",
       "  })",
@@ -43,7 +45,9 @@
       "it('should $1', async () => {",
       "  const { sut, $4Spy } = makeSut()",
       "  const request = mockRequest()",
+      "",
       "  await sut.${3:method}(request)",
+      "",
       "  expect($4Spy.calledTimes).toBe(1)",
       "  expect($4Spy.$5).${6:toBe}($0)",
       "})"
@@ -66,6 +70,31 @@
       "    await expect(promise).rejects.toThrow()",
       "  }",
       "})"
+    ]
+  },
+
+  "mockModel": {
+    "scope": "typescript",
+    "prefix": ["mm", "mockModel"],
+    "body": [
+      "import { $1 } from '@/domain/model'",
+      "import { faker } from '@faker-js/faker'",
+      "",
+      "export const mock$1 = (): $1$2 => ({",
+      "  $0",
+      "})",
+      ""
+    ]
+  },
+
+  "mockRequest": {
+    "scope": "typescript",
+    "prefix": ["mr", "mockRequest"],
+    "body": [
+      "const mockRequest = (): I$1$2.Params => ({",
+      "  $0",
+      "})",
+      ""
     ]
   }
 }
