@@ -2,7 +2,7 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.showExitAlert": false,
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  
+
   "workbench.colorTheme": "Omni",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
@@ -19,25 +19,28 @@
   "editor.fontLigatures": true,
   "editor.semanticHighlighting.enabled": false,
   "editor.bracketPairColorization.enabled": true,
+  "editor.guides.highlightActiveBracketPair": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.guides.indentation": true,
+  "editor.guides.highlightActiveIndentation": "always",
   "editor.guides.bracketPairs": "active",
   "editor.renderLineHighlight": "gutter",
   "editor.suggestSelection": "first",
 
-  "javascript.format.enable": false,
+  "javascript.format.enable": true,
   "javascript.preferences.quoteStyle": "single",
   "javascript.suggest.autoImports": true,
-  "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "javascript.format.semicolons": "remove",
 
   "typescript.format.enable": true,
   "typescript.preferences.quoteStyle": "single",
-  "typescript.tsserver.log": "off",
   "typescript.suggest.autoImports": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "typescript.format.semicolons": "remove",
 
   "typescriptHero.imports.organizeOnSave": false,
@@ -54,16 +57,20 @@
   "typescriptHero.imports.ignoredFromRemoval": ["react"],
 
   "prettier.bracketSpacing": true,
+  "prettier.bracketSameLine": false,
   "prettier.arrowParens": "avoid",
   "prettier.endOfLine": "crlf",
   "prettier.semi": false,
-  "prettier.singleQuote": true,
   "prettier.useTabs": false,
+  "prettier.singleQuote": true,
+  "prettier.quoteProps": "as-needed",
   "prettier.printWidth": 80,
   "prettier.trailingComma": "none",
+  "prettier.jsxSingleQuote": false,
+  "prettier.singleAttributePerLine": false,
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 300,
@@ -78,37 +85,25 @@
   },
 
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll.eslint": true
+    "source.organizeImports": false,
+    "source.fixAll.eslint": false
   },
 
   "explorer.compactFolders": true,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
 
-  "extensions.ignoreRecommendations": false,
-
   "breadcrumbs.enabled": true,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
 
-  "gitlens.codeLens.recentChange.enabled": false,
-  "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.enabled": false,
-
-  "git.enableSmartCommit": true,
-  "liveshare.featureSet": "insiders",
-
   "screencastMode.onlyKeyboardShortcuts": true,
 
   "files.exclude": {
     "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true
-    // "**/node_modules": true
+    "**/.DS_Store": false,
+    "**/node_modules": true
   },
 
   "files.associations": {
@@ -118,7 +113,7 @@
     "*.tsx": "typescriptreact",
     ".env*": "dotenv"
   },
-  
+
   "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
@@ -154,15 +149,14 @@
   "material-icon-theme.files.associations": {
     "vitest.config.ts": "vite",
     "ormconfig.json": "database",
-    "tsconfig.json": "tune",
-    "tsconfig.build.json": "json",
     "*.proto": "3d",
     "*.webpack.js": "webpack"
   },
   "material-icon-theme.languages.associations": {
     "dotenv": "tune"
   },
-  
+
+  "cSpell.language": "en,pt",
   "cSpell.enableFiletypes": [
     "!asciidoc",
     "!c",
@@ -182,11 +176,6 @@
     "!scala",
     "!scss"
   ],
-  "cSpell.language": "en,pt",
-  "codesnap.backgroundColor": "transparent",
-  "codesnap.transparentBackground": true,
-  "codesnap.boxShadow": "0 0 0",
-  "liveServer.settings.donotVerifyTags": true,
   "cSpell.userWords": [
     "acad",
     "chakra",
@@ -203,6 +192,7 @@
     "ftec",
     "Ftec",
     "gmail",
+    "Graduacao",
     "hasher",
     "lcov",
     "malabi",
@@ -222,23 +212,22 @@
     "youtube"
   ],
 
-  "splitHTMLAttributes.closingBracketOnNewLine": true,
-  "todo-tree.general.tags": [
-    "BUG",
-    "HACK",
-    "FIXME",
-    "TODO",
-    "XXX",
-    "[ ]",
-    "[x]"
-  ],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-  "security.workspace.trust.untrustedFiles": "newWindow",
+  "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.runInTerminal": true,
+
+  "security.workspace.trust.untrustedFiles": "newWindow",
   "debug.onTaskErrors": "abort",
-  "diffEditor.ignoreTrimWhitespace": false,
   "window.menuBarVisibility": "compact",
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "editor.minimap.size": "fit",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

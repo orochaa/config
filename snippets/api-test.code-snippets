@@ -9,7 +9,7 @@
       "}",
       "",
       "const makeSut = (): Sut => {",
-      "  const $2 = $4$3",
+      "  const $2 = new $4$3",
       "  const sut = new ${1:Class}($2)",
       "  return {",
       "    sut",
@@ -35,6 +35,34 @@
       "    expect($5Spy.$6).${7:toBe}($0)",
       "  })",
       "})"
+    ]
+  },
+
+  
+
+  "testMakeValidation": {
+    "scope": "typescript",
+    "prefix": "testValidation",
+    "body": [
+      "import { ParamDictionaryKey } from '@/presentation/helpers'",
+      "import { IValidation } from '@/validation/protocols'",
+      "import { RequiredFieldValidation, ValidationComposite } from '@/validation/validators'",
+      "",
+      "jest.mock('@/validation/validators/validation-composite')",
+      "",
+      "describe('$1Validation', () => {",
+      "  it('should call ValidationComposite with all validations', async () => {",
+      "    make$1Validation()",
+      "    const validations: IValidation[] = []",
+      "    const fields: ParamsDictionaryKey[] = ['$0']",
+      "    fields.forEach(field => {",
+      "      validations.push(new RequiredFieldValidation(field))",
+      "    })",
+      "    expect(ValidationComposite).toHaveBeenCalledTimes(1)",
+      "    expect(ValidationComposite).toHaveBeenCalledWith(validations)",
+      "  })",
+      "})",
+      ""
     ]
   },
 
@@ -77,10 +105,10 @@
     "scope": "typescript",
     "prefix": ["mm", "mockModel"],
     "body": [
-      "import { $1 } from '@/domain/model'",
+      "import { $1 } from '@/domain/models'",
       "import { faker } from '@faker-js/faker'",
       "",
-      "export const mock$1 = (): $1$2 => ({",
+      "export const mock$1 = (): $1 => ({",
       "  $0",
       "})",
       ""
@@ -91,9 +119,49 @@
     "scope": "typescript",
     "prefix": ["mr", "mockRequest"],
     "body": [
-      "const mockRequest = (): I$1$2.Params => ({",
+      "const mockRequest = (): I$1.Params => ({",
       "  $0",
       "})",
+      ""
+    ]
+  },
+
+  "mockSpyClass": {
+    "scope": "typescript",
+    "prefix": ["ms", "mockSpyClass"],
+    "body": [
+      "import { faker } from '@faker-js/faker'",
+      "",
+      "export class $1Spy implements I$1 {",
+      "  calledTimes: number = 0",
+      "  params: I$1.Params",
+      "  result: I$1.Result = $0",
+      "  $2 (params: I$1.Params): I$1.Result {",
+      "    this.calledTimes++",
+      "    this.params = params",
+      "    return this.result",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+
+  "mockPromiseSpyClass": {
+    "scope": "typescript",
+    "prefix": ["msp", "mockPromiseSpyClass"],
+    "body": [
+      "import { faker } from '@faker-js/faker'",
+      "",
+      "export class $1Spy implements I$1 {",
+      "  calledTimes: number = 0",
+      "  params: I$1.Params",
+      "  result: I$1.Result = $0",
+      "  async $2 (params: I$1.Params): Promise<I$1.Result> {",
+      "    this.calledTimes++",
+      "    this.params = params",
+      "    return this.result",
+      "  }",
+      "}",
       ""
     ]
   }
