@@ -1,11 +1,9 @@
 {
-  "jsxComponent": {
-    "scope": "javascriptreact,typescriptreact",
+  "reactComponent": {
+    "scope": "typescriptreact",
     "prefix": ["comp", "component"],
     "body": [
-      "import React from 'react'",
-      "",
-      "interface ${1:Component}Props {",
+      "export interface ${1:Component}Props {",
       "  ",
       "}",
       "",

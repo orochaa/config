@@ -1,54 +1,186 @@
 {
-	"controller": {
-		"scope": "typescript",
-		"prefix": "controller",
-		"body": [
-			"import { IController, HttpResponse } from '@/presentation/protocols'",
-			"",
-			"export class $1Controller implements IController {",
-			"  constructor (",
-			"    private readonly $1: I$1",
-			"  ) {}",
-			"",
-			"  async handle (request: $1Controller.Request): Promise<HttpResponse> {",
-			"    const result = await this.$1.()",
-			"    return ok()",
-			"  }",
-			"}",
-			"",
-			"export namespace $1Controller {",
-			"  export interface Request {",
-			"    ",
-			"  }",
-			"}",
-			""
-		]
-	},
+  "createControllerClass": {
+    "scope": "typescript",
+    "prefix": "controller",
+    "body": [
+      "import { IController, HttpResponse } from '@/presentation/protocols'",
+      "import { ok, serverError } from '@/presentation/helpers'",
+      "",
+      "export class $1Controller implements IController {",
+      "  constructor (",
+      "    private readonly $1: I$1",
+      "  ) {}",
+      "",
+      "  async handle (request: $1Controller.Request): Promise<HttpResponse> {",
+      "    try {",
+      "      const ${2:result} = await this.$1.()",
+      "      return ok($2)",
+      "    } catch (error) {",
+      "      return serverError(error)",
+      "    }",
+      "  }",
+      "}",
+      "",
+      "export namespace $1Controller {",
+      "  export interface Request {",
+      "    $0",
+      "  }",
+      "}",
+      ""
+    ]
+  },
 
-	"validRequest": {
-		"scope": "typescript",
-		"prefix": "validRequest",
-		"body": [
-			"const error = await this.validation.validate(request)",
-			"if (error) {",
-			"  return badRequest(error)",
-			"}",
-			"$0"
-		]
-	},
+  "createServiceClass": {
+    "scope": "typescript",
+    "prefix": "service",
+    "body": [
+      "import { I$1 } from '@/domain/usecases'",
+      "",
+      "export class $1 implements I$1 {",
+      "  constructor (",
+      "    private readonly $2: I$3",
+      "  ) {}",
+      "",
+      "  $0",
+      "}",
+      ""
+    ]
+  },
 
-	"makeController": {
-		"scope": "typescript",
-		"prefix": "makeController",
-		"body": [
-			"import { makeLogControllerDecorator } from '@/main/composers/decorators'",
-			"import { IController } from '@/presentation/protocols'",
-			"",
-			"export const make$1Controller = (): IController => {",
-			"$0",
-			"const validation = make$1Validation()",
-			"const controller = new $1Controller(validation)",
-			"return makeLogControllerDecorator(controller)"
-		]
-	}
+  "createRepositoryClass": {
+    "scope": "typescript",
+    "prefix": ["repo", "repository"],
+    "body": [
+      "import { $1 } from '@/domain/models'",
+      "",
+      "interface I$1Repository {}",
+      "",
+      "export class $1Repository implements I$1Repository {",
+      "  async register (data: IRegister$1Repository.Params) {",
+      "    ",
+      "  }",
+      "",
+      "  async find (data: IFind$1Repository.Params) {",
+      "    ",
+      "  }",
+      "",
+      "  async update (data: IUpdate$1Repository.Params) {",
+      "    ",
+      "  }",
+      "",
+      "  async delete (data: IDelete$1Repository.Params) {",
+      "    ",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+
+  "createInterface": {
+    "scope": "typescript",
+    "prefix": "interface",
+    "body": [
+      "export interface I$1 {",
+      "  $2(data: I$1.Params): Promise<I$1.Result>",
+      "}",
+      "",
+      "export namespace I$1 {",
+      "  export interface Params {",
+      "    ",
+      "  }",
+      "  export interface Result {",
+      "  ",
+      "  }",
+      "}",
+      ""
+    ]
+  },
+
+  "createRouter": {
+    "scope": "typescript",
+    "prefix": "router",
+    "body": [
+      "/* eslint-disable @typescript-eslint/no-misused-promises */",
+      "import { adaptController, adaptMiddleware } from '@/main/adapters'",
+      "import { make$1Controller } from '@/main/composers/controllers/$2'",
+      "import { makeAuthMiddleware } from '@/main/composers/middlewares'",
+      "import { Router } from 'express'",
+      "",
+      "export default (router: Router): void => {",
+      "  const authUser = adaptMiddleware(makeAuthMiddleware())",
+      "",
+      "  router.${3:get}('/$2', authUser, adaptController(make$1Controller()))",
+      "}",
+      ""
+    ]
+  },
+
+  "createDecorator": {
+    "scope": "typescript",
+    "prefix": "decorator",
+    "body": [
+      "import { adaptController, adaptMiddleware } from '@/main/adapters'",
+      "",
+      "export class $1Decorator implements I$2 {",
+      "  constructor (",
+      "    private readonly $2: I$2",
+      "  ) {}",
+      "",
+      "  $0",
+      "}",
+      ""
+    ]
+  },
+
+  "createMakeController": {
+    "scope": "typescript",
+    "prefix": "makeController",
+    "body": [
+      "import { makeLogControllerDecorator } from '@/main/composers/decorators'",
+      "import { $1Controller } from '@/presentation/controllers'",
+      "import { IController } from '@/presentation/protocols'",
+      "import { $1 } from '@/services/usecases'",
+      "",
+      "export const make$1Controller = (): IController => {",
+      "  const $1 = new $1()",
+      "  const validation = make$1Validation()",
+      "  const controller = new $1Controller(validation, $1)",
+      "  return makeLogControllerDecorator(controller)",
+      "}",
+      ""
+    ]
+  },
+
+  "createMakeValidation": {
+    "scope": "typescript",
+    "prefix": "makeValidation",
+    "body": [
+      "import { $1Controller } from '@/presentation/controllers'",
+      "import { IValidation } from '@/validation/protocols'",
+      "import { RequiredFieldValidation, ValidationComposite } from '@/validation/validators'",
+      "",
+      "",
+      "export const make$1Validation = (): IValidation => {",
+      "  const validations: IValidation[] = []",
+      "  const fields: Array<keyof $1Controller.Request> = ['$0']",
+      "  fields.forEach(field => {",
+      "    validations.push(new RequiredFieldValidation(field))",
+      "  })",
+      "  return new ValidationComposite(validations)",
+      "}",
+      ""
+    ]
+  },
+
+  "validRequest": {
+    "scope": "typescript",
+    "prefix": "validRequest",
+    "body": [
+      "const error = await this.validation.validate(request)",
+      "if (error) {",
+      "  return badRequest(error)",
+      "}",
+      "$0"
+    ]
+  }
 }
