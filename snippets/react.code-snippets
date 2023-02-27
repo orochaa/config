@@ -18,6 +18,21 @@
     ],
   },
 
+  "reactPage": {
+    "scope": "typescriptreact",
+    "prefix": ["page"],
+    "body": [
+      "export function $1Page (): JSX.Element {",
+      "  return (",
+      "    <${2:Main}>",
+      "      $0",
+      "    </${2:Main}>",
+      "  )",
+      "}",
+      ""
+    ],
+  },
+
   "styledComponent": {
     "scope": "javascriptreact,typescriptreact",
     "prefix": "styled",

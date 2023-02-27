@@ -25,7 +25,7 @@
   "editor.guides.highlightActiveIndentation": "always",
   "editor.guides.bracketPairs": "active",
   "editor.renderLineHighlight": "gutter",
-  "editor.suggestSelection": "first",
+  "editor.suggestSelection": "recentlyUsedByPrefix",
 
   "javascript.format.enable": true,
   "javascript.preferences.quoteStyle": "single",
@@ -56,6 +56,7 @@
   "typescriptHero.imports.disableImportsSorting": false,
   "typescriptHero.imports.ignoredFromRemoval": ["react"],
 
+  "prettier.requireConfig": true,
   "prettier.bracketSpacing": true,
   "prettier.bracketSameLine": false,
   "prettier.arrowParens": "avoid",
@@ -86,7 +87,7 @@
 
   "editor.codeActionsOnSave": {
     "source.organizeImports": false,
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": true
   },
 
   "explorer.compactFolders": true,
@@ -102,8 +103,9 @@
 
   "files.exclude": {
     "**/.git": true,
-    "**/.DS_Store": false,
-    "**/node_modules": true
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.vscode": false
   },
 
   "files.associations": {
@@ -117,6 +119,12 @@
   "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
+    "application": "Api",
+    "express": "routes",
+    "protocols": "interface",
+    "composers": "components",
+    "strategy": "context",
+    "factory": "generator",
     "adapters": "plugin",
     "slide": "svelte",
     "main": "core",
@@ -139,7 +147,7 @@
     "providers": "include",
     "subscribers": "messages",
     "useCases": "controller",
-    "kafka": "scripts",
+    "kafka": "supabase",
     "mappers": "meta",
     "_shared": "shared",
     "eslint-config": "tools",
@@ -178,6 +186,7 @@
   ],
   "cSpell.userWords": [
     "acad",
+    "brazilian",
     "chakra",
     "clsx",
     "contentist",
@@ -220,7 +229,6 @@
   "window.menuBarVisibility": "compact",
   "tabnine.experimentalAutoImports": true,
   "editor.minimap.size": "fit",
-  "diffEditor.ignoreTrimWhitespace": false,
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -229,5 +237,14 @@
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "gitlens.currentLine.scrollable": false,
+  "gitlens.hovers.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "editor.linkedEditing": true,
+  "git.openRepositoryInParentFolders": "prompt",
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never"
 }

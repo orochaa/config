@@ -1,0 +1,10 @@
+{
+	"Type?": {
+		"scope": "typescript,typescriptreact",
+		"prefix": "?",
+		"body": [
+			"// $0^?",
+		],
+		"description": "Log output to console"
+	}
+}

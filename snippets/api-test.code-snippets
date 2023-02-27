@@ -1,7 +1,7 @@
 {
   "sut": {
     "scope": "typescript",
-    "prefix": ["sut", "makeSut"],
+    "prefix": ["sut"],
     "body": [
       "interface Sut {",
       "  sut: ${1:Class}",
@@ -20,6 +20,17 @@
     ]
   },
 
+  "makeSut": {
+    "scope": "typescript",
+    "prefix": ["ms", "mrs", "makeSut", "makeRawSut"],
+    "body": [
+      "const makeSut = (props: $0Props): $0 => {",
+      "  return new ${0:Class}(props)",
+      "}",
+      ""
+    ]
+  },
+
   "test": {
     "scope": "typescript",
     "prefix": ["test", "describe"],
@@ -27,8 +38,8 @@
       "describe('$1', () => {",
       "  it('should $2', async () => {",
       "    const { sut, $5Spy } = makeSut()",
-      "    const request = mockRequest()",
       "",
+      "    const request = mockRequest()",
       "    await sut.${3:method}(request)",
       "",
       "    expect($5Spy.calledTimes).toBe(1)",
@@ -37,8 +48,6 @@
       "})"
     ]
   },
-
-  
 
   "testMakeValidation": {
     "scope": "typescript",
@@ -72,8 +81,8 @@
     "body": [
       "it('should $1', async () => {",
       "  const { sut, $4Spy } = makeSut()",
-      "  const request = mockRequest()",
       "",
+      "  const request = mockRequest()",
       "  await sut.${3:method}(request)",
       "",
       "  expect($4Spy.calledTimes).toBe(1)",
@@ -87,14 +96,16 @@
     "prefix": "exception",
     "body": [
       "it('should throw if any dependency throws', async () => {",
+      "  const { $2 } = makeSut()",
       "  const suts: ${1:Class}[] = [",
       "    new ${1:Class}(",
-      "      { ${2:method}: () => throwError() }",
+      "      $2",
       "    )",
       "  ]",
+      "  const mock = mockRequest()",
+      "  expect.assertions(suts.length)",
       "  for (const sut of suts) {",
-      "    const request = mockRequest()",
-      "    const promise = sut.${3:method}(request)",
+      "    const promise = sut.${3:method}(mock)",
       "    await expect(promise).rejects.toThrow()",
       "  }",
       "})"
@@ -115,15 +126,44 @@
     ]
   },
 
+  "mockEntity": {
+    "scope": "typescript",
+    "prefix": ["me", "mockEntity"],
+    "body": [
+      "import { $1 } from '@/domain/entities'",
+      "import { faker } from '@faker-js/faker'",
+      "",
+      "export const mock$1 = (props?: Partial<$1.Params>) => {",
+      "  return new $1({",
+      "    $0",
+      "    ...props",
+      "  })",
+      "}",
+      ""
+    ]
+  },
+
+  "mockReturnValue": {
+    "scope": "typescript",
+    "prefix": ["mrv", "mockReturnValue"],
+    "body": [
+      "const $3 = $0",
+      ";($1 as jest.Mock).mockReturnValue${2:Once}({",
+      "  $3",
+      "})"
+    ]
+  },
+
   "mockRequest": {
     "scope": "typescript",
     "prefix": ["mr", "mockRequest"],
-    "body": [
-      "const mockRequest = (): I$1.Params => ({",
-      "  $0",
-      "})",
-      ""
-    ]
+    "body": ["const mockRequest = (): I$1.Params => ({", "  $0", "})", ""]
+  },
+
+  "mockProps": {
+    "scope": "typescript",
+    "prefix": ["mp", "mockProps"],
+    "body": ["const mockProps = (): $1Props => ({", "  $0", "})", ""]
   },
 
   "mockSpyClass": {
@@ -136,10 +176,16 @@
       "  calledTimes: number = 0",
       "  params: I$1.Params",
       "  result: I$1.Result = $0",
+      "",
       "  $2 (params: I$1.Params): I$1.Result {",
       "    this.calledTimes++",
       "    this.params = params",
       "    return this.result",
+      "  }",
+      "",
+      "  get error(): this {",
+      "    this.$2 = throwError",
+      "    return this",
       "  }",
       "}",
       ""
@@ -163,6 +209,17 @@
       "  }",
       "}",
       ""
+    ]
+  },
+
+  "getError": {
+    "scope": "typescript",
+    "prefix": ["ger", "getError"],
+    "body": [
+      "get error(): this {",
+      "  this.$0 = throwError",
+      "  return this",
+      "}"
     ]
   }
 }

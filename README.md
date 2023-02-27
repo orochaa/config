@@ -17,20 +17,3 @@ To create new snippets:
   git config --global --edit
 ```
 - Copy and paste .gitconfig file content
-
-> ## Jest
-```
-  # Dowload Jest:
-  npm install -D jest@latest
-```
-```
-  # Copy Scripts to package.json on scripts section:
-  "test": "jest --runInBand --no-cache",
-  "test:w": "npm test -- --watch",
-  "test:ci": "npm test -- --silent --coverage --bail=false"
-```
-- Copy jest files to project root
-- Run tests using:
-```
-  npm run test
-```
