@@ -6,12 +6,6 @@
 - Code Spell Checker
 - Typescript Hero
 
-## HighLighters
-- Prisma
-- Prisma - Insider
-- vscode-styled-components
-- PostCSS
-
 ## Themes
 - OmniTheme
 - Material Icons Theme
@@ -19,5 +13,5 @@
 ## Helpers
 - Auto Rename Tag
 - TabnineAI
-- TailwindCSS IntelliSense
 - Live Server
+- vscode-two-slash-queries

@@ -2,8 +2,6 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.showExitAlert": false,
   "terminal.integrated.enableMultiLinePasteWarning": false,
-
-  "workbench.colorTheme": "Omni",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.labelFormat": "short",
@@ -26,6 +24,9 @@
   "editor.guides.bracketPairs": "active",
   "editor.renderLineHighlight": "gutter",
   "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
 
   "javascript.format.enable": true,
   "javascript.preferences.quoteStyle": "single",
@@ -42,7 +43,8 @@
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "typescript.format.semicolons": "remove",
-
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  
   "typescriptHero.imports.organizeOnSave": false,
   "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
   "typescriptHero.imports.multiLineTrailingComma": false,
@@ -80,14 +82,26 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
-
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
 
   "editor.codeActionsOnSave": {
+    "source.fixAll": true,
     "source.organizeImports": false,
-    "source.fixAll.eslint": true
+    "source.sortMembers": false
   },
 
   "explorer.compactFolders": true,
@@ -104,7 +118,7 @@
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
-    "**/node_modules": true,
+    "**/node_modules": false,
     "**/.vscode": false
   },
 
@@ -113,7 +127,8 @@
     ".stylelintrc": "json",
     ".prettierrc": "json",
     "*.tsx": "typescriptreact",
-    ".env*": "dotenv"
+    ".env*": "dotenv",
+    "*.css": "tailwindcss"
   },
 
   "material-icon-theme.activeIconPack": "react",
@@ -158,7 +173,8 @@
     "vitest.config.ts": "vite",
     "ormconfig.json": "database",
     "*.proto": "3d",
-    "*.webpack.js": "webpack"
+    "*.webpack.js": "webpack",
+    "*.build.tsx": "svgo"
   },
   "material-icon-theme.languages.associations": {
     "dotenv": "tune"
@@ -198,6 +214,7 @@
     "Ecommerce",
     "Encrypter",
     "esports",
+    "fastify",
     "ftec",
     "Ftec",
     "gmail",
@@ -208,13 +225,16 @@
     "microservices",
     "middlewares",
     "mockdate",
+    "pomodoro",
     "postgres",
     "prefetch",
     "Procs",
     "rocketseat",
+    "spotify",
     "suts",
     "testid",
     "uniftec",
+    "Untypeable",
     "upsert",
     "usecases",
     "whatsapp",
@@ -226,25 +246,35 @@
 
   "security.workspace.trust.untrustedFiles": "newWindow",
   "debug.onTaskErrors": "abort",
-  "window.menuBarVisibility": "compact",
-  "tabnine.experimentalAutoImports": true,
   "editor.minimap.size": "fit",
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
+
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.currentLine.pullRequests.enabled": false,
   "gitlens.currentLine.scrollable": false,
   "gitlens.hovers.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.codeLens.enabled": false,
+
   "editor.linkedEditing": true,
-  "git.openRepositoryInParentFolders": "prompt",
-  "terminal.integrated.shellIntegration.decorationsEnabled": "never"
+  "git.openRepositoryInParentFolders": "always",
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "window.menuBarVisibility": "compact",
+  "colorize.languages": [
+    "css",
+    "sass",
+    "scss",
+    "less",
+    "postcss",
+    "sss",
+    "stylus",
+    "xml",
+    "svg",
+    "react",
+    "typescriptreact"
+  ],
+  "terminal.integrated.env.windows": {},
+  "console-ninja.featureSet": "Community",
+  "terminal.integrated.env.linux": {},
+  "workbench.colorTheme": "Omni",
+  "diffEditor.ignoreTrimWhitespace": false,
 }
