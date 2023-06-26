@@ -1,8 +1,3 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [user]
 	name = Bruno Rocha
 	email = brunorocha2674@gmail.com
@@ -17,7 +12,11 @@
 	b = !git branch -v
 	g = !git config --global --edit
 	ck = !git checkout
+	po = !git push o
+	pd = !git push d
+	pa = !git po && git pd
 	amend = !git add --all && git commit --amend
-
 [core]
 	editor = code
+[init]
+	defaultBranch = master
