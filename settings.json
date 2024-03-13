@@ -1,14 +1,35 @@
 {
-  "terminal.integrated.fontSize": 14,
+  "window.commandCenter": false,
+  "window.menuBarVisibility": "compact",
+
+  "explorer.compactFolders": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "terminal.integrated.fontSize": 15,
   "terminal.integrated.showExitAlert": false,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "terminal.integrated.env.windows": {},
+  "terminal.integrated.env.linux": {},
+
+  "git.openRepositoryInParentFolders": "always",
+
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "gitlens.currentLine.scrollable": false,
+  "gitlens.hovers.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.codeLens.enabled": false,
+
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.labelFormat": "short",
-  "workbench.editor.untitled.hint": "hidden",
+  "workbench.colorTheme": "Omni",
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.empty.hint": "hidden",
 
   "zenMode.hideLineNumbers": false,
-  "zenMode.hideTabs": false,
 
   "editor.tabSize": 2,
   "editor.fontSize": 16,
@@ -23,59 +44,40 @@
   "editor.guides.highlightActiveIndentation": "always",
   "editor.guides.bracketPairs": "active",
   "editor.renderLineHighlight": "gutter",
+  "editor.minimap.enabled": false,
+  "editor.minimap.size": "fit",
   "editor.suggestSelection": "recentlyUsedByPrefix",
   "editor.quickSuggestions": {
     "strings": true
   },
+  "editor.linkedEditing": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "never",
+    "source.sortMembers": "never"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
-  "javascript.format.enable": true,
-  "javascript.preferences.quoteStyle": "single",
-  "javascript.suggest.autoImports": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "javascript.format.semicolons": "remove",
-
-  "typescript.format.enable": true,
-  "typescript.preferences.quoteStyle": "single",
-  "typescript.suggest.autoImports": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "typescript.format.semicolons": "remove",
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  
-  "typescriptHero.imports.organizeOnSave": false,
-  "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
-  "typescriptHero.imports.multiLineTrailingComma": false,
-  "typescriptHero.imports.multiLineWrapThreshold": 80,
-  "typescriptHero.imports.stringQuoteStyle": "'",
-  "typescriptHero.imports.insertSemicolons": false,
-  "typescriptHero.imports.removeTrailingIndex": true,
-  "typescriptHero.imports.grouping": ["Plains", "Modules", "Workspace"],
-  "typescriptHero.imports.insertSpaceBeforeAndAfterImportBraces": true,
-  "typescriptHero.imports.disableImportRemovalOnOrganize": false,
-  "typescriptHero.imports.disableImportsSorting": false,
-  "typescriptHero.imports.ignoredFromRemoval": ["react"],
-
-  "prettier.requireConfig": true,
-  "prettier.bracketSpacing": true,
-  "prettier.bracketSameLine": false,
-  "prettier.arrowParens": "avoid",
-  "prettier.endOfLine": "crlf",
-  "prettier.semi": false,
-  "prettier.useTabs": false,
-  "prettier.singleQuote": true,
-  "prettier.quoteProps": "as-needed",
-  "prettier.printWidth": 80,
-  "prettier.trailingComma": "none",
-  "prettier.jsxSingleQuote": false,
-  "prettier.singleAttributePerLine": false,
+  "diffEditor.ignoreTrimWhitespace": false,
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 300,
-
-  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/.vscode": false,
+    "**/node_modules": false
+  },
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json",
+    ".env*": "dotenv",
+    "*.code-snippets": "json",
+    "*.tsx": "typescriptreact",
+    "*.css": "tailwindcss"
+  },
 
   "[prisma]": {
     "editor.formatOnSave": true,
@@ -84,49 +86,66 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
 
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": false,
-    "source.sortMembers": false
-  },
+  "javascript.format.enable": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.inlayHints.parameterNames.enabled": "none",
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "javascript.format.semicolons": "remove",
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
 
-  "explorer.compactFolders": true,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
+  "typescript.format.enable": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "typescript.format.semicolons": "remove",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
 
-  "breadcrumbs.enabled": true,
+  "prettier.requireConfig": false,
+  "prettier.bracketSpacing": true,
+  "prettier.bracketSameLine": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.endOfLine": "lf",
+  "prettier.semi": false,
+  "prettier.useTabs": false,
+  "prettier.singleQuote": true,
+  "prettier.quoteProps": "as-needed",
+  "prettier.printWidth": 80,
+  "prettier.trailingComma": "all",
+  "prettier.jsxSingleQuote": false,
+  "prettier.singleAttributePerLine": false,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
 
-  "screencastMode.onlyKeyboardShortcuts": true,
+  "colorize.languages": [
+    "css",
+    "sass",
+    "scss",
+    "less",
+    "postcss",
+    "sss",
+    "stylus",
+    "xml",
+    "svg",
+    "react",
+    "typescriptreact"
+  ],
 
-  "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true,
-    "**/node_modules": false,
-    "**/.vscode": false
-  },
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
 
-  "files.associations": {
-    ".sequelizerc": "javascript",
-    ".stylelintrc": "json",
-    ".prettierrc": "json",
-    "*.tsx": "typescriptreact",
-    ".env*": "dotenv",
-    "*.css": "tailwindcss"
-  },
-  
   "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
@@ -198,6 +217,8 @@
   ],
   "cSpell.userWords": [
     "acad",
+    "authy",
+    "autofocus",
     "brazilian",
     "chakra",
     "clsx",
@@ -207,7 +228,11 @@
     "cread",
     "Cread",
     "decrypter",
+    "Disableable",
+    "dtos",
+    "ecommerce",
     "Ecommerce",
+    "encrypter",
     "Encrypter",
     "esports",
     "fastify",
@@ -216,6 +241,8 @@
     "gmail",
     "Graduacao",
     "hasher",
+    "inferations",
+    "jetbrains",
     "lcov",
     "malabi",
     "microservices",
@@ -229,49 +256,20 @@
     "spotify",
     "suts",
     "testid",
+    "ungroup",
     "uniftec",
     "Untypeable",
     "upsert",
     "usecases",
     "whatsapp",
+    "yoda",
     "youtube"
   ],
 
   "security.workspace.trust.untrustedFiles": "newWindow",
-  "debug.onTaskErrors": "abort",
-  "editor.minimap.size": "fit",
 
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.currentLine.pullRequests.enabled": false,
-  "gitlens.currentLine.scrollable": false,
-  "gitlens.hovers.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.codeLens.enabled": false,
-
-  "editor.linkedEditing": true,
-  "git.openRepositoryInParentFolders": "always",
-  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-  "window.menuBarVisibility": "compact",
-  "colorize.languages": [
-    "css",
-    "sass",
-    "scss",
-    "less",
-    "postcss",
-    "sss",
-    "stylus",
-    "xml",
-    "svg",
-    "react",
-    "typescriptreact"
-  ],
-  "terminal.integrated.env.windows": {},
   "console-ninja.featureSet": "Community",
-  "terminal.integrated.env.linux": {},
-  "workbench.colorTheme": "Omni",
-  "diffEditor.ignoreTrimWhitespace": false,
-  
+
   "jest.rootPath": "",
-  "jest.autoRun": "off",
-  "tabnine.experimentalAutoImports": true
+  "jest.autoRun": "off"
 }

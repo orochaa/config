@@ -16,7 +16,16 @@
 	pd = !git push d
 	pa = !git po && git pd
 	amend = !git add --all && git commit --amend
+	srs = !git reset --soft HEAD^ 
 [core]
-	editor = code
+	editor = code --wait
 [init]
 	defaultBranch = master
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[pull]
+ rebase = false
