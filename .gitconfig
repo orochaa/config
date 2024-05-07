@@ -3,20 +3,26 @@
 	email = brunorocha2674@gmail.com
 [alias]
 	s = !git status -s
-	c = !git add --all && git commit -m
+	c = !git add . && git commit -m
+	ca = !git add --all && git commit -m
 	cm = !git commit -m
-	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+	a = !git commit --amend
+	aa = !git add --all && git commit --amend
+	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn %C(green)%cr'
 	r = !git remote -v
 	ra = !git remote add
 	rr = !git remote rename
+	rd = !git remote remove
+	rs = !git remote set-url
 	b = !git branch -v
-	g = !git config --global --edit
+	bd = !git branch -D
 	ck = !git checkout
 	po = !git push o
 	pd = !git push d
 	pa = !git po && git pd
-	amend = !git add --all && git commit --amend
-	srs = !git reset --soft HEAD^ 
+	sr = !git reset --soft HEAD^ 
+	g = !git config --global --edit
+	alias = !git config --get-regexp '^alias'
 [core]
 	editor = code --wait
 [init]
