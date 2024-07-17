@@ -20,13 +20,6 @@
   "editor.minimap.size": "fit",
   "editor.suggestSelection": "first",
   "editor.linkedEditing": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "never",
-    "source.sortMembers": "never"
-  },
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.unicodeHighlight.allowedLocales": {
     "pt-BR": true
   },
@@ -36,11 +29,18 @@
   "workbench.colorTheme": "Omni",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 5,
+  "workbench.editor.limit.perEditorGroup": true,
   "workbench.activityBar.location": "hidden",
   "workbench.statusBar.visible": true,
   "workbench.layoutControl.enabled": false,
 
-  "breadcrumbs.enabled": false,
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.filePath": "on",
+  "breadcrumbs.symbolPath": "off",
+  "breadcrumbs.icons": true,
 
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
@@ -58,6 +58,8 @@
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.env.windows": {},
+  "terminal.integrated.env.linux": {},
 
   "git.openRepositoryInParentFolders": "always",
 
@@ -69,8 +71,20 @@
   "gitlens.codeLens.enabled": false,
 
   "zenMode.hideLineNumbers": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideActivityBar": true,
+  "zenMode.hideStatusBar": true,
+  "zenMode.showTabs": "single",
 
   "diffEditor.ignoreTrimWhitespace": false,
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "never",
+    "source.sortMembers": "never"
+  },
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 300,
@@ -172,7 +186,7 @@
   "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
-    "application": "Api",
+    "application": "api",
     "express": "routes",
     "protocols": "interface",
     "composers": "components",
@@ -309,6 +323,5 @@
   },
   "apc.stylesheet": {
     ".editor-actions": "display: none"
-  },
-  "terminal.integrated.env.linux": {}
+  }
 }
