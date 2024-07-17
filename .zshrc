@@ -23,6 +23,7 @@ alias cls="clear"
 alias up="source $HOME/.zshrc"
 alias nopoly="npx nolyfill install; pnpm install"
 alias cat="batcat"
+alias my="my-cli"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -1,35 +1,6 @@
 {
   "window.commandCenter": false,
-  "window.menuBarVisibility": "compact",
-
-  "explorer.compactFolders": true,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-
-  "terminal.integrated.fontSize": 15,
-  "terminal.integrated.showExitAlert": false,
-  "terminal.integrated.enableMultiLinePasteWarning": "auto",
-  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-  "terminal.integrated.env.windows": {},
-  "terminal.integrated.env.linux": {},
-
-  "git.openRepositoryInParentFolders": "always",
-
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.currentLine.pullRequests.enabled": false,
-  "gitlens.currentLine.scrollable": false,
-  "gitlens.hovers.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.codeLens.enabled": false,
-
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.editor.labelFormat": "short",
-  "workbench.colorTheme": "Omni",
-  "workbench.layoutControl.enabled": false,
-  "workbench.editor.empty.hint": "hidden",
-
-  "zenMode.hideLineNumbers": false,
+  "window.menuBarVisibility": "toggle",
 
   "editor.tabSize": 2,
   "editor.fontSize": 16,
@@ -43,13 +14,11 @@
   "editor.guides.indentation": true,
   "editor.guides.highlightActiveIndentation": "always",
   "editor.guides.bracketPairs": "active",
+  "editor.scrollbar.vertical": "auto",
   "editor.renderLineHighlight": "gutter",
   "editor.minimap.enabled": false,
   "editor.minimap.size": "fit",
-  "editor.suggestSelection": "recentlyUsedByPrefix",
-  "editor.quickSuggestions": {
-    "strings": true
-  },
+  "editor.suggestSelection": "first",
   "editor.linkedEditing": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
@@ -58,6 +27,48 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.unicodeHighlight.allowedLocales": {
+    "pt-BR": true
+  },
+
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Omni",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.editor.labelFormat": "short",
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": true,
+  "workbench.layoutControl.enabled": false,
+
+  "breadcrumbs.enabled": false,
+
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": ".eslint*, .prettier*, tsconfig*, vite*, pnpm-*, nest*, package-lock*",
+    "tailwind.config.*": "tailwind.config*, postcss.config*"
+  },
+  "explorer.sortOrder": "foldersNestsFiles",
+
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.showExitAlert": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.gpuAcceleration": "on",
+
+  "git.openRepositoryInParentFolders": "always",
+
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "gitlens.currentLine.scrollable": false,
+  "gitlens.hovers.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.codeLens.enabled": false,
+
+  "zenMode.hideLineNumbers": false,
 
   "diffEditor.ignoreTrimWhitespace": false,
 
@@ -80,7 +91,6 @@
   },
 
   "[prisma]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
   "[shellscript]": {
@@ -88,6 +98,9 @@
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
   },
 
   "javascript.format.enable": true,
@@ -99,6 +112,7 @@
   "javascript.format.semicolons": "remove",
   "javascript.preferences.importModuleSpecifier": "shortest",
   "javascript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.jsxAttributeCompletionStyle": "braces",
 
   "typescript.format.enable": true,
   "typescript.preferences.quoteStyle": "single",
@@ -110,6 +124,8 @@
   "typescript.preferences.importModuleSpecifier": "shortest",
   "typescript.preferences.importModuleSpecifierEnding": "js",
   "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.preferences.jsxAttributeCompletionStyle": "braces",
 
   "prettier.requireConfig": false,
   "prettier.bracketSpacing": true,
@@ -124,6 +140,8 @@
   "prettier.trailingComma": "all",
   "prettier.jsxSingleQuote": false,
   "prettier.singleAttributePerLine": false,
+
+  "biome.enabled": false,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
@@ -143,7 +161,12 @@
   ],
 
   "tailwindCSS.experimental.classRegex": [
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ["(?:cn,clsx,twMerge)\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+    ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+    [
+      "(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]",
+      "(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"
+    ]
   ],
 
   "material-icon-theme.activeIconPack": "react",
@@ -182,14 +205,18 @@
     "_shared": "shared",
     "eslint-config": "tools",
     "kube": "kubernetes",
-    "nginx": "terraform"
+    "nginx": "terraform",
+    "internals": "app",
+    "third_party": "other",
+    "chglog": "changesets"
   },
   "material-icon-theme.files.associations": {
     "vitest.config.ts": "vite",
     "ormconfig.json": "database",
     "*.proto": "3d",
     "*.webpack.js": "webpack",
-    "*.build.tsx": "svgo"
+    "*.build.tsx": "svgo",
+    "*.bench.ts": "test-ts"
   },
   "material-icon-theme.languages.associations": {
     "dotenv": "tune"
@@ -248,12 +275,15 @@
     "microservices",
     "middlewares",
     "mockdate",
+    "noreferrer",
     "pomodoro",
     "postgres",
     "prefetch",
     "Procs",
+    "rbru",
     "rocketseat",
     "spotify",
+    "Streamable",
     "suts",
     "testid",
     "ungroup",
@@ -267,9 +297,18 @@
   ],
 
   "security.workspace.trust.untrustedFiles": "newWindow",
-
   "console-ninja.featureSet": "Community",
+  "go.toolsManagement.autoUpdate": true,
 
-  "jest.rootPath": "",
-  "jest.autoRun": "off"
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset",
+    "opacity": 1
+  },
+  "apc.header": {
+    "height": 32
+  },
+  "apc.stylesheet": {
+    ".editor-actions": "display: none"
+  },
+  "terminal.integrated.env.linux": {}
 }
