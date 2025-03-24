@@ -5,8 +5,11 @@
   "editor.tabSize": 2,
   "editor.fontSize": 16,
   "editor.lineHeight": 26,
+  "editor.rulers": [80],
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "off",
   "editor.semanticHighlighting.enabled": false,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.highlightActiveBracketPair": true,
@@ -36,19 +39,33 @@
   "workbench.activityBar.location": "hidden",
   "workbench.statusBar.visible": true,
   "workbench.layoutControl.enabled": false,
+  "workbench.list.defaultFindMode": "filter",
+  "workbench.list.typeNavigationMode": "automatic",
+  "workbench.list.defaultFindMatchType": "fuzzy",
 
   "breadcrumbs.enabled": true,
   "breadcrumbs.filePath": "on",
-  "breadcrumbs.symbolPath": "off",
+  "breadcrumbs.symbolPath": "last",
   "breadcrumbs.icons": true,
 
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
+  "explorer.confirmDelete": true,
   "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": ".eslint*, .prettier*, tsconfig*, vite*, pnpm-*, nest*, package-lock*",
-    "tailwind.config.*": "tailwind.config*, postcss.config*"
+    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, tsconfig*, .nvm*",
+    "vite.config.*": "tailwind*, postcss*",
+    ".gitignore": ".git*",
+    ".env": ".env*",
+    "jest.*": ".swc*",
+    "app.*": "babel*, eas*",
+    "*ockerfile": "docker*, .docker*",
+    "*.go": "${capture}_*.go",
+    "*.ts": "${capture}.*.ts",
+    "*.tsx": "${capture}.*.tsx",
+    "eng.traineddata": "*.traineddata",
+    "go.mod": "go.sum"
   },
   "explorer.sortOrder": "foldersNestsFiles",
 
@@ -155,10 +172,13 @@
   "prettier.jsxSingleQuote": false,
   "prettier.singleAttributePerLine": false,
 
-  "biome.enabled": false,
+  "biome.enabled": true,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
+
+  "go.toolsManagement.autoUpdate": true,
+  "go.testFlags": ["-count=1"],
 
   "colorize.languages": [
     "css",
@@ -177,13 +197,16 @@
   "tailwindCSS.experimental.classRegex": [
     ["(?:cn,clsx,twMerge)\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
     ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+    ["(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"],
     [
-      "(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]",
-      "(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"
+      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]"
+    ],
+    [
+      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*{([^}]*)}"
     ]
   ],
 
-  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.activeIconPack": "nest",
   "material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
     "application": "api",
@@ -222,7 +245,8 @@
     "nginx": "terraform",
     "internals": "app",
     "third_party": "other",
-    "chglog": "changesets"
+    "chglog": "changesets",
+    "forms": "content"
   },
   "material-icon-theme.files.associations": {
     "vitest.config.ts": "vite",
@@ -235,93 +259,122 @@
   "material-icon-theme.languages.associations": {
     "dotenv": "tune"
   },
+  "material-icon-theme.files.customClones": [
+    {
+      "name": "nest-service",
+      "base": "nest",
+      "color": "yellow-500",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["service.ts", "job.ts"]
+    },
+    {
+      "name": "nest-service-test",
+      "base": "test-ts",
+      "color": "yellow-500",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["service.spec.ts", "job.spec.ts"]
+    },
+    {
+      "name": "nest-adapter",
+      "base": "nest",
+      "color": "cyan-400",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["adapter.ts", "mapper.ts"]
+    },
+    {
+      "name": "nest-gateway",
+      "base": "nest",
+      "color": "purple-400",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["repository.ts", "gateway.ts"]
+    },
+    {
+      "name": "nest-decorator",
+      "base": "nest",
+      "color": "purple-500",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["decorator.ts"]
+    },
+    {
+      "name": "nest-factory",
+      "base": "nest",
+      "color": "red-400",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["factory.ts", "strategy.ts"]
+    },
+    {
+      "name": "nest-default",
+      "base": "nest",
+      "color": "gray-500",
+      "activeForPacks": ["nest"],
+      "fileExtensions": ["ts"]
+    },
+    {
+      "name": "test-e2e",
+      "base": "test-ts",
+      "color": "cyan-300",
+      "fileExtensions": ["e2e.spec.ts"]
+    },
+    {
+      "name": "nest-controller",
+      "base": "nest",
+      "color": "blue-600",
+      "fileExtensions": ["controller.ts", "controller.dto.ts"]
+    }
+  ],
 
   "cSpell.language": "en,pt",
-  "cSpell.enableFiletypes": [
-    "!asciidoc",
-    "!c",
-    "!cpp",
-    "!csharp",
-    "!go",
-    "!handlebars",
-    "!haskell",
-    "!jade",
-    "!java",
-    "!latex",
-    "!php",
-    "!pug",
-    "!python",
-    "!restructuredtext",
-    "!rust",
-    "!scala",
-    "!scss"
-  ],
   "cSpell.userWords": [
-    "acad",
-    "authy",
-    "autofocus",
-    "brazilian",
-    "chakra",
     "clsx",
-    "contentist",
-    "Contentist",
-    "contentists",
-    "cread",
-    "Cread",
     "decrypter",
-    "Disableable",
-    "dtos",
-    "ecommerce",
-    "Ecommerce",
+    "Decrypter",
+    "deepseek",
     "encrypter",
-    "Encrypter",
-    "esports",
-    "fastify",
-    "ftec",
-    "Ftec",
-    "gmail",
-    "Graduacao",
-    "hasher",
-    "inferations",
-    "jetbrains",
-    "lcov",
-    "malabi",
-    "microservices",
-    "middlewares",
-    "mockdate",
-    "noreferrer",
-    "pomodoro",
+    "gemini",
+    "github",
+    "langchain",
+    "nginx",
+    "openai",
+    "orochaa",
+    "picocolors",
     "postgres",
-    "prefetch",
-    "Procs",
-    "rbru",
-    "rocketseat",
-    "spotify",
-    "Streamable",
-    "suts",
-    "testid",
-    "ungroup",
-    "uniftec",
-    "Untypeable",
-    "upsert",
-    "usecases",
-    "whatsapp",
-    "yoda",
-    "youtube"
+    "postgresql",
+    "struct",
+    "usecases"
   ],
 
   "security.workspace.trust.untrustedFiles": "newWindow",
   "console-ninja.featureSet": "Community",
-  "go.toolsManagement.autoUpdate": true,
 
-  "apc.electron": {
-    "titleBarStyle": "hiddenInset",
-    "opacity": 1
+  "jest.runMode": {
+    "coverage": false,
+    "deferred": false,
+    "runAllTestsOnStartup": false,
+    "showInlineError": true,
+    "type": "on-demand"
   },
-  "apc.header": {
-    "height": 32
+
+  "geminicodeassist.enableTelemetry": false,
+  "geminicodeassist.languages": ["typescript", "typescriptreact", "go"],
+  "geminicodeassist.inlineSuggestions.enableAuto": false,
+  "geminicodeassist.project": "",
+
+  "diffEditor.codeLens": true,
+
+  "gitlens.keymap": "none",
+  "gitlens.launchpad.indicator.enabled": false,
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "repositories": false,
+    "searchAndCompare": true,
+    "launchpad": false
   },
-  "apc.stylesheet": {
-    ".editor-actions": "display: none"
-  }
+
+  "liveServer.settings.donotShowInfoMsg": true
 }

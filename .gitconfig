@@ -3,8 +3,7 @@
 	email = brunorocha2674@gmail.com
 [alias]
 	s = !git status -s
-	c = !git add . && git commit -m
-	ca = !git add --all && git commit -m
+	c = !git add --all && git commit -m
 	cm = !git commit -m
 	a = !git commit --amend
 	aa = !git add --all && git commit --amend
@@ -20,8 +19,10 @@
 	po = !git push o
 	pd = !git push d
 	pa = !git po && git pd
-	sr = !git reset --soft HEAD^ 
+	pr = !git po && git po --tags
+	sr = !git reset --soft HEAD^ && git reset
 	g = !git config --global --edit
+	patch = !git diff --staged > wip.patch
 	alias = !git config --get-regexp '^alias'
 [core]
 	editor = code --wait

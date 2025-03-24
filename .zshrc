@@ -24,6 +24,7 @@ alias up="source $HOME/.zshrc"
 alias nopoly="npx nolyfill install; pnpm install"
 alias cat="batcat"
 alias my="my-cli"
+alias gl="tail -n 1 /git/keys.md"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -35,5 +36,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-PATH=~/.console-ninja/.bin:$PATH
