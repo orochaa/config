@@ -36,11 +36,13 @@ export FZF_DEFAULT_OPTS=" \
   --walker-skip .git,node_modules,dist,coverage \
   --preview 'batcat -n --color=always {}' \
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+  
+# add Pulumi to the PATH
+export PATH=$PATH:/root/.pulumi/bin
 
 alias zsh="code $HOME/.zshrc"
 alias up="source $HOME/.zshrc"
 alias nopoly="npx nolyfill install; pnpm install"
-alias gl="tail -n 1 /git/keys.md"
 
 alias cls="clear"
 alias cat="batcat --color=always"
