@@ -8,10 +8,10 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source ~/.zsh/zsh-nvm/zsh-nvm.plugin.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 export NVM_NO_USE=false
 export NVM_DIR="$HOME/.nvm"
@@ -36,7 +36,7 @@ export FZF_DEFAULT_OPTS=" \
   --walker-skip .git,node_modules,dist,coverage \
   --preview 'batcat -n --color=always {}' \
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-  
+
 # add Pulumi to the PATH
 export PATH=$PATH:/root/.pulumi/bin
 
@@ -45,7 +45,10 @@ alias up="source $HOME/.zshrc"
 alias nopoly="npx nolyfill install; pnpm install"
 
 alias cls="clear"
-alias cat="batcat --color=always"
+alias bat="batcat --color=always"
 alias ls="eza --icons=never --color=never --classify=always --group-directories-first"
 alias cd="z"
 alias my="my-cli"
+alias wgit="~/scripts/test-github-credentials.sh"
+alias gemini="gemini -m gemini-2.5-flash"
+alias lint="npx biome check --write --unsafe"

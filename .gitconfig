@@ -16,9 +16,10 @@
 	b = !git branch -v
 	bd = !git branch -D
 	ck = !git checkout
+	cb = !git checkout -b
+	pm = !git pull o main
 	po = !git push o
-	pd = !git push d
-	pa = !git po && git pd
+	pod = !git push o --delete
 	pr = !git po && git po --tags
 	sr = !git reset --soft HEAD^ && git reset
 	g = !git config --global --edit
@@ -27,12 +28,13 @@
 [core]
 	editor = code --wait
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[pull]
+	rebase = false
+[includeIf "gitdir:~/git/orochaa/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/git/unvoid/"]
+	path = ~/.gitconfig-unvoid
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[pull]
- rebase = false

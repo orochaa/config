@@ -29,7 +29,7 @@
 
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Omni",
+  "workbench.colorTheme": "Arasaka Inferno: Blue",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
   "workbench.editor.showTabs": "multiple",
@@ -42,35 +42,53 @@
   "workbench.list.defaultFindMode": "filter",
   "workbench.list.typeNavigationMode": "automatic",
   "workbench.list.defaultFindMatchType": "fuzzy",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/bin": true,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
 
   "breadcrumbs.enabled": true,
   "breadcrumbs.filePath": "on",
   "breadcrumbs.symbolPath": "last",
   "breadcrumbs.icons": true,
 
+  "explorer.incrementalNaming": "simple",
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": true,
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
+  "explorer.sortOrder": "foldersNestsFiles",
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, tsconfig*, .nvm*",
-    "vite.config.*": "tailwind*, postcss*",
-    ".gitignore": ".git*",
-    ".env": ".env*",
-    "jest.*": ".swc*",
-    "app.*": "babel*, eas*",
-    "*ockerfile": "docker*, .docker*",
-    "*.go": "${capture}_*.go",
     "*.ts": "${capture}.*.ts",
     "*.tsx": "${capture}.*.tsx",
-    "eng.traineddata": "*.traineddata",
-    "go.mod": "go.sum"
+    "*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.*.map",
+
+    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig",
+    "tsconfig.json": "tsconfig.*.json",
+    "vite.config.*": "tailwind*, postcss*",
+    "jest.*": ".swc*",
+    "*ockerfile": "docker*, .docker*",
+
+    ".env": ".env*",
+    ".gitignore": ".git*",
+
+    "app.*": "babel*, eas*",
+
+    "*.go": "${capture}_*.go",
+    "go.mod": "go.sum",
+
+    "README.md": "*.md"
   },
-  "explorer.sortOrder": "foldersNestsFiles",
 
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.showExitAlert": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.enableMultiLinePasteWarning": "auto",
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",
   "terminal.integrated.copyOnSelection": true,
@@ -93,23 +111,26 @@
   "zenMode.hideStatusBar": true,
   "zenMode.showTabs": "single",
 
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.codeLens": true,
 
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports": "never",
-    "source.sortMembers": "never"
+    "source.addMissingImports": "explicit",
+    "source.removeUnused": "explicit"
   },
 
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 300,
   "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true,
+    "**/node_modules": false,
     "**/.vscode": false,
-    "**/node_modules": false
+    "**/.git": true,
+    "**/.nx": true,
+    "**/.DS_Store": true
   },
   "files.associations": {
     ".sequelizerc": "javascript",
@@ -122,16 +143,25 @@
   },
 
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma-insider"
+    "editor.defaultFormatter": "Prisma.prisma"
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[go]": {
     "editor.defaultFormatter": "golang.go"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.inlayHints.enabled": "on"
   },
 
   "javascript.format.enable": true,
@@ -142,7 +172,7 @@
   "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "javascript.format.semicolons": "remove",
   "javascript.preferences.importModuleSpecifier": "shortest",
-  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "javascript.preferences.jsxAttributeCompletionStyle": "braces",
 
   "typescript.format.enable": true,
@@ -153,7 +183,7 @@
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "typescript.format.semicolons": "remove",
   "typescript.preferences.importModuleSpecifier": "shortest",
-  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "typescript.preferences.preferTypeOnlyAutoImports": true,
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "typescript.preferences.jsxAttributeCompletionStyle": "braces",
@@ -173,6 +203,7 @@
   "prettier.singleAttributePerLine": false,
 
   "biome.enabled": true,
+  "biome.suggestInstallingGlobally": false,
 
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
@@ -357,11 +388,14 @@
   },
 
   "geminicodeassist.enableTelemetry": false,
-  "geminicodeassist.languages": ["typescript", "typescriptreact", "go"],
-  "geminicodeassist.inlineSuggestions.enableAuto": false,
   "geminicodeassist.project": "",
-
-  "diffEditor.codeLens": true,
+  "geminicodeassist.updateChannel": "Default",
+  "geminicodeassist.languages": ["typescript", "typescriptreact", "go", "rust"],
+  "geminicodeassist.inlineSuggestions.enableAuto": false,
+  "geminicodeassist.displayInlineContextHint": false,
+  "geminicodeassist.customCommands": {
+    "docs": "Add TSDocs to classes, functions, methods and fields of schemas"
+  },
 
   "gitlens.keymap": "none",
   "gitlens.launchpad.indicator.enabled": false,
@@ -379,5 +413,28 @@
   },
 
   "liveServer.settings.donotShowInfoMsg": true,
-  "geminicodeassist.updateChannel": "Default"
+
+  "github.copilot.chat.localeOverride": "en",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "remote.autoForwardPortsSource": "hybrid",
+  "shellformat.effectLanguages": [
+    "shellscript",
+    "dockerfile",
+    "dotenv",
+    "hosts",
+    "jvmoptions",
+    "ignore",
+    "gitignore",
+    "properties",
+    "spring-boot-properties",
+    "azcli",
+    "bats"
+  ],
+  "git.blame.editorDecoration.enabled": false,
+  "git.blame.statusBarItem.enabled": false
 }
