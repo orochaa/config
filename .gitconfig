@@ -8,39 +8,44 @@
 	global = !git config --global --edit
 	alias = !git config --get-regexp '^alias'
 	
-    # Status / logs
+  # Status / logs
 	s = !git status -s
 	sc = !git status -s | awk '{print $2}'
 	staged = !git diff --cached	--name-only
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn %C(green)%cr'
 	last = !git log -1 HEAD --stat
 
-    # Branches
-    cur = !git branch --show-current
-    b = !git branch -vv
-    bd = !git branch -D
+  # Branches
+  cur = !git branch --show-current
+  b = !git branch -vv
+  bd = !git branch -D
 	ck = !git checkout
-    sw = !git switch
+  sw = !git switch
+  sm = "!f(){ b=$(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf --no-preview --prompt='branch'); [ -n \"$b\" ] && git switch \"$b\" || echo \"No local branch matching: $1\"; }; f"
+	new = "!f(){ git main; git switch -c $1; }; f"
+	resume = "!f(){ git checkout -b $1 origin/$1; }; f"
+	done = "!c=$(git cur); git main; git bd $c"
 
-    # Commits
+  # Commits
 	c = !git add --all && git commit -m
 	cm = !git commit -m
 	a = !git commit --amend
 	aa = !git add --all && git commit --amend --no-edit
+	same = !git add --all && git commit --reuse-message=HEAD
 	wip = !git c "wip"
 	lint = !git c "fix: lint"
 	build = !git c "fix: build"
 
-    # Pull
+  # Pull
 	pm = !git pull origin $(git base)
 	pb = !git pull origin $(git cur)
 	sync = !git pb && git pm && git po
-	main = "!b=$(git base); git switch $b; git pull origin $b"
-	refresh = "!c=$(git cur); git main; git switch $c"
+	main = "!b=$(git base); git switch $b && git pull origin $b"
+	refresh = "!c=$(git cur); git main && git switch $c"
 
-    # Push
+  # Push
 	po = !git push origin
-    pf = !git push origin --force-with-lease
+  pf = !git push origin --force-with-lease
 	pd = !git push origin --delete
 	pr = !git push origin && git push origin --tags
 
@@ -57,13 +62,15 @@
 
 	# Review
 	review = "!b=$(git base); git diff origin/$b...HEAD --stat"
+  reviewf = "!git review | fzf --multi --no-preview --exact --reverse"
 	changed = "!b=$(git base); git diff --name-only origin/$b...HEAD"
+  changedf = "!git changed | fzf --multi --no-preview --exact --reverse"
 	affected = "!b=$(git base); git diff --name-only origin/$b...HEAD | cut -d/ -f1-2 | sort -u"
 	
     # Cleanup
 	dirty = "!b=$(git base); git fetch origin --prune >/dev/null 2>&1; git branch --format='%(refname:short)' --merged origin/$b | grep -v \"^$b$\" | grep -v '^HEAD$'"
-    cleanup = "!git dirty | xargs -r git branch -d"
-    gone = !git branch -vv | grep ': gone]'
+  cleanup = "!git dirty | xargs -r git branch -d"
+  gone = !git branch -vv | grep ': gone]'
 
 	# Remote
 	r = !git remote -v
@@ -75,9 +82,6 @@
 	# Utils
 	undo = !git reset --soft HEAD^ && git reset
 	patch = !git diff --staged > wip.patch
-	new = "!f(){ git main; git switch -c $1; }; f"
-	revive = "!f(){ git checkout -b $1 origin/$1; }; f"
-	done = "!c=$(git cur); git main; git bd $c"
 	
 	# Debug
 	dup = "!git config --get-regexp '^alias' | awk '{print $1}' | sort | uniq -d"
