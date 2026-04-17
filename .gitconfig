@@ -2,31 +2,89 @@
 	name = Bruno Rocha
 	email = brunorocha2674@gmail.com
 [alias]
+	# Setup
+	setup = !git remote set-head origin -a
+	base = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+	global = !git config --global --edit
+	alias = !git config --get-regexp '^alias'
+	
+    # Status / logs
 	s = !git status -s
+	sc = !git status -s | awk '{print $2}'
+	staged = !git diff --cached	--name-only
+	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn %C(green)%cr'
+	last = !git log -1 HEAD --stat
+
+    # Branches
+    cur = !git branch --show-current
+    b = !git branch -vv
+    bd = !git branch -D
+	ck = !git checkout
+    sw = !git switch
+
+    # Commits
 	c = !git add --all && git commit -m
 	cm = !git commit -m
 	a = !git commit --amend
-	aa = !git add --all && git commit --amend
-	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn %C(green)%cr'
+	aa = !git add --all && git commit --amend --no-edit
+	wip = !git c "wip"
+	lint = !git c "fix: lint"
+	build = !git c "fix: build"
+
+    # Pull
+	pm = !git pull origin $(git base)
+	pb = !git pull origin $(git cur)
+	sync = !git pb && git pm && git po
+	main = "!b=$(git base); git switch $b; git pull origin $b"
+	refresh = "!c=$(git cur); git main; git switch $c"
+
+    # Push
+	po = !git push origin
+    pf = !git push origin --force-with-lease
+	pd = !git push origin --delete
+	pr = !git push origin && git push origin --tags
+
+	# Merge Conflicts
+	conflicts = !git diff --name-only --diff-filter=U
+	ours = !git checkout --ours
+	theirs = !git checkout --theirs
+
+	# File states
+	deleted = !git diff --name-only --diff-filter=D
+	added = !git diff --name-only --diff-filter=A
+	modified = !git diff --name-only --diff-filter=M
+	renamed = !git diff --name-only --diff-filter=R
+
+	# Review
+	review = "!b=$(git base); git diff origin/$b...HEAD --stat"
+	changed = "!b=$(git base); git diff --name-only origin/$b...HEAD"
+	affected = "!b=$(git base); git diff --name-only origin/$b...HEAD | cut -d/ -f1-2 | sort -u"
+	
+    # Cleanup
+	dirty = "!b=$(git base); git fetch origin --prune >/dev/null 2>&1; git branch --format='%(refname:short)' --merged origin/$b | grep -v \"^$b$\" | grep -v '^HEAD$'"
+    cleanup = "!git dirty | xargs -r git branch -d"
+    gone = !git branch -vv | grep ': gone]'
+
+	# Remote
 	r = !git remote -v
 	ra = !git remote add
 	rr = !git remote rename
 	rd = !git remote remove
 	rs = !git remote set-url
-	b = !git branch -v
-	bd = !git branch -D
-	ck = !git checkout
-	cb = !git checkout -b
-	pm = !git pull o main
-	po = !git push o
-	pod = !git push o --delete
-	pr = !git po && git po --tags
-	sr = !git reset --soft HEAD^ && git reset
-	g = !git config --global --edit
+
+	# Utils
+	undo = !git reset --soft HEAD^ && git reset
 	patch = !git diff --staged > wip.patch
-	alias = !git config --get-regexp '^alias'
+	new = "!f(){ git main; git switch -c $1; }; f"
+	revive = "!f(){ git checkout -b $1 origin/$1; }; f"
+	done = "!c=$(git cur); git main; git bd $c"
+	
+	# Debug
+	dup = "!git config --get-regexp '^alias' | awk '{print $1}' | sort | uniq -d"
+	dedup = "!git dup | while read k; do echo \"=== $k ===\"; git config --show-origin --get-all $k; done"
+	where = "!f(){ git config --show-origin --get-all alias.$1; }; f"
 [core]
-	editor = code --wait
+	editor = nano
 [init]
 	defaultBranch = main
 [pull]
@@ -36,5 +94,4 @@
 [includeIf "gitdir:~/git/unvoid/"]
 	path = ~/.gitconfig-unvoid
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
