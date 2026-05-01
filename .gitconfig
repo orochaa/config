@@ -1,18 +1,19 @@
-[user]
+	[user]
 	name = Bruno Rocha
 	email = brunorocha2674@gmail.com
 [alias]
 	# Setup
 	setup = !git remote set-head origin -a
 	base = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
-	global = !git config --global --edit
-	alias = !git config --get-regexp '^alias'
+	g = !code ~/.gitconfig
+	alias = "!git config --get-regexp '^alias' | fzf --no-preview --exact"
 	
   # Status / logs
 	s = !git status -s
 	sc = !git status -s | awk '{print $2}'
 	staged = !git diff --cached	--name-only
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn %C(green)%cr'
+	la = !git l -1
 	last = !git log -1 HEAD --stat
 
   # Branches
@@ -21,27 +22,72 @@
   bd = !git branch -D
 	ck = !git checkout
   sw = !git switch
-  sm = "!f(){ b=$(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf --no-preview --prompt='branch'); [ -n \"$b\" ] && git switch \"$b\" || echo \"No local branch matching: $1\"; }; f"
-	new = "!f(){ git main; git switch -c $1; }; f"
-	resume = "!f(){ git checkout -b $1 origin/$1; }; f"
-	done = "!c=$(git cur); git main; git bd $c"
+	back = !git switch -
+	pivot = !git branch -m
+	recent = "!git for-each-ref refs/heads/ --sort=-committerdate --format='%(refname:short)'"
+	sb = "!git recent | fzf --no-preview --prompt='branch: ' --reverse --height=40%"
+  ss = "!f(){ target=$(git sb); [ -n \"$target\" ] && git switch \"$target\" || echo \"Cancelled\"; }; f"
+	new = "!f(){ git main && git switch -c \"$1\"; }; f"
+	resume = "!f(){ git switch -c \"$1\" --track \"origin/$1\"; }; f"
+	done = "!cur=$(git cur); git main && git branch -D \"$cur\""
+	park = "!cur=$(git cur); git add --all && git commit -m \"__PARKED_WIP__:$cur\" && git main"
+	unpark = "!f(){ log=$(git log --all --grep='^__PARKED_WIP__:' --format='%s' -n 1); branch=${log#__PARKED_WIP__:}; [ -n \"$branch\" ] && git switch \"$branch\" && git undo || echo 'No parked branch found'; }; f"
+	parks = "!git l --all --grep='^__PARKED_WIP__:'"
 
   # Commits
 	c = !git add --all && git commit -m
 	cm = !git commit -m
 	a = !git commit --amend
 	aa = !git add --all && git commit --amend --no-edit
-	same = !git add --all && git commit --reuse-message=HEAD
-	wip = !git c "wip"
-	lint = !git c "fix: lint"
-	build = !git c "fix: build"
+	same = "!f(){ \
+		msg=$(git log --pretty=format:'%s' $(git cur) | awk '!seen[$0]++' | fzf --no-preview --prompt='message: ' --reverse --height=40%); \
+		[ -n \"$msg\" ] && git add --all && git commit -m \"$msg\" || echo 'Cancelled'; \
+	}; f"
+	wip = !git c 'wip'
+	clint = !git c 'fix: lint'
+	cformat = !git c 'fix: format'
+	ctype = !git c 'fix: type-check'
+	cbuild = !git c 'fix: build'
+	ctests = !git c 'fix: tests'
 
   # Pull
 	pm = !git pull origin $(git base)
 	pb = !git pull origin $(git cur)
-	sync = !git pb && git pm && git po
-	main = "!b=$(git base); git switch $b && git pull origin $b"
-	refresh = "!c=$(git cur); git main && git switch $c"
+	main = "!base=$(git base); git switch \"$base\" && git pull origin \"$base\""
+	refresh = "!cur=$(git cur); git main && git switch \"$cur\""
+	mg = "!f(){ target=$(git sb); [ -n \"$target\" ] && git merge \"$target\" || echo 'Cancelled'; }; f"
+
+	resolve= "!f(){ \
+		only='packages/frontend/src-tauri/tauri.conf.json'; \
+		git merge --no-edit \"origin/$1\"; \
+		rc=$?; \
+		if [ $rc -eq 0 ]; then \
+			return 0; \
+		fi; \
+		conflicts=$(git diff --name-only --diff-filter=U); \
+		count=$(printf '%s\n' \"$conflicts\" | sed '/^$/d' | wc -l | tr -d ' '); \
+		if [ \"$count\" -eq 1 ] && [ \"$conflicts\" = \"$only\" ]; then \
+			printf '\n> Auto-resolving tauri.conf.json using incoming version...\n'; \
+			git checkout --theirs -- \"$only\" && \
+			git add \"$only\" && \
+			GIT_EDITOR=true git commit --no-edit; \
+			return $?; \
+		fi; \
+    printf '\n> Merge has unresolved conflicts. Aborting.\n'; \
+    return 1; \
+	}; f"
+	sync = "!f(){ \
+    printf '> Fetching origin...\n'; \
+    git fetch origin || return 1; \
+    base=$(git base); \
+    cur=$(git cur); \
+    printf '\n> Merging origin/%s...\n' \"$base\"; \
+    git resolve \"$base\" || return 1; \
+    printf '\n> Merging origin/%s...\n' \"$cur\"; \
+    git resolve \"$cur\" || return 1; \
+    printf '\n> Pushing %s...\n' \"$cur\"; \
+    git push origin \"$cur\"; \
+	}; f"
 
   # Push
 	po = !git push origin
@@ -61,16 +107,11 @@
 	renamed = !git diff --name-only --diff-filter=R
 
 	# Review
-	review = "!b=$(git base); git diff origin/$b...HEAD --stat"
+	review = "!git diff origin/$(git base)...HEAD --stat"
   reviewf = "!git review | fzf --multi --no-preview --exact --reverse"
-	changed = "!b=$(git base); git diff --name-only origin/$b...HEAD"
+	changed = "!f(){ base=$(git base); { git diff --name-only origin/$base...HEAD; git diff --name-only; git diff --cached --name-only; git ls-files --others --exclude-standard; } | sort -u; }; f"
   changedf = "!git changed | fzf --multi --no-preview --exact --reverse"
-	affected = "!b=$(git base); git diff --name-only origin/$b...HEAD | cut -d/ -f1-2 | sort -u"
-	
-    # Cleanup
-	dirty = "!b=$(git base); git fetch origin --prune >/dev/null 2>&1; git branch --format='%(refname:short)' --merged origin/$b | grep -v \"^$b$\" | grep -v '^HEAD$'"
-  cleanup = "!git dirty | xargs -r git branch -d"
-  gone = !git branch -vv | grep ': gone]'
+	affected = "!git diff --name-only origin/$(git base)...HEAD | cut -d/ -f1-2 | sort -u"
 
 	# Remote
 	r = !git remote -v
@@ -82,6 +123,10 @@
 	# Utils
 	undo = !git reset --soft HEAD^ && git reset
 	patch = !git diff --staged > wip.patch
+	port = "!f(){ target=$(git sb); git diff $(git cur)..$target -- $@ | git apply; }; f"
+
+	ignore = !git update-index --skip-worktree
+	unignore = !git update-index --no-skip-worktree
 	
 	# Debug
 	dup = "!git config --get-regexp '^alias' | awk '{print $1}' | sort | uniq -d"
@@ -99,3 +144,6 @@
 	path = ~/.gitconfig-unvoid
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
+[push]
+	autoSetupRemote = true
+	default = current
