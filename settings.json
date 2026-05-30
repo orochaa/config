@@ -24,11 +24,12 @@
   "editor.suggestSelection": "first",
   "editor.linkedEditing": true,
   "editor.unicodeHighlight.allowedLocales": {
-    "pt-BR": true,
+    "pt-BR": true
   },
 
-  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Arasaka Inferno: Blue",
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
   "workbench.editor.showTabs": "multiple",
@@ -47,10 +48,11 @@
     "**/node_modules": true,
     "**/.git": true,
     "**/dist": true,
+    "**/target": true,
     "**/bin": true,
     "**/bower_components": true,
     "**/*.code-search": true,
-    "**/.turbo": true,
+    "**/.turbo": true
   },
 
   "breadcrumbs.enabled": true,
@@ -85,6 +87,7 @@
     "go.mod": "go.sum",
 
     "README.md": "*.md",
+    "Cargo.toml": "Cargo*, rust*"
   },
 
   "terminal.integrated.fontSize": 15,
@@ -120,7 +123,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.addMissingImports": "explicit",
-    "source.removeUnused": "explicit",
+    "source.removeUnused": "explicit"
   },
 
   "files.autoSave": "afterDelay",
@@ -130,7 +133,7 @@
     "**/.git": true,
     "**/.vscode": false,
     "**/.nx": true,
-    "**/.DS_Store": true,
+    "**/.DS_Store": true
   },
   "files.associations": {
     ".sequelizerc": "javascript",
@@ -140,54 +143,41 @@
     "*.vars": "dotenv",
     "*.code-snippets": "json",
     "*.tsx": "typescriptreact",
-    "*.css": "tailwindcss",
+    "*.css": "tailwindcss"
   },
 
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.defaultFormatter": "Prisma.prisma"
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format",
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[go]": {
-    "editor.defaultFormatter": "golang.go",
+    "editor.defaultFormatter": "golang.go"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.semanticHighlighting.enabled": true,
-    "editor.inlayHints.enabled": "on",
+    "editor.inlayHints.enabled": "on"
   },
 
-  "javascript.format.enable": true,
-  "javascript.preferences.quoteStyle": "single",
-  "javascript.suggest.autoImports": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.inlayHints.parameterNames.enabled": "none",
-  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "javascript.format.semicolons": "remove",
-  "javascript.preferences.importModuleSpecifier": "shortest",
-  "javascript.preferences.importModuleSpecifierEnding": "minimal",
-  "javascript.preferences.jsxAttributeCompletionStyle": "braces",
-
-  "typescript.format.enable": true,
-  "typescript.preferences.quoteStyle": "single",
-  "typescript.suggest.autoImports": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.inlayHints.parameterNames.enabled": "none",
-  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "typescript.format.semicolons": "remove",
-  "typescript.preferences.importModuleSpecifier": "shortest",
-  "typescript.preferences.importModuleSpecifierEnding": "minimal",
-  "typescript.preferences.preferTypeOnlyAutoImports": true,
-  "typescript.preferences.includePackageJsonAutoImports": "on",
-  "typescript.preferences.jsxAttributeCompletionStyle": "braces",
+  "js/ts.format.enabled": true,
+  "js/ts.preferences.quoteStyle": "single",
+  "js/ts.suggest.autoImports": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.inlayHints.parameterNames.enabled": "none",
+  "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "js/ts.format.semicolons": "insert",
+  "js/ts.preferences.importModuleSpecifier": "shortest",
+  "js/ts.preferences.importModuleSpecifierEnding": "minimal",
+  "js/ts.preferences.jsxAttributeCompletionStyle": "braces",
 
   "prettier.requireConfig": false,
   "prettier.bracketSpacing": true,
@@ -223,7 +213,7 @@
     "xml",
     "svg",
     "react",
-    "typescriptreact",
+    "typescriptreact"
   ],
 
   "tailwindCSS.experimental.classRegex": [
@@ -231,11 +221,11 @@
     ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
     ["(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"],
     [
-      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]",
+      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]"
     ],
     [
-      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*{([^}]*)}",
-    ],
+      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*{([^}]*)}"
+    ]
   ],
 
   "material-icon-theme.activeIconPack": "nest",
@@ -278,7 +268,7 @@
     "internals": "app",
     "third_party": "other",
     "chglog": "changesets",
-    "forms": "content",
+    "forms": "content"
   },
   "material-icon-theme.files.associations": {
     "vitest.config.ts": "vite",
@@ -286,10 +276,10 @@
     "*.proto": "3d",
     "*.webpack.js": "webpack",
     "*.build.tsx": "svgo",
-    "*.bench.ts": "test-ts",
+    "*.bench.ts": "test-ts"
   },
   "material-icon-theme.languages.associations": {
-    "dotenv": "tune",
+    "dotenv": "tune"
   },
   "material-icon-theme.files.customClones": [
     {
@@ -297,62 +287,62 @@
       "base": "nest",
       "color": "yellow-500",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["service.ts", "job.ts"],
+      "fileExtensions": ["service.ts", "job.ts"]
     },
     {
       "name": "nest-service-test",
       "base": "test-ts",
       "color": "yellow-500",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["service.spec.ts", "job.spec.ts"],
+      "fileExtensions": ["service.spec.ts", "job.spec.ts"]
     },
     {
       "name": "nest-adapter",
       "base": "nest",
       "color": "cyan-400",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["adapter.ts", "mapper.ts"],
+      "fileExtensions": ["adapter.ts", "mapper.ts"]
     },
     {
       "name": "nest-gateway",
       "base": "nest",
       "color": "purple-400",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["repository.ts", "gateway.ts"],
+      "fileExtensions": ["repository.ts", "gateway.ts"]
     },
     {
       "name": "nest-decorator",
       "base": "nest",
       "color": "purple-500",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["decorator.ts"],
+      "fileExtensions": ["decorator.ts"]
     },
     {
       "name": "nest-factory",
       "base": "nest",
       "color": "red-400",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["factory.ts", "strategy.ts"],
+      "fileExtensions": ["factory.ts", "strategy.ts"]
     },
     {
       "name": "nest-default",
       "base": "nest",
       "color": "gray-500",
       "activeForPacks": ["nest"],
-      "fileExtensions": ["ts"],
+      "fileExtensions": ["ts"]
     },
     {
       "name": "test-e2e",
       "base": "test-ts",
       "color": "cyan-300",
-      "fileExtensions": ["e2e.spec.ts"],
+      "fileExtensions": ["e2e.spec.ts"]
     },
     {
       "name": "nest-controller",
       "base": "nest",
       "color": "blue-600",
-      "fileExtensions": ["controller.ts", "controller.dto.ts"],
-    },
+      "fileExtensions": ["controller.ts", "controller.dto.ts"]
+    }
   ],
 
   "cSpell.language": "en,pt",
@@ -374,7 +364,7 @@
     "postgresql",
     "pulumi",
     "struct",
-    "usecases",
+    "usecases"
   ],
 
   "security.workspace.trust.untrustedFiles": "newWindow",
@@ -385,7 +375,7 @@
     "deferred": false,
     "runAllTestsOnStartup": false,
     "showInlineError": true,
-    "type": "on-demand",
+    "type": "on-demand"
   },
 
   "geminicodeassist.enableTelemetry": false,
@@ -395,7 +385,7 @@
   "geminicodeassist.inlineSuggestions.enableAuto": false,
   "geminicodeassist.displayInlineContextHint": false,
   "geminicodeassist.customCommands": {
-    "docs": "Add TSDocs to classes, functions, methods and fields of schemas",
+    "docs": "Add TSDocs to classes, functions, methods and fields of schemas"
   },
 
   "gitlens.keymap": "none",
@@ -410,7 +400,7 @@
     "contributors": true,
     "repositories": false,
     "searchAndCompare": true,
-    "launchpad": false,
+    "launchpad": false
   },
 
   "liveServer.settings.donotShowInfoMsg": true,
@@ -423,7 +413,7 @@
     "*": false,
     "plaintext": false,
     "markdown": false,
-    "scminput": false,
+    "scminput": false
   },
   "remote.autoForwardPortsSource": "hybrid",
   "shellformat.effectLanguages": [
@@ -437,7 +427,7 @@
     "properties",
     "spring-boot-properties",
     "azcli",
-    "bats",
+    "bats"
   ],
   "git.blame.editorDecoration.enabled": false,
   "git.blame.statusBarItem.enabled": true,
@@ -456,9 +446,10 @@
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
     "https://schemastore.azurewebsites.net/": true,
     "https://turbo.build": true,
-    "https://www.schemastore.org/": true,
+    "https://www.schemastore.org/": true
   },
   "diffEditor.hideUnchangedRegions.enabled": true,
-  "workbench.colorTheme": "Arasaka Inferno: Blue",
   "workbench.browser.openLocalhostLinks": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }

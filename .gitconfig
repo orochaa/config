@@ -1,4 +1,4 @@
-	[user]
+[user]
 	name = Bruno Rocha
 	email = brunorocha2674@gmail.com
 [alias]
@@ -19,30 +19,28 @@
   # Branches
   cur = !git branch --show-current
   b = !git branch -vv
-  bd = !git branch -D
+  bd = "!f(){ target=${1:-$(git sb)}; [ -n \"$target\" ] && git branch -D $target || echo \"Cancelled\"; }; f"
 	ck = !git checkout
   sw = !git switch
 	back = !git switch -
 	pivot = !git branch -m
+	main = "!base=$(git base); git switch \"$base\" && git pull origin \"$base\""
 	recent = "!git for-each-ref refs/heads/ --sort=-committerdate --format='%(refname:short)'"
-	sb = "!git recent | fzf --no-preview --prompt='branch: ' --reverse --height=40%"
+	sb = "!git recent | fzf --no-preview --multi --prompt='branch: ' --reverse --height=40%"
   ss = "!f(){ target=$(git sb); [ -n \"$target\" ] && git switch \"$target\" || echo \"Cancelled\"; }; f"
 	new = "!f(){ git main && git switch -c \"$1\"; }; f"
-	resume = "!f(){ git switch -c \"$1\" --track \"origin/$1\"; }; f"
+	resume = "!f(){ [ -n \"$1\" ] && git switch -c \"$1\" --track \"origin/$1\" || echo \"Target not found\"; }; f"
 	done = "!cur=$(git cur); git main && git branch -D \"$cur\""
 	park = "!cur=$(git cur); git add --all && git commit -m \"__PARKED_WIP__:$cur\" && git main"
 	unpark = "!f(){ log=$(git log --all --grep='^__PARKED_WIP__:' --format='%s' -n 1); branch=${log#__PARKED_WIP__:}; [ -n \"$branch\" ] && git switch \"$branch\" && git undo || echo 'No parked branch found'; }; f"
-	parks = "!git l --all --grep='^__PARKED_WIP__:'"
+	parked = "!git l --all --grep='^__PARKED_WIP__:'"
 
   # Commits
 	c = !git add --all && git commit -m
 	cm = !git commit -m
 	a = !git commit --amend
 	aa = !git add --all && git commit --amend --no-edit
-	same = "!f(){ \
-		msg=$(git log --pretty=format:'%s' $(git cur) | awk '!seen[$0]++' | fzf --no-preview --prompt='message: ' --reverse --height=40%); \
-		[ -n \"$msg\" ] && git add --all && git commit -m \"$msg\" || echo 'Cancelled'; \
-	}; f"
+	same = "!f(){ msg=$(git log --pretty=format:'%s' $(git cur) | awk '!seen[$0]++' | fzf --no-preview --exact --prompt='message: ' --reverse --height=40%); [ -n \"$msg\" ] && git add --all && git commit -m \"$msg\" || echo 'Cancelled'; }; f"
 	wip = !git c 'wip'
 	clint = !git c 'fix: lint'
 	cformat = !git c 'fix: format'
@@ -53,7 +51,6 @@
   # Pull
 	pm = !git pull origin $(git base)
 	pb = !git pull origin $(git cur)
-	main = "!base=$(git base); git switch \"$base\" && git pull origin \"$base\""
 	refresh = "!cur=$(git cur); git main && git switch \"$cur\""
 	mg = "!f(){ target=$(git sb); [ -n \"$target\" ] && git merge \"$target\" || echo 'Cancelled'; }; f"
 
@@ -134,6 +131,13 @@
 	where = "!f(){ git config --show-origin --get-all alias.$1; }; f"
 [core]
 	editor = nano
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	side-by-side = false
 [init]
 	defaultBranch = main
 [pull]
