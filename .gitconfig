@@ -142,10 +142,10 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[includeIf "gitdir:~/git/orochaa/"]
-	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/git/unvoid/"]
-	path = ~/.gitconfig-unvoid
+[includeIf "gitdir:/home/unvoid/git/unvoid/**"]
+	path = /home/unvoid/.gitconfig-unvoid
+[includeIf "gitdir:/home/unvoid/git/orochaa/**"]
+	path = /home/unvoid/.gitconfig-personal
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [push]
