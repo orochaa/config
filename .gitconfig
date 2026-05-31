@@ -132,6 +132,7 @@
 [core]
 	editor = nano
 	pager = delta
+  sshCommand = "~/scripts/ssh-github.sh"
 [interactive]
 	diffFilter = delta --color-only
 [delta]
