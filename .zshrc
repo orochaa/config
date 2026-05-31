@@ -48,6 +48,16 @@ export FZF_DEFAULT_OPTS=" \
 # Pulumi
 export PATH=$PATH:/root/.pulumi/bin
 
+# SSH
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+if ssh-add -l >/dev/null 2>&1; then
+  :
+else
+  ssh-add ~/.ssh/id_ed25519_work
+  ssh-add ~/.ssh/id_ed25519_personal
+fi
+
 # Aliases
 alias zsh="code $HOME/.zshrc"
 alias up="source $HOME/.zshrc"
