@@ -12,3 +12,4 @@
 | fd | dnf | fd-find | https://github.com/sharkdp/fd |
 | eza | dnf | eza | https://github.com/eza-community/eza |
 | tldr | cargo | tlrc | https://github.com/tldr-pages/tlrc |
+| yt-dlp | custom | yt-dlp | https://github.com/yt-dlp/yt-dlp |

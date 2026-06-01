@@ -42,3 +42,6 @@ printf "\n# Installing Konsole Profiles\n"
 
 mkdir -p ~/.local/share/konsole
 cp -r konsole/* ~/.local/share/konsole/
+
+printf "\n# Installing Fonts\n"
+sudo dnf install jetbrains-mono-fonts.noarch

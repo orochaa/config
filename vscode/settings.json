@@ -34,7 +34,6 @@
   "workbench.editor.limit.perEditorGroup": true,
   "workbench.activityBar.location": "hidden",
   "workbench.statusBar.visible": true,
-  "workbench.layoutControl.enabled": false,
   "workbench.list.defaultFindMode": "filter",
   "workbench.list.typeNavigationMode": "automatic",
   "workbench.list.defaultFindMatchType": "fuzzy",
@@ -449,7 +448,8 @@
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "workbench.iconTheme": "material-icon-theme",
-  "window.commandCenter": false,
   "workbench.browser.showInTitleBar": false,
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
   "window.menuBarVisibility": "compact",
 }
