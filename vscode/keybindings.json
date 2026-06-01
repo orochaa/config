@@ -1,0 +1,56 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+shift+[BracketLeft]",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "workbench.action.terminal.openNativeConsole",
+    "when": "!isSessionsWindow && !terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "when": "!isSessionsWindow && !terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+'",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "alt+enter",
+    "command": "geminicodeassist.generateCode",
+    "when": "authLoggedIn && config.geminicodeassist.enable && editorTextFocus && !inGeminiDiffView && !isInDiffEditor && !nextEditSessionAvailable"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "-geminicodeassist.generateCode",
+    "when": "authLoggedIn && config.geminicodeassist.enable && editorTextFocus && !inGeminiDiffView && !isInDiffEditor && !nextEditSessionAvailable"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.view.testing.focus"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "-workbench.action.chat.focusTodosView",
+    "when": "inChatInput && chatAgentKind == 'agent' || inChatTodoList && chatAgentKind == 'agent'"
+  }
+]
