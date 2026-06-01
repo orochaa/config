@@ -11,14 +11,19 @@ cp git/.gitconfig \
 ./git/ssh-setup.sh
 
 printf "\n# Installing zsh\n"
+sudo dnf install zsh
+
 cp zsh/.zshrc \
   ~/.zshrc
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" || true
 
 cp zsh/.p10k.zsh \
   ~/.p10k.zsh
 
 printf "\n# Installing VS Code\n"
 sudo dnf install code
+
 cp vscode/settings.json \
   ~/.config/Code/User/settings.json
 
@@ -27,6 +32,7 @@ cat vscode/extensions.txt \
 
 printf "\n# Installing Tools\n"
 ./tools/install.sh
+
 cp -r ./scripts ~/
 
 printf "\n# Installing KDE Plasma\n"

@@ -42,7 +42,7 @@ for file in "${KDE_FILES[@]}"; do
     kde/
 done
 
-printf "\n#KDE Konsole"
+printf "\n# Syncing KDE Konsole"
 cp -r \
   ~/.local/share/konsole \
   .
