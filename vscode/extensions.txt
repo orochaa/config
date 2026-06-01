@@ -1,0 +1,13 @@
+angular.ng-template
+avetis.tokyo-night
+biomejs.biome
+daltonmenezes.aura-theme
+dbdiagram.dbdiagram-vscode
+esbenp.prettier-vscode
+google.geminicodeassist
+josemurilloc.aura-spirit-dracula
+lakshits11.best-themes-redefined
+pkief.material-icon-theme
+puszkarek.arasaka-inferno-vscode-theme
+rocketseat.theme-omni
+streetsidesoftware.code-spell-checker

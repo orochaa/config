@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# ssh-github.sh: pick SSH key based on folder
 
 WORK_DIR="$HOME/git/unvoid"
 PERSONAL_DIR="$HOME/git/orochaa"

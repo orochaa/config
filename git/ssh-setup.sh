@@ -108,3 +108,7 @@ ssh-keygen -lf "${WORK_KEY}.pub"
 echo
 echo "Personal fingerprint:"
 ssh-keygen -lf "${PERSONAL_KEY}.pub"
+
+echo
+git config --global core.sshCommand \
+  "$(pwd)/git/ssh-proxy.sh"

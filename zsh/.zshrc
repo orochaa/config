@@ -84,7 +84,7 @@ bindkey '^[[1;5C' forward-word
 # Delete
 bindkey '^[[3~' delete-char
 # Ctrl + Backspace
-bindkey '^W' backward-kill-word
+bindkey '^H' backward-kill-word
 # Ctrl + Delete
 bindkey '^[[3;5~' kill-word
 
