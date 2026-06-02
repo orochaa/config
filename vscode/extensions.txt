@@ -4,6 +4,7 @@ biomejs.biome
 daltonmenezes.aura-theme
 dbdiagram.dbdiagram-vscode
 esbenp.prettier-vscode
+golang.go
 google.geminicodeassist
 hbenl.vscode-test-explorer
 josemurilloc.aura-spirit-dracula
