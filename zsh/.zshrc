@@ -61,16 +61,17 @@ fi
 # Aliases
 alias zsh="code $HOME/.zshrc"
 alias up="source $HOME/.zshrc"
-alias nopoly="npx nolyfill install; pnpm install"
 
 alias cls="clear"
 alias ls="eza --icons=never --color=never --classify=always --group-directories-first"
 alias cd="z"
-alias my="my-cli"
-alias wgit="~/scripts/test-github-credentials.sh"
-alias gemini="gemini -m gemini-2.5-flash"
-alias lint="npx biome check --write --unsafe"
+
 alias format-db="npx prettier --ignore-path=.gitignore --write /home/orochaa/git/unvoid/when/packages/api/src/database/ && npx @biomejs/biome format --write /home/orochaa/git/unvoid/when/packages/api/src/database/"
+alias lint="npx biome check --write --unsafe"
+
+alias gemini="gemini -m gemini-2.5-flash"
+alias nopoly="npx nolyfill install; pnpm install"
+alias ff="fastfetch"
 
 # Keybindings
 # Home
