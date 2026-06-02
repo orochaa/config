@@ -2,7 +2,9 @@
 
 set -Eeuo pipefail
 
-TOOLS_FILE="./tools/tools.txt"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+TOOLS_FILE="$ROOT/tools/tools.txt"
 
 install_tool() {
   local command="$1"
@@ -30,7 +32,7 @@ install_tool() {
       ;;
 
     custom)
-      installer="./tools/installers/${package}.sh"
+      installer="$ROOT/tools/installers/${package}.sh"
       if [[ ! -f "$installer" ]]; then
         echo "Installer not found: $installer" >&2
         exit 1

@@ -2,11 +2,7 @@
 
 set -euo pipefail
 
-WORK_NAME="Bruno Rocha"
-WORK_EMAIL="bruno.rocha@unvoid.com"
-
-PERSONAL_NAME="Bruno Rocha"
-PERSONAL_EMAIL="brunorocha2674@gmail.com"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 SSH_DIR="$HOME/.ssh"
 
@@ -15,6 +11,12 @@ PERSONAL_KEY="$SSH_DIR/id_ed25519_personal"
 
 WORK_CONFIG="$HOME/.gitconfig-unvoid"
 PERSONAL_CONFIG="$HOME/.gitconfig-personal"
+
+WORK_NAME="Bruno Rocha"
+WORK_EMAIL="bruno.rocha@unvoid.com"
+
+PERSONAL_NAME="Bruno Rocha"
+PERSONAL_EMAIL="brunorocha2674@gmail.com"
 
 echo "== Creating ~/.ssh =="
 mkdir -p "$SSH_DIR"
@@ -111,4 +113,4 @@ ssh-keygen -lf "${PERSONAL_KEY}.pub"
 
 echo
 git config --global core.sshCommand \
-  "$(pwd)/git/ssh-proxy.sh"
+  "$ROOT/git/ssh-proxy.sh"

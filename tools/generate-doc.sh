@@ -2,8 +2,9 @@
 
 set -Eeuo pipefail
 
-TOOLS_FILE="./tools/tools.txt"
-OUTPUT_FILE="tools.md"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+TOOLS_FILE="$ROOT/tools/tools.txt"
+OUTPUT_FILE="$ROOT/tools.md"
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
 

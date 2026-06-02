@@ -2,51 +2,22 @@
 
 set -euo pipefail
 
-printf "\n# Syncing git"
-cp ~/.gitconfig \
-  git/.gitconfig
+ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-printf "\n# Syncing zsh"
-cp ~/.zshrc \
-  zsh/.zshrc
+"$ROOT/update.sh"
 
-cp ~/.p10k.zsh \
-  zsh/.p10k.zsh
+REPO_ROOT="$(git -C "$ROOT" rev-parse --show-toplevel)"
 
-printf "\n# Syncing VS Code"
-cp ~/.config/Code/User/settings.json \
-  vscode/settings.json
+if [[ "$REPO_ROOT" != "$ROOT" ]]; then
+  echo "ERROR: script is not inside the expected git repository:"
+  echo "Expected: $ROOT"
+  echo "Actual: $REPO_ROOT"
+  exit 1
+fi
 
-cp \
-  ~/.config/Code/User/keybindings.json \
-  vscode/keybindings.json
+git -C "$ROOT" add .
 
-code --list-extensions \
-  > vscode/extensions.txt
-
-printf "\n# Syncing Scripts\n"
-cp -r ~/scripts .
-
-printf "\n# Syncing Tools\n"
-./tools/verify.sh
-./tools/generate-doc.sh
-
-printf "\n# Syncing KDE Plasma\n"
-
-KDE_FILES=(
-  kdeglobals
-  dolphinrc
-  konsolerc
-  kglobalshortcutsrc
-)
-
-for file in "${KDE_FILES[@]}"; do
-  cp \
-    ~/.config/$file \
-    kde/
-done
-
-printf "\n# Syncing KDE Konsole"
-cp -r \
-  ~/.local/share/konsole \
-  .
+if ! git diff --cached --quiet; then
+  git -C "$ROOT" commit -m "sync: $(date '+%Y-%m-%d %H:%M:%S')"
+  git -C "$ROOT" push origin
+fi

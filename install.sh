@@ -2,50 +2,52 @@
 
 set -euo pipefail
 
-printf "\n# Installing git\n"
-sudo dnf install git
+ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-cp git/.gitconfig \
+printf "\n# Installing dnf packages\n"
+sudo dnf install -y git zsh code jetbrains-mono-fonts.noarch
+
+printf "\n# Installing git\n"
+cp "$ROOT/git/.gitconfig" \
   ~/.gitconfig
 
-./git/ssh-setup.sh
+"$ROOT/git/ssh-setup.sh"
 
 printf "\n# Installing zsh\n"
-sudo dnf install zsh
-
-cp zsh/.zshrc \
+cp "$ROOT/zsh/.zshrc" \
   ~/.zshrc
 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" || true
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" || true
 
-cp zsh/.p10k.zsh \
+cp "$ROOT/zsh/.p10k.zsh" \
   ~/.p10k.zsh
 
 printf "\n# Installing VS Code\n"
-sudo dnf install code
+mkdir -p ~/.config/Code/User
 
-cp vscode/settings.json \
+cp "$ROOT/vscode/settings.json" \
   ~/.config/Code/User/settings.json
 
-cp \
-  vscode/keybindings.json \
+cp "$ROOT/vscode/keybindings.json" \
   ~/.config/Code/User/keybindings.json
 
-cat vscode/extensions.txt \
-  | xargs -L 1 code --install-extension
+cat "$ROOT/vscode/extensions.txt" \
+  | xargs -L 1 code --log error --install-extension
 
 printf "\n# Installing Tools\n"
-./tools/install.sh
+"$ROOT/tools/install.sh"
 
-cp -r ./scripts ~/
+cp -r "$ROOT/scripts" \
+  ~/
 
 printf "\n# Installing KDE Plasma\n"
-cp -r kde/* ~/.config/
+cp -r "$ROOT/kde/"* \
+  ~/.config/
 
 printf "\n# Installing Konsole Profiles\n"
 
 mkdir -p ~/.local/share/konsole
-cp -r konsole/* ~/.local/share/konsole/
 
-printf "\n# Installing Fonts\n"
-sudo dnf install jetbrains-mono-fonts.noarch
+cp -r "$ROOT/konsole/"* \
+  ~/.local/share/konsole/
