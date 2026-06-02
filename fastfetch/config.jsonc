@@ -1,0 +1,70 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "padding": {
+      "top": 2,
+      "right": 6,
+      "left": 2,
+    },
+  },
+  "display": {
+    "separator": " ",
+    "key": {
+      "width": 12,
+    },
+  },
+  "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "title",
+      "format": "{host-name}",
+      "outputColor": "yellow",
+    },
+    "separator",
+
+    {
+      "type": "os",
+      "format": "{name} {version}",
+    },
+    {
+      "type": "kernel",
+      "format": "{sysname} {release}",
+    },
+    {
+      "type": "shell",
+      "key": "Shell",
+      "format": "{pretty-name}",
+    },
+    "break",
+
+    {
+      "type": "host",
+      "key": "MOBA",
+      "format": "{name}",
+    },
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "format": "{name}",
+    },
+    {
+      "type": "gpu",
+      "key": "GPU",
+      "format": "{name}",
+    },
+    {
+      "type": "memory",
+      "key": "RAM",
+      "format": "{used} / {total}",
+    },
+    "break",
+
+    {
+      "type": "disk",
+      "key": "Disk",
+      "format": "{size-used} / {size-total}",
+    },
+  ],
+}

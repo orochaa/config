@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
 printf "\n# Installing dnf packages\n"
-sudo dnf install -y git zsh code jetbrains-mono-fonts.noarch
+sudo dnf install -y git zsh code jetbrains-mono-fonts.noarch fastfetch
 
 printf "\n# Installing git\n"
 cp "$ROOT/git/.gitconfig" \
@@ -23,6 +23,12 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
 cp "$ROOT/zsh/.p10k.zsh" \
   ~/.p10k.zsh
 
+printf "\n# Installing Tools\n"
+"$ROOT/tools/install.sh"
+
+cp -r "$ROOT/scripts" \
+  ~/
+
 printf "\n# Installing VS Code\n"
 mkdir -p ~/.config/Code/User
 
@@ -35,19 +41,19 @@ cp "$ROOT/vscode/keybindings.json" \
 cat "$ROOT/vscode/extensions.txt" \
   | xargs -L 1 code --log error --install-extension
 
-printf "\n# Installing Tools\n"
-"$ROOT/tools/install.sh"
-
-cp -r "$ROOT/scripts" \
-  ~/
-
 printf "\n# Installing KDE Plasma\n"
 cp -r "$ROOT/kde/"* \
   ~/.config/
 
-printf "\n# Installing Konsole Profiles\n"
+printf "\n# Installing Konsole\n"
 
 mkdir -p ~/.local/share/konsole
 
 cp -r "$ROOT/konsole/"* \
   ~/.local/share/konsole/
+
+printf "\n# Installing fastfetch\n"
+
+cp -r "$ROOT/fastfetch" \
+  ~/.config/
+  

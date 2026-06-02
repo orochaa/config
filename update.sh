@@ -15,6 +15,11 @@ cp ~/.zshrc \
 cp ~/.p10k.zsh \
   "$ROOT/zsh/.p10k.zsh"
 
+printf "\n# Syncing scripts\n"
+rm -rf "$ROOT/scripts"
+cp -r ~/scripts \
+  "$ROOT/"
+
 printf "\n# Syncing VS Code\n"
 cp ~/.config/Code/User/settings.json \
   "$ROOT/vscode/settings.json"
@@ -24,11 +29,6 @@ cp ~/.config/Code/User/keybindings.json \
 
 code --list-extensions \
   > "$ROOT/vscode/extensions.txt"
-
-printf "\n# Syncing Scripts\n"
-rm -rf "$ROOT/scripts"
-cp -r ~/scripts \
-  "$ROOT/"
 
 printf "\n# Syncing KDE Plasma\n"
 
@@ -44,8 +44,14 @@ for file in "${KDE_FILES[@]}"; do
     "$ROOT/kde/"
 done
 
-printf "\n# Syncing KDE Konsole\n"
+printf "\n# Syncing Konsole\n"
 
 rm -rf "$ROOT/konsole"
 cp -r ~/.local/share/konsole \
   "$ROOT/"
+
+printf "\n# Syncing fastfetch\n"
+
+cp -r ~/.config/fastfetch \
+  "$ROOT/"
+
