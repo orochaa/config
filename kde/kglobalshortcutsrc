@@ -7,6 +7,10 @@ Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,
 Switch to Next Keyboard Layout=Meta+Alt+K,Meta+Alt+K,
 _k_friendly_name=Keyboard Layout Switcher
 
+[com.slack.Slack]
+3E748D39155DD67C38A7F17AC501079A-Ctrl+Shift+Space=Ctrl+Shift+Space,Ctrl+Shift+Space,Slack shortcut: Ctrl+Shift+Space
+_k_friendly_name=Slack
+
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On and Off
 _k_friendly_name=Accessibility
@@ -53,7 +57,7 @@ MoveZoomDown=none,none,Move Zoomed Area Downwards
 MoveZoomLeft=none,none,Move Zoomed Area to Left
 MoveZoomRight=none,none,Move Zoomed Area to Right
 MoveZoomUp=none,none,Move Zoomed Area Upwards
-Overview=Meta+W,Meta+W,Toggle Overview
+Overview=Meta+Tab\tMeta+W,Meta+W,Toggle Overview
 Setup Window Shortcut=,,Setup Window Shortcut
 Show Desktop=Meta+D,Meta+D,Peek at Desktop
 Switch One Desktop Down=Meta+Ctrl+Down,Meta+Ctrl+Down,Switch One Desktop Down
@@ -107,7 +111,7 @@ Switch to Screen to the Left=,,Switch to Screen to the Left
 Switch to Screen to the Right=,,Switch to Screen to the Right
 Toggle Night Color=none,none,Suspend/Resume Night Light
 Toggle Window Raise/Lower=,,Toggle Window Raise/Lower
-Walk Through Windows=Meta+Tab\tAlt+Tab,Meta+Tab\tAlt+Tab,Walk Through Windows
+Walk Through Windows=Alt+Tab,Meta+Tab\tAlt+Tab,Walk Through Windows
 Walk Through Windows (Reverse)=Meta+Shift+Tab\tAlt+Shift+Tab,Meta+Shift+Tab\tAlt+Shift+Tab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=none,none,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=none,none,Walk Through Windows Alternative (Reverse)
