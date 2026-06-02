@@ -41,9 +41,18 @@ cp "$ROOT/vscode/keybindings.json" \
 cat "$ROOT/vscode/extensions.txt" \
   | xargs -L 1 code --log error --install-extension
 
-printf "\n# Installing KDE Plasma\n"
+printf "\n# Installing KDE\n"
 cp -r "$ROOT/kde/"* \
   ~/.config/
+
+if command -v plasmashell >/dev/null 2>&1; then
+  printf "\n# Installing Plasma\n"
+
+  cp -r "$ROOT/plasma/"* \
+    ~/.config/
+
+  systemctl --user restart plasma-plasmashell.service || true
+fi
 
 printf "\n# Installing Konsole\n"
 

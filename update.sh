@@ -30,18 +30,32 @@ cp ~/.config/Code/User/keybindings.json \
 code --list-extensions \
   > "$ROOT/vscode/extensions.txt"
 
-printf "\n# Syncing KDE Plasma\n"
+printf "\n# Syncing KDE\n"
 
 KDE_FILES=(
   kdeglobals
+  kwinrc
+  kglobalshortcutsrc
   dolphinrc
   konsolerc
-  kglobalshortcutsrc
 )
 
 for file in "${KDE_FILES[@]}"; do
   cp ~/.config/"$file" \
     "$ROOT/kde/"
+done
+
+printf "\n# Syncing Plasma\n"
+
+PLASMA_FILES=(
+  plasmarc
+  plasmashellrc
+  plasma-org.kde.plasma.desktop-appletsrc
+)
+
+for file in "${PLASMA_FILES[@]}"; do
+  cp ~/.config/"$file" \
+    "$ROOT/plasma/"
 done
 
 printf "\n# Syncing Konsole\n"
