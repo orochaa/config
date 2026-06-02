@@ -18,6 +18,6 @@ fi
 git -C "$ROOT" add .
 
 if ! git diff --cached --quiet; then
-  git -C "$ROOT" commit -m "sync: $(date '+%Y-%m-%d %H:%M:%S')"
+  git -C "$ROOT" commit -m "sync: config"
   git -C "$ROOT" push origin
 fi
