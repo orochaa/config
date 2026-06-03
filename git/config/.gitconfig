@@ -132,7 +132,7 @@
 [core]
 	editor = nano
 	pager = delta
-	sshCommand = /home/unvoid/git/orochaa/config/git/ssh-proxy.sh
+	sshCommand = /home/unvoid/git/orochaa/config/git/config/ssh-proxy.sh
 [interactive]
 	diffFilter = delta --color-only
 [delta]
