@@ -8,3 +8,5 @@ echo "# Installing konsole"
 
 mkdir -p ~/.local/share/konsole
 cp -r "$CONFIG/"* ~/.local/share/konsole/
+
+echo "✓ konsole installed"

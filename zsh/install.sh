@@ -9,7 +9,7 @@ echo "# Installing zsh"
 if ! command -v zsh >/dev/null 2>&1; then
   sudo dnf install zsh
 else 
-  echo "dnf command already installed"
+  echo "✓ zsh command already installed"
 fi
 
 cp "$CONFIG/.zshrc" ~/
@@ -22,7 +22,7 @@ clone_if_missing() {
   local target="$2"
 
   if [[ -d "$target/.git" ]]; then
-    echo "Already installed: $target"
+    echo "✓ $target"
     return 0
   fi
 

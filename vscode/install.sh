@@ -7,7 +7,9 @@ CONFIG="$(cd "$(dirname "$0")" && pwd)/config"
 echo "# Installing vs code"
 
 if ! command -v code >/dev/null 2>&1; then
-  sudo dnf install code
+  sudo code install code
+else 
+  echo "✓ code command already installed"
 fi
 
 mkdir -p ~/.config/Code/User
@@ -26,7 +28,7 @@ code --list-extensions | sort > "$CURRENT"
 
 # Compare lists
 if diff -q "$CURRENT" <(sort "$EXPECTED") >/dev/null; then
-  echo "VS Code extensions already synchronized."
+  echo "✓ extensions already installed."
   exit 0
 fi
 

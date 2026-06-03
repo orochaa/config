@@ -8,6 +8,8 @@ echo "# Installing git"
 
 if ! command -v git >/dev/null 2>&1; then
   sudo dnf install git
+else 
+  echo "✓ git command already installed"
 fi
 
 cp "$CONFIG/.gitconfig" ~/

@@ -8,3 +8,4 @@ echo "# Installing KDE"
 
 cp -r "$CONFIG"/* ~/.config/
 
+echo "✓ kde installed"

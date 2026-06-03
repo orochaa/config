@@ -13,3 +13,5 @@ echo "# Installing plasma"
 for file in "$CONFIG"/*; do
   install -m 644 "$file" "$HOME/.config/$(basename "$file")"
 done
+
+echo "✓ plasma installed"

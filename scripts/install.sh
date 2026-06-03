@@ -9,3 +9,4 @@ echo "# Installing scripts"
 mkdir -p ~/scripts
 cp -r "$CONFIG/"* ~/scripts
 
+echo "✓ scripts installed"

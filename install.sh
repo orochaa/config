@@ -4,65 +4,12 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-printf "\n# Installing dnf packages\n"
-sudo dnf install -y git zsh code jetbrains-mono-fonts.noarch fastfetch
-
-printf "\n# Installing git\n"
-cp "$ROOT/git/.gitconfig" \
-  ~/.gitconfig
-
-"$ROOT/git/ssh-setup.sh"
-
-printf "\n# Installing zsh\n"
-cp "$ROOT/zsh/.zshrc" \
-  ~/.zshrc
-
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" || true
-
-cp "$ROOT/zsh/.p10k.zsh" \
-  ~/.p10k.zsh
-
-printf "\n# Installing Tools\n"
+"$ROOT/git/install.sh"
+"$ROOT/zsh/install.sh"
+"$ROOT/vscode/install.sh"
+"$ROOT/fastfetch/install.sh"
+"$ROOT/kde/install.sh"
+"$ROOT/konsole/install.sh"
+"$ROOT/plasma/install.sh"
+"$ROOT/scripts/install.sh"
 "$ROOT/tools/install.sh"
-
-cp -r "$ROOT/scripts" \
-  ~/
-
-printf "\n# Installing VS Code\n"
-mkdir -p ~/.config/Code/User
-
-cp "$ROOT/vscode/settings.json" \
-  ~/.config/Code/User/settings.json
-
-cp "$ROOT/vscode/keybindings.json" \
-  ~/.config/Code/User/keybindings.json
-
-cat "$ROOT/vscode/extensions.txt" \
-  | xargs -L 1 code --log error --install-extension
-
-printf "\n# Installing KDE\n"
-cp -r "$ROOT/kde/"* \
-  ~/.config/
-
-if command -v plasmashell >/dev/null 2>&1; then
-  printf "\n# Installing Plasma\n"
-
-  cp -r "$ROOT/plasma/"* \
-    ~/.config/
-
-  systemctl --user restart plasma-plasmashell.service || true
-fi
-
-printf "\n# Installing Konsole\n"
-
-mkdir -p ~/.local/share/konsole
-
-cp -r "$ROOT/konsole/"* \
-  ~/.local/share/konsole/
-
-printf "\n# Installing fastfetch\n"
-
-cp -r "$ROOT/fastfetch" \
-  ~/.config/
-  
