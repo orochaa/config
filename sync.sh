@@ -17,7 +17,9 @@ fi
 
 git -C "$ROOT" add .
 
-if ! git diff --cached --quiet; then
+if ! git -C "$ROOT" diff --cached --quiet; then
   git -C "$ROOT" commit -m "sync: config"
   git -C "$ROOT" push origin
+else
+  echo "Nothing changed, skipping commit"
 fi

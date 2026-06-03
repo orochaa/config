@@ -76,7 +76,6 @@ alias ff="fastfetch"
 alias fman="compgen -c | fzf | xargs man"
 alias tree="tree -L 2 -a -I '.git' --charset X"
 alias fls="fd | fzf --multi"
-alias dev="project=$(fd . ~/git --min-depth 2 --max-depth 2 --type d | fzf); code $project"
 
 # Keybindings
 # Home
@@ -101,4 +100,13 @@ turboc() {
 
 pnpmc() {
   pnpm --filter @lib/$2 run $1
+}
+
+dev() {
+ local project
+  project="$(
+    fd . "$HOME/git" --min-depth 2 --max-depth 2 --type d \
+      | fzf --reverse --height=40% --preview 'eza --tree --level 2 --icons=never --color=never --classify=always --group-directories-first {} | head -200'
+  )"
+  [[ -n "$project" ]] && code "$project"
 }
