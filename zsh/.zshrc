@@ -42,7 +42,7 @@ eval "$(zoxide init zsh)"
 export FZF_DEFAULT_OPTS=" \
   --style default \
   --walker-skip .git,node_modules,dist,coverage \
-  --preview 'batcat -n --color=always {}' \
+  --preview 'bat -n --color=always {}' \
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Pulumi
@@ -63,15 +63,20 @@ alias zsh="code $HOME/.zshrc"
 alias up="source $HOME/.zshrc"
 
 alias cls="clear"
-alias ls="eza --icons=never --color=never --classify=always --group-directories-first"
+alias ls="eza --icons=never --color=always --classify=always --group-directories-first"
 alias cd="z"
 
 alias format-db="npx prettier --ignore-path=.gitignore --write /home/orochaa/git/unvoid/when/packages/api/src/database/ && npx @biomejs/biome format --write /home/orochaa/git/unvoid/when/packages/api/src/database/"
 alias lint="npx biome check --write --unsafe"
+alias nopoly="npx nolyfill install && pnpm install"
 
 alias gemini="gemini -m gemini-2.5-flash"
-alias nopoly="npx nolyfill install; pnpm install"
 alias ff="fastfetch"
+
+alias fman="compgen -c | fzf | xargs man"
+alias tree="tree -L 2 -a -I '.git' --charset X"
+alias fls="fd | fzf --multi"
+alias dev="project=$(fd . ~/git --min-depth 2 --max-depth 2 --type d | fzf); code $project"
 
 # Keybindings
 # Home
