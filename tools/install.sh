@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
+set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+CONFIG="$ROOT/config"
+INSTALLERS="$ROOT/installers"
 
-TOOLS_FILE="$ROOT/tools/tools.txt"
+TOOLS_FILE="$CONFIG/tools.txt"
 
 install_tool() {
   local command="$1"
@@ -12,36 +14,37 @@ install_tool() {
   local package="$3"
 
   if command -v "$command" >/dev/null 2>&1; then
-    printf "✓ $command already installed\n"
+    echo "✓ $command already installed"
     return 0
   fi
 
-  printf "\n# Installing $command from $source\n"
-
   case "$source" in
     cargo)
+      echo "# Installing $command from $source"
       cargo install --locked "$package"
       ;;
 
     npm)
+      echo "# Installing $command from $source"
       npm install --global "$package"
       ;;
 
     dnf)
+      echo "# Installing $command from $source"
       sudo dnf install -y "$package"
       ;;
 
     custom)
-      installer="$ROOT/tools/installers/${package}.sh"
+      installer="$INSTALLERS/${package}.sh"
       if [[ ! -f "$installer" ]]; then
-        echo "Installer not found: $installer" >&2
+        echo "x Installer not found: $installer"
         exit 1
       fi
       "$installer"
       ;;
 
     *)
-      echo "Unknown source: $source"
+      echo "x Unknown source: $source"
       exit 1
       ;;
   esac

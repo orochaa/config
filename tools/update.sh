@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-TOOLS_FILE="$ROOT/tools/tools.txt"
+TOOLS_FILE="$ROOT/tools/config/tools.txt"
 OUTPUT_FILE="$ROOT/tools.md"
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
@@ -34,5 +34,3 @@ get_description() {
   done < "$TOOLS_FILE"
 
 } > "$OUTPUT_FILE"
-
-echo "Generated $OUTPUT_FILE"
