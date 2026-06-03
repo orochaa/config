@@ -8,6 +8,8 @@ INSTALLERS="$ROOT/installers"
 
 TOOLS_FILE="$CONFIG/tools.txt"
 
+echo "# Installing tools"
+
 install_tool() {
   local command="$1"
   local source="$2"
