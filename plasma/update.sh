@@ -18,3 +18,5 @@ PLASMA_FILES=(
 for file in "${PLASMA_FILES[@]}"; do
   cp ~/.config/"$file" "$CONFIG/"
 done
+
+echo "✓ plasma updated"

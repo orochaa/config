@@ -15,3 +15,5 @@ KDE_FILES=(
 for file in "${KDE_FILES[@]}"; do
   cp ~/.config/"$file" "$CONFIG/"
 done
+
+echo "✓ kde updated"

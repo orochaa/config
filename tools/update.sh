@@ -34,3 +34,5 @@ get_description() {
   done < "$TOOLS_FILE"
 
 } > "$OUTPUT_FILE"
+
+echo "✓ tools updated"

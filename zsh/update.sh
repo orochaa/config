@@ -6,3 +6,5 @@ CONFIG="$(cd "$(dirname "$0")" && pwd)/config"
 
 cp ~/.zshrc "$CONFIG/"
 cp ~/.p10k.zsh "$CONFIG/"
+
+echo "✓ zsh updated"

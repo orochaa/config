@@ -7,7 +7,7 @@
 | eza | dnf | eza | https://github.com/eza-community/eza |
 | rg | dnf | ripgrep | https://github.com/BurntSushi/ripgrep |
 | fd | dnf | fd-find | https://github.com/sharkdp/fd |
-| git-delta | dnf | git-delta | https://github.com/dandavison/delta |
+| git-delta | custom | git-delta | https://github.com/dandavison/delta |
 | nvm | custom | nvm | https://github.com/nvm-sh/nvm |
 | rum | npm | @thekarel/rum | https://github.com/thekarel/rum |
 | bat | cargo | bat | https://github.com/sharkdp/bat |
