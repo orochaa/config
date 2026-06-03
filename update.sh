@@ -51,6 +51,7 @@ PLASMA_FILES=(
   plasmarc
   plasmashellrc
   plasma-org.kde.plasma.desktop-appletsrc
+  plasma-localerc
 )
 
 for file in "${PLASMA_FILES[@]}"; do
