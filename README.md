@@ -2,6 +2,16 @@
 
 Personal development environment configuration and workstation bootstrap scripts.
 
+## Bootstrap
+
+Run this bootstrap command to setup the development environment.
+
+```bash
+curl -fsSL \
+  https://raw.githubusercontent.com/orochaa/config/main/bootstrap.sh \
+  | bash
+```
+
 This repository contains:
 
 - Shell configuration

@@ -13,19 +13,15 @@ cleanup() {
 
 trap cleanup EXIT
 
-printf "\n# Downloading config\n"
+echo "# Downloading"
 
 curl -L \
   "https://github.com/${REPO}/archive/refs/heads/${BRANCH}.tar.gz" \
   -o "$WORKDIR/config.tar.gz"
 
-printf "\n# Extracting\n"
-
 tar -xzf \
   "$WORKDIR/config.tar.gz" \
   -C "$WORKDIR"
-
-printf "\n# Installing\n"
 
 cd "$WORKDIR/config-${BRANCH}"
 
