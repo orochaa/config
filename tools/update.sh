@@ -8,17 +8,6 @@ OUTPUT_FILE="$ROOT/tools.md"
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
 
-get_description() {
-  local command="$1"
-
-  if command -v "$command" >/dev/null 2>&1; then
-    "$command" --help 2>/dev/null \
-      | grep -v '^$' \
-      | head -n 1 \
-      | sed 's/|/-/g'
-  fi
-}
-
 {
   echo "# Tool Catalog"
   echo

@@ -64,25 +64,27 @@
   "explorer.sortOrder": "foldersNestsFiles",
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.*.ts",
-    "*.tsx": "${capture}.*.tsx",
     "*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.*.map",
-
-    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.*.tsx",
     "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig",
     "vite.config.*": "tailwind*, postcss*",
     "jest.*": ".swc*",
     "*ockerfile": "docker*, .docker*",
-
     ".env": ".env*, .example.env",
     ".gitignore": ".git*",
-
     "app.*": "babel*, eas*",
-
     "*.go": "${capture}_*.go",
     "go.mod": "go.sum",
-
     "README.md": "*.md",
     "Cargo.toml": "Cargo*, rust*",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*",
   },
 
   "terminal.integrated.fontSize": 15,
@@ -163,6 +165,7 @@
     "editor.inlayHints.enabled": "on",
   },
 
+  "js/ts.experimental.useTsgo": true,
   "js/ts.format.enabled": true,
   "js/ts.preferences.quoteStyle": "single",
   "js/ts.suggest.autoImports": true,

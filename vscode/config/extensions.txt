@@ -8,11 +8,12 @@ golang.go
 google.geminicodeassist
 hbenl.vscode-test-explorer
 josemurilloc.aura-spirit-dracula
-kingwl.vscode-vitest-runner
 lakshits11.best-themes-redefined
 ms-vscode.test-adapter-converter
 orta.vscode-jest
 pkief.material-icon-theme
 puszkarek.arasaka-inferno-vscode-theme
+qwtel.sqlite-viewer
 rocketseat.theme-omni
 streetsidesoftware.code-spell-checker
+vitest.explorer
