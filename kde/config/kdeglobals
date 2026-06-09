@@ -107,6 +107,14 @@ ForegroundVisited=137,180,250
 [General]
 BrowserApplication=helium.desktop
 ColorSchemeHash=de3ca69d329b87d4903142d21de9e2f3b56b139e
+XftAntialias=true
+XftHintStyle=hintslight
+XftSubPixel=rgb
+fixed=Noto Sans Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
+font=Noto Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
+
+[Icons]
+Theme=breeze-dark
 
 [KDE]
 LookAndFeelPackage=org.kde.breezedark.desktop

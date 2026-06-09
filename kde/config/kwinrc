@@ -6,12 +6,21 @@ Rows=1
 [Effect-overview]
 BorderActivate=9
 
+[ElectricBorders]
+BottomLeft=ApplicationLauncher
+
+[Tiling][38d60c99-6c06-5370-8947-1810b7fb26a5]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][5045e396-1d4c-4b99-8668-63d67a7d12bf][1f448c6b-47a7-4f94-af14-c790e28e0b89]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][5045e396-1d4c-4b99-8668-63d67a7d12bf][3b13c912-aac2-44f5-b87d-4461a07f747f]
 padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][865bda00-3cf5-5e82-87f0-d615de7b5d02]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][90c1ef54-e181-4f2d-a487-9a3f80446c54][1f448c6b-47a7-4f94-af14-c790e28e0b89]
@@ -32,3 +41,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 
 [Xwayland]
 Scale=1
+
+[org.kde.kdecoration2]
+library=org.kde.breeze
+theme=Breeze

@@ -74,14 +74,21 @@
     return 1; \
 	}; f"
 	sync = "!f(){ \
+    cur=$(git cur); \
+    printf '\n> Merging origin/%s...\n' \"$cur\"; \
+    git resolve \"$cur\" || return 1; \
+    printf '\n> Pushing %s...\n' \"$cur\"; \
+    git push origin \"$cur\"; \
+	}; f"
+	sync-all = "!f(){ \
     printf '> Fetching origin...\n'; \
     git fetch origin || return 1; \
     base=$(git base); \
     cur=$(git cur); \
-    printf '\n> Merging origin/%s...\n' \"$base\"; \
-    git resolve \"$base\" || return 1; \
     printf '\n> Merging origin/%s...\n' \"$cur\"; \
     git resolve \"$cur\" || return 1; \
+    printf '\n> Merging origin/%s...\n' \"$base\"; \
+    git resolve \"$base\" || return 1; \
     printf '\n> Pushing %s...\n' \"$cur\"; \
     git push origin \"$cur\"; \
 	}; f"
