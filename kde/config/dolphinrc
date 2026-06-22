@@ -1,5 +1,9 @@
 MenuBar=Disabled
 
+[ExtractDialog]
+2 screens: Height=540
+2 screens: Width=1576
+
 [General]
 Version=202
 ViewPropsTimestamp=2026,5,30,22,15,29.313

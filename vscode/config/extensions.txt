@@ -5,7 +5,7 @@ daltonmenezes.aura-theme
 dbdiagram.dbdiagram-vscode
 esbenp.prettier-vscode
 golang.go
-google.geminicodeassist
+grit.grit-vscode
 hbenl.vscode-test-explorer
 josemurilloc.aura-spirit-dracula
 lakshits11.best-themes-redefined
@@ -14,6 +14,8 @@ orta.vscode-jest
 pkief.material-icon-theme
 puszkarek.arasaka-inferno-vscode-theme
 qwtel.sqlite-viewer
+rfcorp.agilized-neon
 rocketseat.theme-omni
 streetsidesoftware.code-spell-checker
+streetsidesoftware.code-spell-checker-portuguese-brazilian
 vitest.explorer

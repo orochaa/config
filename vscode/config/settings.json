@@ -1,4 +1,52 @@
 {
+  "workbench.colorCustomizations": {
+    "[Best Themes - Neon City Darkvenom]": {
+      "editor.background": "#0c0a20",
+      "list.activeSelectionBackground": "#5E57FF",
+    },
+    "[Arasaka Inferno: Blue]": {
+      "editor.background": "#0c0a20",
+    },
+  },
+  "editor.tokenColorCustomizations": {
+    "[Best Themes - Neon City Darkvenom]": {
+      "variables": "#eff1f5",
+      "numbers": "#0AEAF1",
+      "functions": "#00D8FF",
+      "textMateRules": [
+        {
+          "scope": ["string", "string.template"],
+          "settings": {
+            "foreground": "#FFEF06",
+          },
+        },
+        {
+          "scope": [
+            "keyword",
+            "keyword.control",
+            "keyword.control.import",
+            "keyword.control.from",
+            "keyword.operator",
+            "storage",
+          ],
+          "settings": {
+            "foreground": "#ff00a8",
+          },
+        },
+        {
+          "scope": [
+            "entity.name.type",
+            "support.type",
+            "constant.language.boolean",
+          ],
+          "settings": {
+            "foreground": "#00FF98",
+          },
+        },
+      ],
+    },
+  },
+
   "editor.tabSize": 2,
   "editor.fontSize": 16,
   "editor.lineHeight": 26,
@@ -24,7 +72,7 @@
     "pt-BR": true,
   },
 
-  "workbench.colorTheme": "Arasaka Inferno: Blue",
+  "workbench.colorTheme": "Best Themes - Neon City Darkvenom",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "short",
@@ -38,7 +86,6 @@
   "workbench.list.typeNavigationMode": "automatic",
   "workbench.list.defaultFindMatchType": "fuzzy",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-
   "search.exclude": {
     "**/node_modules": true,
     "**/.git": true,
@@ -49,7 +96,6 @@
     "**/*.code-search": true,
     "**/.turbo": true,
   },
-
   "breadcrumbs.enabled": true,
   "breadcrumbs.filePath": "on",
   "breadcrumbs.symbolPath": "last",
@@ -98,7 +144,6 @@
   "terminal.integrated.env.linux": {},
 
   "git.openRepositoryInParentFolders": "always",
-
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.currentLine.pullRequests.enabled": false,
   "gitlens.currentLine.scrollable": false,
@@ -151,7 +196,7 @@
     "editor.formatOnSave": true,
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[go]": {
     "editor.defaultFormatter": "golang.go",
@@ -165,7 +210,7 @@
     "editor.inlayHints.enabled": "on",
   },
 
-  "js/ts.experimental.useTsgo": true,
+  "js/ts.experimental.useTsgo": false,
   "js/ts.format.enabled": true,
   "js/ts.preferences.quoteStyle": "single",
   "js/ts.suggest.autoImports": true,
@@ -194,12 +239,15 @@
   "biome.enabled": true,
   "biome.suggestInstallingGlobally": false,
 
-  "emmet.syntaxProfiles": { "javascript": "jsx" },
-  "emmet.includeLanguages": { "javascript": "javascriptreact" },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+  },
 
   "go.toolsManagement.autoUpdate": true,
   "go.testFlags": ["-count=1"],
-
   "colorize.languages": [
     "css",
     "sass",
@@ -213,7 +261,6 @@
     "react",
     "typescriptreact",
   ],
-
   "tailwindCSS.experimental.classRegex": [
     ["(?:cn,clsx,twMerge)\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
     ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
@@ -367,7 +414,6 @@
 
   "security.workspace.trust.untrustedFiles": "newWindow",
   "console-ninja.featureSet": "Community",
-
   "jest.runMode": {
     "coverage": false,
     "deferred": false,
