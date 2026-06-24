@@ -130,6 +130,7 @@
 	undo = !git reset --soft HEAD^ && git reset
 	patch = !git diff --staged > wip.patch
 	port = "!f(){ target=$(git sb); git diff $(git cur)..$target -- $@ | git apply; }; f"
+	browse = "!sh -c '\nurl=$(git remote get-url origin)\n\ncase \"$url\" in\n  git@github.com:*)\n    url=${url#git@github.com:}\n    url=\"https://github.com/${url%.git}\"\n    ;;\n  git@gitlab.com:*)\n    url=${url#git@gitlab.com:}\n    url=\"https://gitlab.com/${url%.git}\"\n    ;;\n  https://*)\n    url=${url%.git}\n    ;;\nesac\n\nxdg-open \"$url\"\n'"
 
 	ignore = !git update-index --skip-worktree
 	unignore = !git update-index --no-skip-worktree
