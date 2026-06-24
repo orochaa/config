@@ -1,280 +1,510 @@
 {
-  "workbench.colorCustomizations": {
-    "[Best Themes - Neon City Darkvenom]": {
-      "editor.background": "#0c0a20",
-      "list.activeSelectionBackground": "#5E57FF",
-    },
-    "[Arasaka Inferno: Blue]": {
-      "editor.background": "#0c0a20",
-    },
-  },
-  "editor.tokenColorCustomizations": {
-    "[Best Themes - Neon City Darkvenom]": {
-      "variables": "#eff1f5",
-      "numbers": "#0AEAF1",
-      "functions": "#00D8FF",
-      "textMateRules": [
-        {
-          "scope": ["string", "string.template"],
-          "settings": {
-            "foreground": "#FFEF06",
-          },
-        },
-        {
-          "scope": [
-            "keyword",
-            "keyword.control",
-            "keyword.control.import",
-            "keyword.control.from",
-            "keyword.operator",
-            "storage",
-          ],
-          "settings": {
-            "foreground": "#ff00a8",
-          },
-        },
-        {
-          "scope": [
-            "entity.name.type",
-            "support.type",
-            "constant.language.boolean",
-          ],
-          "settings": {
-            "foreground": "#00FF98",
-          },
-        },
-      ],
-    },
-  },
+	"workbench.colorCustomizations": {
+		"[Best Themes - Neon City Darkvenom]": {
+			"editor.background": "#0c0a20",
+			"editorCursor.foreground": "#4FD6FF",
+			"list.hoverBackground": "#564fe4",
+			"list.activeSelectionBackground": "#5E57FF",
+			"terminal.ansiGreen": "#4FD932"
+		},
+		"[Arasaka Inferno: Blue]": {
+			"editor.background": "#0c0a20"
+		}
+	},
+	"editor.tokenColorCustomizations": {
+		"[Best Themes - Neon City Darkvenom]": {
+			"textMateRules": [
+				// =========================================================================
+				// Shared / Generic
+				// =========================================================================
 
-  "editor.tabSize": 2,
-  "editor.fontSize": 16,
-  "editor.lineHeight": 26,
-  "editor.rulers": [80, 120],
-  "editor.fontFamily": "JetBrains Mono",
-  "editor.fontLigatures": true,
-  "editor.cursorBlinking": "solid",
-  "editor.cursorSmoothCaretAnimation": "off",
-  "editor.semanticHighlighting.enabled": false,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.highlightActiveBracketPair": true,
-  "editor.guides.bracketPairsHorizontal": true,
-  "editor.guides.indentation": true,
-  "editor.guides.highlightActiveIndentation": "always",
-  "editor.guides.bracketPairs": "active",
-  "editor.scrollbar.vertical": "auto",
-  "editor.renderLineHighlight": "gutter",
-  "editor.minimap.enabled": false,
-  "editor.minimap.size": "fit",
-  "editor.suggestSelection": "first",
-  "editor.linkedEditing": true,
-  "editor.unicodeHighlight.allowedLocales": {
-    "pt-BR": true,
-  },
+				{
+					"name": "Generic - Plain Text",
+					"scope": [
+						"variable",
+						"support",
+						"punctuation.decorator",
+						"punctuation.definition.annotation",
+						"storage.type.annotation",
+						"entity.name.namespace",
+						"entity.name.decorator"
+					],
+					"settings": {
+						"foreground": "#eff1f5"
+					}
+				},
+				{
+					"name": "Generic - Functions",
+					"scope": ["entity.name.function", "support.function"],
+					"settings": {
+						"foreground": "#00D8FF"
+					}
+				},
+				{
+					"name": "Generic - Strings",
+					"scope": ["string", "string.template"],
+					"settings": {
+						"foreground": "#FFDC16"
+					}
+				},
+				{
+					"name": "Generic - Keywords",
+					"scope": [
+						"keyword",
+						"keyword.control",
+						"keyword.control.import",
+						"keyword.control.from",
+						"keyword.operator",
+						"keyword.operator.arrow",
+						"storage",
+						"storage.type.function",
+						"storage.type.function.arrow"
+					],
+					"settings": {
+						"foreground": "#ff00a8"
+					}
+				},
+				{
+					"name": "Generic - Types, Numbers & Literals",
+					"scope": [
+						"entity.name.type",
+						"support.type",
+						"constant.language.boolean",
+						"constant.language.undefined",
+						"constant.language.null",
+						"constant.numeric"
+					],
+					"settings": {
+						"foreground": "#00FF98"
+					}
+				},
+				{
+					"name": "Generic - Comments",
+					"scope": [
+						"comment",
+						"comment.block",
+						"comment.block.documentation",
+						"comment.line"
+					],
+					"settings": {
+						"foreground": "#8c8fa1"
+					}
+				},
 
-  "workbench.colorTheme": "Best Themes - Neon City Darkvenom",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.editor.empty.hint": "hidden",
-  "workbench.editor.labelFormat": "short",
-  "workbench.editor.showTabs": "multiple",
-  "workbench.editor.limit.enabled": true,
-  "workbench.editor.limit.value": 5,
-  "workbench.editor.limit.perEditorGroup": true,
-  "workbench.activityBar.location": "hidden",
-  "workbench.statusBar.visible": true,
-  "workbench.list.defaultFindMode": "filter",
-  "workbench.list.typeNavigationMode": "automatic",
-  "workbench.list.defaultFindMatchType": "fuzzy",
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/.git": true,
-    "**/dist": true,
-    "**/target": true,
-    "**/bin": true,
-    "**/bower_components": true,
-    "**/*.code-search": true,
-    "**/.turbo": true,
-  },
-  "breadcrumbs.enabled": true,
-  "breadcrumbs.filePath": "on",
-  "breadcrumbs.symbolPath": "last",
-  "breadcrumbs.icons": true,
+				// =========================================================================
+				// Shell
+				// =========================================================================
 
-  "explorer.incrementalNaming": "simple",
-  "explorer.compactFolders": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": true,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.expand": false,
-  "explorer.sortOrder": "foldersNestsFiles",
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.*.ts",
-    "*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.*.map",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.*.tsx",
-    "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig",
-    "vite.config.*": "tailwind*, postcss*",
-    "jest.*": ".swc*",
-    "*ockerfile": "docker*, .docker*",
-    ".env": ".env*, .example.env",
-    ".gitignore": ".git*",
-    "app.*": "babel*, eas*",
-    "*.go": "${capture}_*.go",
-    "go.mod": "go.sum",
-    "README.md": "*.md",
-    "Cargo.toml": "Cargo*, rust*",
-    "*.sqlite": "${capture}.${extname}-*",
-    "*.db": "${capture}.${extname}-*",
-    "*.sqlite3": "${capture}.${extname}-*",
-    "*.db3": "${capture}.${extname}-*",
-    "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*",
-  },
+				{
+					"name": "Shell - Arguments",
+					"scope": ["string.unquoted.argument.shell"],
+					"settings": {
+						"foreground": "#eff1f5"
+					}
+				},
+				{
+					"name": "Shell - Commands & Builtins",
+					"scope": [
+						"entity.name.command.shell",
+						"support.function.builtin.shell"
+					],
+					"settings": {
+						"foreground": "#00FF98"
+					}
+				},
 
-  "terminal.integrated.fontSize": 15,
-  "terminal.integrated.showExitAlert": false,
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.enableMultiLinePasteWarning": "auto",
-  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.gpuAcceleration": "on",
-  "terminal.integrated.env.windows": {},
-  "terminal.integrated.env.linux": {},
+				// =========================================================================
+				// JSON
+				// =========================================================================
 
-  "git.openRepositoryInParentFolders": "always",
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.currentLine.pullRequests.enabled": false,
-  "gitlens.currentLine.scrollable": false,
-  "gitlens.hovers.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.codeLens.enabled": false,
+				{
+					"name": "JSON - Keys",
+					"scope": ["support.type.property-name.json", "entity.name.tag.json"],
+					"settings": {
+						"foreground": "#EBB7F7"
+					}
+				},
+				{
+					"name": "JSON - Values",
+					"scope": ["constant.language.json", "constant.numeric.json"],
+					"settings": {
+						"foreground": "#BAF7FC"
+					}
+				},
 
-  "zenMode.hideLineNumbers": false,
-  "zenMode.centerLayout": false,
-  "zenMode.hideActivityBar": true,
-  "zenMode.hideStatusBar": true,
-  "zenMode.showTabs": "single",
+				// =========================================================================
+				// YAML
+				// =========================================================================
 
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.codeLens": true,
+				{
+					"name": "YAML - Keys",
+					"scope": ["entity.name.tag.yaml"],
+					"settings": {
+						"foreground": "#EBB7F7"
+					}
+				},
+				{
+					"name": "YAML - Values",
+					"scope": [
+						"string.quoted.double.yaml",
+						"string.quoted.single.yaml",
+						"string.unquoted.plain.out.yaml",
+						"string.unquoted.block.yaml",
+						"constant.numeric.yaml",
+						"constant.numeric.integer.decimal.yaml",
+						"constant.language.boolean.yaml",
+						"constant.other.option"
+					],
+					"settings": {
+						"foreground": "#BAF7FC"
+					}
+				},
 
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.addMissingImports": "explicit",
-    "source.removeUnused": "explicit",
-  },
+				// =========================================================================
+				// Markdown
+				// =========================================================================
 
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 300,
-  "files.exclude": {
-    "**/node_modules": true,
-    "**/.git": true,
-    "**/.vscode": false,
-    "**/.nx": true,
-    "**/.DS_Store": true,
-  },
-  "files.associations": {
-    ".sequelizerc": "javascript",
-    ".stylelintrc": "json",
-    ".prettierrc": "json",
-    ".env*": "dotenv",
-    "*.vars": "dotenv",
-    "*.code-snippets": "json",
-    "*.tsx": "typescriptreact",
-    "*.css": "tailwindcss",
-  },
+				{
+					"name": "Markdown - Headings",
+					"scope": [
+						"markup.heading",
+						"markup.heading.markdown",
+						"entity.name.section.markdown",
+						"punctuation.definition.heading.markdown"
+					],
+					"settings": {
+						"foreground": "#12B8FF"
+					}
+				},
+				{
+					"name": "Markdown - Body Text",
+					"scope": ["meta.paragraph.markdown", "markup.table.markdown"],
+					"settings": {
+						"foreground": "#eff1f5"
+					}
+				},
+				{
+					"name": "Markdown - Italic",
+					"scope": [
+						"markup.italic.markdown",
+						"punctuation.definition.italic.markdown"
+					],
+					"settings": {
+						"foreground": "#CCC"
+					}
+				},
+				{
+					"name": "Markdown - Bold",
+					"scope": [
+						"markup.bold.markdown",
+						"punctuation.definition.bold.markdown"
+					],
+					"settings": {
+						"foreground": "#ff5dce"
+					}
+				},
+				{
+					"name": "Markdown - Links",
+					"scope": ["markup.underline.link.markdown"],
+					"settings": {
+						"foreground": "#12B8FF"
+					}
+				},
+				{
+					"name": "Markdown - Link URLs",
+					"scope": [
+						"meta.link.inline.markdown",
+						"meta.link.reference.markdown",
+						"string.other.link.title.markdown"
+					],
+					"settings": {
+						"foreground": "#FFDC16"
+					}
+				},
+				{
+					"name": "Markdown - Inline & Block Code",
+					"scope": [
+						"markup.inline.raw",
+						"markup.inline.raw.string.markdown",
+						"markup.fenced_code.block.markdown",
+						"markup.raw.block.markdown",
+						"fenced_code.block.language.markdown",
+						"punctuation.definition.raw.markdown"
+					],
+					"settings": {
+						"foreground": "#BAF7FC"
+					}
+				},
+				{
+					"name": "Markdown - Lists",
+					"scope": [
+						"markup.list",
+						"punctuation.definition.list.begin.markdown"
+					],
+					"settings": {
+						"foreground": "#ff00a8"
+					}
+				},
+				{
+					"name": "Markdown - Blockquotes",
+					"scope": [
+						"markup.quote",
+						"punctuation.definition.blockquote.markdown"
+					],
+					"settings": {
+						"foreground": "#8c8fa1"
+					}
+				},
+				{
+					"name": "Markdown - Structural Punctuation",
+					"scope": [
+						"punctuation.definition.markdown",
+						"punctuation.separator.table.markdown"
+					],
+					"settings": {
+						"foreground": "#8c8fa1"
+					}
+				}
+			]
+		}
+	},
 
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
-  },
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
-    "editor.formatOnSave": true,
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[go]": {
-    "editor.defaultFormatter": "golang.go",
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer",
-    "editor.semanticHighlighting.enabled": true,
-    "editor.inlayHints.enabled": "on",
-  },
+	"editor.tabSize": 2,
+	"editor.fontSize": 16,
+	"editor.lineHeight": 26,
+	"editor.rulers": [80, 120],
+	"editor.fontFamily": "JetBrains Mono",
+	"editor.fontLigatures": true,
+	"editor.cursorBlinking": "solid",
+	"editor.cursorSmoothCaretAnimation": "off",
+	"editor.semanticHighlighting.enabled": false,
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.highlightActiveBracketPair": true,
+	"editor.guides.bracketPairsHorizontal": true,
+	"editor.guides.indentation": true,
+	"editor.guides.highlightActiveIndentation": "always",
+	"editor.guides.bracketPairs": "active",
+	"editor.scrollbar.vertical": "auto",
+	"editor.renderLineHighlight": "gutter",
+	"editor.minimap.enabled": false,
+	"editor.minimap.size": "fit",
+	"editor.suggestSelection": "first",
+	"editor.linkedEditing": true,
+	"editor.unicodeHighlight.allowedLocales": {
+		"pt-BR": true
+	},
 
-  "js/ts.experimental.useTsgo": false,
-  "js/ts.format.enabled": true,
-  "js/ts.preferences.quoteStyle": "single",
-  "js/ts.suggest.autoImports": true,
-  "js/ts.updateImportsOnFileMove.enabled": "always",
-  "js/ts.inlayHints.parameterNames.enabled": "none",
-  "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
-  "js/ts.format.semicolons": "insert",
-  "js/ts.preferences.importModuleSpecifier": "shortest",
-  "js/ts.preferences.importModuleSpecifierEnding": "minimal",
-  "js/ts.preferences.jsxAttributeCompletionStyle": "braces",
+	"workbench.colorTheme": "Best Themes - Neon City Darkvenom",
+	"workbench.iconTheme": "material-icon-theme",
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.editor.empty.hint": "hidden",
+	"workbench.editor.labelFormat": "short",
+	"workbench.editor.showTabs": "multiple",
+	"workbench.editor.limit.enabled": true,
+	"workbench.editor.limit.value": 5,
+	"workbench.editor.limit.perEditorGroup": true,
+	"workbench.activityBar.location": "hidden",
+	"workbench.statusBar.visible": true,
+	"workbench.list.defaultFindMode": "filter",
+	"workbench.list.typeNavigationMode": "automatic",
+	"workbench.list.defaultFindMatchType": "fuzzy",
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+	"workbench.layoutControl.enabled": false,
+	"workbench.browser.showInTitleBar": false,
+	"workbench.browser.openLocalhostLinks": false,
 
-  "prettier.requireConfig": false,
-  "prettier.bracketSpacing": true,
-  "prettier.bracketSameLine": false,
-  "prettier.arrowParens": "avoid",
-  "prettier.endOfLine": "lf",
-  "prettier.semi": false,
-  "prettier.useTabs": false,
-  "prettier.singleQuote": true,
-  "prettier.quoteProps": "as-needed",
-  "prettier.printWidth": 80,
-  "prettier.trailingComma": "all",
-  "prettier.jsxSingleQuote": false,
-  "prettier.singleAttributePerLine": false,
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/.git": true,
+		"**/dist": true,
+		"**/target": true,
+		"**/bin": true,
+		"**/bower_components": true,
+		"**/*.code-search": true,
+		"**/.turbo": true
+	},
+	"breadcrumbs.enabled": true,
+	"breadcrumbs.filePath": "on",
+	"breadcrumbs.symbolPath": "last",
+	"breadcrumbs.icons": true,
 
-  "biome.enabled": true,
-  "biome.suggestInstallingGlobally": false,
+	"explorer.incrementalNaming": "simple",
+	"explorer.compactFolders": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": true,
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+	"explorer.sortOrder": "foldersNestsFiles",
+	"explorer.fileNesting.patterns": {
+		"*.ts": "${capture}.*.ts",
+		"*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.*.map",
+		"*.jsx": "${capture}.js",
+		"*.tsx": "${capture}.*.tsx",
+		"tsconfig.json": "tsconfig.*.json",
+		"package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig",
+		"vite.config.*": "tailwind*, postcss*",
+		"jest.*": ".swc*",
+		"*ockerfile": "docker*, .docker*",
+		".env": ".env*, .example.env",
+		".gitignore": ".git*",
+		"app.*": "babel*, eas*",
+		"*.go": "${capture}_*.go",
+		"go.mod": "go.sum",
+		"README.md": "*.md",
+		"Cargo.toml": "Cargo*, rust*",
+		"*.sqlite": "${capture}.${extname}-*",
+		"*.db": "${capture}.${extname}-*",
+		"*.sqlite3": "${capture}.${extname}-*",
+		"*.db3": "${capture}.${extname}-*",
+		"*.sdb": "${capture}.${extname}-*",
+		"*.s3db": "${capture}.${extname}-*"
+	},
 
-  "emmet.syntaxProfiles": {
-    "javascript": "jsx",
-  },
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-  },
+	"terminal.integrated.fontSize": 15,
+	"terminal.integrated.showExitAlert": false,
+	"terminal.integrated.defaultProfile.linux": "zsh",
+	"terminal.integrated.enableMultiLinePasteWarning": "auto",
+	"terminal.integrated.shellIntegration.decorationsEnabled": "never",
+	"terminal.integrated.copyOnSelection": true,
+	"terminal.integrated.gpuAcceleration": "on",
+	"terminal.integrated.env.windows": {},
+	"terminal.integrated.env.linux": {},
 
-  "go.toolsManagement.autoUpdate": true,
-  "go.testFlags": ["-count=1"],
-  "colorize.languages": [
-    "css",
-    "sass",
-    "scss",
-    "less",
-    "postcss",
-    "sss",
-    "stylus",
-    "xml",
-    "svg",
-    "react",
-    "typescriptreact",
-  ],
-  "tailwindCSS.experimental.classRegex": [
-    ["(?:cn,clsx,twMerge)\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
-    ["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
-    ["(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"],
-    [
-      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]",
-    ],
-    [
-      "(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*{([^}]*)}",
-    ],
-  ],
+	"git.openRepositoryInParentFolders": "always",
+	"gitlens.hovers.currentLine.over": "line",
+	"gitlens.currentLine.pullRequests.enabled": false,
+	"gitlens.currentLine.scrollable": false,
+	"gitlens.hovers.enabled": false,
+	"gitlens.currentLine.enabled": false,
+	"gitlens.codeLens.enabled": false,
 
-  "material-icon-theme.activeIconPack": "nest",
-  "material-icon-theme.folders.color": "#6633cc",
+	"zenMode.hideLineNumbers": false,
+	"zenMode.centerLayout": false,
+	"zenMode.hideActivityBar": true,
+	"zenMode.hideStatusBar": true,
+	"zenMode.showTabs": "single",
+
+	"diffEditor.ignoreTrimWhitespace": true,
+	"diffEditor.codeLens": true,
+
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit",
+		"source.addMissingImports": "explicit",
+		"source.removeUnused": "explicit"
+	},
+
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 300,
+	"files.exclude": {
+		"**/node_modules": true,
+		"**/.git": true,
+		"**/.vscode": false,
+		"**/.nx": true,
+		"**/.DS_Store": true
+	},
+	"files.associations": {
+		".sequelizerc": "javascript",
+		".stylelintrc": "json",
+		".prettierrc": "json",
+		".env*": "dotenv",
+		"*.vars": "dotenv",
+		"*.code-snippets": "json",
+		"*.tsx": "typescriptreact",
+		"*.css": "tailwindcss"
+	},
+
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format",
+		"editor.formatOnSave": true
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[rust]": {
+		"editor.defaultFormatter": "rust-lang.rust-analyzer",
+		"editor.semanticHighlighting.enabled": true,
+		"editor.inlayHints.enabled": "on"
+	},
+
+	"js/ts.experimental.useTsgo": false,
+	"js/ts.format.enabled": true,
+	"js/ts.preferences.quoteStyle": "single",
+	"js/ts.suggest.autoImports": true,
+	"js/ts.updateImportsOnFileMove.enabled": "always",
+	"js/ts.inlayHints.parameterNames.enabled": "none",
+	"js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+	"js/ts.format.semicolons": "insert",
+	"js/ts.preferences.importModuleSpecifier": "shortest",
+	"js/ts.preferences.importModuleSpecifierEnding": "minimal",
+	"js/ts.preferences.jsxAttributeCompletionStyle": "braces",
+
+	"prettier.requireConfig": false,
+	"prettier.bracketSpacing": true,
+	"prettier.bracketSameLine": false,
+	"prettier.arrowParens": "avoid",
+	"prettier.endOfLine": "lf",
+	"prettier.semi": false,
+	"prettier.useTabs": false,
+	"prettier.singleQuote": true,
+	"prettier.quoteProps": "as-needed",
+	"prettier.printWidth": 80,
+	"prettier.trailingComma": "all",
+	"prettier.jsxSingleQuote": false,
+	"prettier.singleAttributePerLine": false,
+
+	"biome.enabled": true,
+	"biome.suggestInstallingGlobally": false,
+
+	"emmet.syntaxProfiles": {
+		"javascript": "jsx"
+	},
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
+
+	"go.toolsManagement.autoUpdate": true,
+	"go.testFlags": ["-count=1"],
+	"colorize.languages": [
+		"css",
+		"sass",
+		"scss",
+		"less",
+		"postcss",
+		"sss",
+		"stylus",
+		"xml",
+		"svg",
+		"react",
+		"typescriptreact"
+	],
+	"tailwindCSS.experimental.classRegex": [
+		["(?:cn,clsx,twMerge)\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+		["tv\\(([^)]*)\\)", "(?:'|\"|`)([^'\"`]*)(?:'|\"|`)"],
+		["(?:class|className)\\s*:\\s*[\"'`]([^\"'`]*)[\"'`]"],
+		[
+			"(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]"
+		],
+		[
+			"(?:class|className|containerClassName|wrapperClassName|contentClassName|iconClassName)\\s*[:=]\\s*{([^}]*)}"
+		]
+	],
+
+	"material-icon-theme.activeIconPack": "nest",
+	"material-icon-theme.folders.theme": "specific",
+	"material-icon-theme.folders.color": "#6633cc",
   "material-icon-theme.folders.associations": {
     "application": "api",
     "express": "routes",
@@ -326,180 +556,168 @@
   "material-icon-theme.languages.associations": {
     "dotenv": "tune",
   },
-  "material-icon-theme.files.customClones": [
-    {
-      "name": "nest-service",
-      "base": "nest",
-      "color": "yellow-500",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["service.ts", "job.ts"],
-    },
-    {
-      "name": "nest-service-test",
-      "base": "test-ts",
-      "color": "yellow-500",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["service.spec.ts", "job.spec.ts"],
-    },
-    {
-      "name": "nest-adapter",
-      "base": "nest",
-      "color": "cyan-400",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["adapter.ts", "mapper.ts"],
-    },
-    {
-      "name": "nest-gateway",
-      "base": "nest",
-      "color": "purple-400",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["repository.ts", "gateway.ts"],
-    },
-    {
-      "name": "nest-decorator",
-      "base": "nest",
-      "color": "purple-500",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["decorator.ts"],
-    },
-    {
-      "name": "nest-factory",
-      "base": "nest",
-      "color": "red-400",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["factory.ts", "strategy.ts"],
-    },
-    {
-      "name": "nest-default",
-      "base": "nest",
-      "color": "gray-500",
-      "activeForPacks": ["nest"],
-      "fileExtensions": ["ts"],
-    },
-    {
-      "name": "test-e2e",
-      "base": "test-ts",
-      "color": "cyan-300",
-      "fileExtensions": ["e2e.spec.ts"],
-    },
-    {
-      "name": "nest-controller",
-      "base": "nest",
-      "color": "blue-600",
-      "fileExtensions": ["controller.ts", "controller.dto.ts"],
-    },
-  ],
+	"material-icon-theme.files.customClones": [
+		{
+			"name": "nest-service",
+			"base": "nest",
+			"color": "yellow-500",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["service.ts", "job.ts"]
+		},
+		{
+			"name": "nest-service-test",
+			"base": "test-ts",
+			"color": "yellow-500",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["service.spec.ts", "job.spec.ts"]
+		},
+		{
+			"name": "nest-controller",
+			"base": "nest",
+			"color": "blue-600",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["controller.ts", "controller.dto.ts"]
+		},
+		{
+			"name": "nest-adapter",
+			"base": "nest",
+			"color": "cyan-400",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["adapter.ts", "mapper.ts"]
+		},
+		{
+			"name": "nest-gateway",
+			"base": "nest",
+			"color": "purple-400",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["repository.ts", "gateway.ts"]
+		},
+		{
+			"name": "nest-decorator",
+			"base": "nest",
+			"color": "purple-500",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["decorator.ts"]
+		},
+		{
+			"name": "nest-factory",
+			"base": "nest",
+			"color": "red-400",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["factory.ts", "strategy.ts"]
+		},
+		{
+			"name": "test-e2e",
+			"base": "test-ts",
+			"color": "cyan-300",
+			"fileExtensions": ["e2e.spec.ts"]
+		},
+		{
+			"name": "nest-default",
+			"base": "nest",
+			"color": "gray-500",
+			"activeForPacks": ["nest"],
+			"fileExtensions": ["ts"]
+		}
+	],
 
-  "cSpell.language": "en,pt",
-  "cSpell.userWords": [
-    "awsx",
-    "clsx",
-    "decrypter",
-    "Decrypter",
-    "deepseek",
-    "encrypter",
-    "gemini",
-    "github",
-    "langchain",
-    "nginx",
-    "openai",
-    "orochaa",
-    "picocolors",
-    "postgres",
-    "postgresql",
-    "pulumi",
-    "struct",
-    "usecases",
-  ],
+	"cSpell.language": "en,pt",
+	"cSpell.userWords": [
+		"awsx",
+		"clsx",
+		"decrypter",
+		"Decrypter",
+		"deepseek",
+		"encrypter",
+		"gemini",
+		"github",
+		"langchain",
+		"nginx",
+		"openai",
+		"orochaa",
+		"picocolors",
+		"postgres",
+		"postgresql",
+		"pulumi",
+		"struct",
+		"usecases"
+	],
 
-  "security.workspace.trust.untrustedFiles": "newWindow",
-  "console-ninja.featureSet": "Community",
-  "jest.runMode": {
-    "coverage": false,
-    "deferred": false,
-    "runAllTestsOnStartup": false,
-    "showInlineError": true,
-    "type": "on-demand",
-  },
+	"security.workspace.trust.untrustedFiles": "newWindow",
+	"console-ninja.featureSet": "Community",
+	"jest.runMode": {
+		"coverage": false,
+		"deferred": false,
+		"runAllTestsOnStartup": false,
+		"showInlineError": true,
+		"type": "on-demand"
+	},
 
-  "geminicodeassist.enableTelemetry": false,
-  "geminicodeassist.project": "",
-  "geminicodeassist.updateChannel": "Default",
-  "geminicodeassist.languages": ["typescript", "typescriptreact", "go", "rust"],
-  "geminicodeassist.inlineSuggestions.enableAuto": false,
-  "geminicodeassist.displayInlineContextHint": false,
-  "geminicodeassist.customCommands": {
-    "docs": "Add TSDocs to classes, functions, methods and fields of schemas",
-  },
+	"geminicodeassist.enableTelemetry": false,
+	"geminicodeassist.project": "",
+	"geminicodeassist.updateChannel": "Default",
+	"geminicodeassist.languages": ["typescript", "typescriptreact", "go", "rust"],
+	"geminicodeassist.inlineSuggestions.enableAuto": false,
+	"geminicodeassist.displayInlineContextHint": false,
+	"geminicodeassist.customCommands": {
+		"docs": "Add TSDocs to classes, functions, methods and fields of schemas"
+	},
 
-  "gitlens.keymap": "none",
-  "gitlens.launchpad.indicator.enabled": false,
-  "gitlens.views.scm.grouped.views": {
-    "commits": true,
-    "branches": true,
-    "remotes": true,
-    "stashes": true,
-    "tags": true,
-    "worktrees": true,
-    "contributors": true,
-    "repositories": false,
-    "searchAndCompare": true,
-    "launchpad": false,
-  },
+	"gitlens.keymap": "none",
+	"gitlens.launchpad.indicator.enabled": false,
+	"gitlens.views.scm.grouped.views": {
+		"commits": true,
+		"branches": true,
+		"remotes": true,
+		"stashes": true,
+		"tags": true,
+		"worktrees": true,
+		"contributors": true,
+		"repositories": false,
+		"searchAndCompare": true,
+		"launchpad": false
+	},
 
-  "liveServer.settings.donotShowInfoMsg": true,
+	"liveServer.settings.donotShowInfoMsg": true,
 
-  "codesnap.showLineNumbers": true,
-  "codesnap.realLineNumbers": true,
+	"codesnap.showLineNumbers": true,
+	"codesnap.realLineNumbers": true,
 
-  "github.copilot.chat.localeOverride": "en",
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-  },
-  "remote.autoForwardPortsSource": "hybrid",
-  "shellformat.effectLanguages": [
-    "shellscript",
-    "dockerfile",
-    "dotenv",
-    "hosts",
-    "jvmoptions",
-    "ignore",
-    "gitignore",
-    "properties",
-    "spring-boot-properties",
-    "azcli",
-    "bats",
-  ],
-  "git.blame.editorDecoration.enabled": false,
-  "git.blame.statusBarItem.enabled": true,
-  "terminal.integrated.suggest.cdPath": "off",
-  "terminal.integrated.suggest.enabled": false,
-  "editor.accessibilitySupport": "off",
-  "terminal.integrated.initialHint": false,
-  "liveServer.settings.ChromeDebuggingAttachment": true,
-  "json.schemaDownload.trustedDomains": {
-    "https://biomejs.dev": true,
-    "https://developer.microsoft.com/json-schemas/": true,
-    "https://github.com": true,
-    "https://json-schema.org/": true,
-    "https://json.schemastore.org/": true,
-    "https://raw.githubusercontent.com/": true,
-    "https://raw.githubusercontent.com/devcontainers/spec/": true,
-    "https://raw.githubusercontent.com/microsoft/vscode/": true,
-    "https://schemastore.azurewebsites.net/": true,
-    "https://turbo.build": true,
-    "https://www.schemastore.org/": true,
-  },
-  "diffEditor.hideUnchangedRegions.enabled": true,
-  "workbench.browser.openLocalhostLinks": false,
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.browser.showInTitleBar": false,
-  "window.commandCenter": false,
-  "workbench.layoutControl.enabled": false,
-  "window.menuBarVisibility": "compact",
+	"remote.autoForwardPortsSource": "hybrid",
+	"shellformat.effectLanguages": [
+		"shellscript",
+		"dockerfile",
+		"dotenv",
+		"hosts",
+		"jvmoptions",
+		"ignore",
+		"gitignore",
+		"properties",
+		"spring-boot-properties",
+		"azcli",
+		"bats"
+	],
+	"git.blame.editorDecoration.enabled": false,
+	"git.blame.statusBarItem.enabled": true,
+	"terminal.integrated.suggest.cdPath": "off",
+	"terminal.integrated.suggest.enabled": false,
+	"editor.accessibilitySupport": "off",
+	"terminal.integrated.initialHint": false,
+	"liveServer.settings.ChromeDebuggingAttachment": true,
+	"json.schemaDownload.trustedDomains": {
+		"https://biomejs.dev": true,
+		"https://developer.microsoft.com/json-schemas/": true,
+		"https://github.com": true,
+		"https://json-schema.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://raw.githubusercontent.com/": true,
+		"https://raw.githubusercontent.com/devcontainers/spec/": true,
+		"https://raw.githubusercontent.com/microsoft/vscode/": true,
+		"https://schemastore.azurewebsites.net/": true,
+		"https://turbo.build": true,
+		"https://www.schemastore.org/": true
+	},
+	"diffEditor.hideUnchangedRegions.enabled": true,
+	"window.commandCenter": false,
+	"window.menuBarVisibility": "compact"
 }

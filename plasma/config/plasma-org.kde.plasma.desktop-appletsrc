@@ -337,6 +337,20 @@ migrated=true
 immutability=1
 plugin=org.kde.plasma.weather
 
+[Containments][29][Applets][34][Applets][48][Configuration][Appearance]
+showTemperatureInBadge=true
+showTemperatureInCompactMode=true
+showWindInTooltip=false
+
+[Containments][29][Applets][34][Applets][48][Configuration][ConfigDialog]
+DialogHeight=630
+DialogWidth=810
+
+[Containments][29][Applets][34][Applets][48][Configuration][WeatherStation]
+placeDisplayName=Caxias do Sul, Brazil, BR
+placeInfo=Caxias do Sul, Brazil, BR|3466537
+provider=bbcukmet
+
 [Containments][29][Applets][34][Applets][51]
 immutability=1
 plugin=org.kde.plasma.battery
@@ -355,9 +369,10 @@ DialogWidth=810
 
 [Containments][29][Applets][34][General]
 disabledStatusNotifiers=TelegramDesktop
-extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.brightness
+extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.brightness,org.kde.plasma.weather
 hiddenItems=chrome_status_icon_1,steam,org.kde.plasma.clipboard,org.kde.plasma.brightness,vlc,Slack_status_icon_1
 knownItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.bluetooth
+shownItems=org.kde.plasma.weather
 
 [Containments][29][Applets][75]
 immutability=1

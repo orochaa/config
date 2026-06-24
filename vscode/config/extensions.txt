@@ -4,6 +4,7 @@ biomejs.biome
 daltonmenezes.aura-theme
 dbdiagram.dbdiagram-vscode
 esbenp.prettier-vscode
+foxundermoon.shell-format
 golang.go
 grit.grit-vscode
 hbenl.vscode-test-explorer
@@ -16,6 +17,7 @@ puszkarek.arasaka-inferno-vscode-theme
 qwtel.sqlite-viewer
 rfcorp.agilized-neon
 rocketseat.theme-omni
+rust-lang.rust-analyzer
 streetsidesoftware.code-spell-checker
 streetsidesoftware.code-spell-checker-portuguese-brazilian
 vitest.explorer

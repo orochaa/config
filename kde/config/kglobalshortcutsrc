@@ -275,7 +275,7 @@ toggle do not disturb=,,Toggle do not disturb
 _launch=Ctrl+Shift+K\tCalculator
 
 [services][org.kde.konsole.desktop]
-_launch=Alt+W
+_launch=Alt+X
 
 [services][org.kde.krunner.desktop]
 _launch=Search\tAlt+Q\tAlt+F2\tAlt+Space
