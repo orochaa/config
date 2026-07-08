@@ -142,6 +142,10 @@ View Style=Simple
 [KShortcutsDialog Settings]
 Dialog Size=600,480
 
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+
 [WM]
 activeBackground=30,30,46
 activeBlend=30,30,46

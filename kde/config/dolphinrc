@@ -5,6 +5,7 @@ MenuBar=Disabled
 2 screens: Width=1576
 
 [General]
+RememberOpenedTabs=false
 Version=202
 ViewPropsTimestamp=2026,5,30,22,15,29.313
 
@@ -17,6 +18,9 @@ MenuBar=Disabled
 
 [MainWindow][Toolbar mainToolBar]
 ToolButtonStyle=IconOnly
+
+[PreviewSettings]
+Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,blenderthumbnail,gsthumbnail,mobithumbnail,rawthumbnail,ffmpegthumbs,fontthumbnail,gsf-office
 
 [Toolbar mainToolBar]
 ToolButtonStyle=IconOnly

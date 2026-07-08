@@ -369,8 +369,8 @@ DialogWidth=810
 
 [Containments][29][Applets][34][General]
 disabledStatusNotifiers=TelegramDesktop
-extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.brightness,org.kde.plasma.weather
-hiddenItems=chrome_status_icon_1,steam,org.kde.plasma.clipboard,org.kde.plasma.brightness,vlc,Slack_status_icon_1
+extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.brightness,org.kde.plasma.weather,org.kde.plasma.networkmanagement
+hiddenItems=chrome_status_icon_1,steam,org.kde.plasma.clipboard,org.kde.plasma.brightness,vlc,Slack_status_icon_1,1Password_status_icon_1,org.kde.plasma.networkmanagement
 knownItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.bluetooth
 shownItems=org.kde.plasma.weather
 
