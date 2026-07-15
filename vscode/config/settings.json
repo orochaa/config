@@ -1,5 +1,5 @@
 {
-  "vitest.nodeEnv": {
+    "vitest.nodeEnv": {
     "ENABLE_INTEGRATION_TESTS": "true",
     "ENVIRONMENT": "tests",
     "WEBHOOK_SECRET": "your-webhook-secret",
@@ -713,4 +713,6 @@
   "diffEditor.renderSideBySide": true,
   "diffEditor.experimental.showMoves": true,
   "explorer.confirmPasteNative": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilotcli:",
 }

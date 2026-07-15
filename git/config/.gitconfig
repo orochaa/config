@@ -51,8 +51,9 @@
   # Pull
 	pm = !git pull origin $(git base)
 	pb = !git pull origin $(git cur)
-	refresh = "!cur=$(git cur); git main && git switch \"$cur\""
 	mg = "!f(){ target=$(git sb); [ -n \"$target\" ] && git merge \"$target\" || echo 'Cancelled'; }; f"
+	refresh = "!cur=$(git cur); git main && git switch \"$cur\""
+	rebase-onto = "!f() { git rebase --onto $(git base) $(git merge-base \"$(git cur)\" \"$1\") \"$(git cur)\"; }; f"
 
 	resolve= "!f(){ \
 		only='packages/frontend/src-tauri/tauri.conf.json'; \
@@ -129,6 +130,7 @@
 	# Utils
 	undo = !git reset --soft HEAD^ && git reset
 	patch = !git diff --staged > wip.patch
+	trash = !git reset --hard && git clean -fd
 	port = "!f(){ target=$(git sb); git diff $(git cur)..$target -- $@ | git apply; }; f"
 	browse = "!sh -c '\nurl=$(git remote get-url origin)\n\ncase \"$url\" in\n  git@github.com:*)\n    url=${url#git@github.com:}\n    url=\"https://github.com/${url%.git}\"\n    ;;\n  git@gitlab.com:*)\n    url=${url#git@gitlab.com:}\n    url=\"https://gitlab.com/${url%.git}\"\n    ;;\n  https://*)\n    url=${url%.git}\n    ;;\nesac\n\nxdg-open \"$url\"\n'"
 

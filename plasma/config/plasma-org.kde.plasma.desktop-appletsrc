@@ -66,7 +66,7 @@ DialogWidth=810
 
 [Containments][29][Applets][32][Configuration][General]
 indicateAudioStreams=false
-launchers=applications:systemsettings.desktop,preferred://filemanager,applications:helium.desktop,file:///var/lib/flatpak/exports/share/applications/com.slack.Slack.desktop,applications:code.desktop,applications:org.kde.konsole.desktop
+launchers=applications:systemsettings.desktop,preferred://filemanager,applications:helium.desktop,file:///var/lib/flatpak/exports/share/applications/com.slack.Slack.desktop,applications:code.desktop,applications:com.spotify.Client.desktop
 
 [Containments][29][Applets][33]
 immutability=1
