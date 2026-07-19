@@ -1,6 +1,7 @@
 angular.ng-template
 avetis.tokyo-night
 biomejs.biome
+bradlc.vscode-tailwindcss
 daltonmenezes.aura-theme
 dbdiagram.dbdiagram-vscode
 esbenp.prettier-vscode
@@ -10,6 +11,7 @@ grit.grit-vscode
 hbenl.vscode-test-explorer
 josemurilloc.aura-spirit-dracula
 lakshits11.best-themes-redefined
+ms-playwright.playwright
 ms-vscode.test-adapter-converter
 orta.vscode-jest
 pkief.material-icon-theme

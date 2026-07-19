@@ -54,8 +54,8 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 if ssh-add -l >/dev/null 2>&1; then
   :
 else
-  ssh-add ~/.ssh/id_ed25519_work
-  ssh-add ~/.ssh/id_ed25519_personal
+  ssh-add ~/.ssh/id_ed25519_work &>/dev/null
+  ssh-add ~/.ssh/id_ed25519_personal &>/dev/null
 fi
 
 # Aliases
@@ -95,6 +95,11 @@ bindkey '^[[3;5~' kill-word
 
 # Functions
 turboc() {
+  if [ "$2" = "std" ]; then
+    TURBO_TELEMETRY_DISABLED=1 npx turbo run "$1" --filter="@unvoidweb/$2"
+    return
+  fi
+
   TURBO_TELEMETRY_DISABLED=1 npx turbo run "$1" --filter="@lib/$2"
 }
 
@@ -106,7 +111,7 @@ dev() {
  local project
   project="$(
     fd . "$HOME/git" --min-depth 2 --max-depth 2 --type d \
-      | fzf --reverse --height=40% --preview 'eza --tree --level 2 --icons=never --color=never --classify=always --group-directories-first {} | head -200'
+      | fzf --reverse --height=40% --preview 'eza --tree --level 2 --icons=never --color=never --classify=always --group-directories-first --git-ignore {} | head -200'
   )"
   [[ -n "$project" ]] && code "$project"
 }
