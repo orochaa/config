@@ -13,8 +13,3 @@ ROOT="$(cd "$(dirname "$0")" && pwd)"
 "$ROOT/plasma/update.sh"
 "$ROOT/scripts/update.sh"
 "$ROOT/tools/update.sh"
-
-echo ""
-echo "# Updated:"
-
-git status -s
