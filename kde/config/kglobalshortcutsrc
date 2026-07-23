@@ -282,7 +282,3 @@ _launch=Alt+X
 
 [services][org.kde.krunner.desktop]
 _launch=Search\tAlt+Space\tAlt+Q\tAlt+F2
-
-[services][org.kde.spectacle.desktop]
-CurrentMonitorScreenShot=none
-OpenWithoutScreenshot=none

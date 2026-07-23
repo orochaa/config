@@ -13,6 +13,7 @@ josemurilloc.aura-spirit-dracula
 lakshits11.best-themes-redefined
 ms-playwright.playwright
 ms-vscode.test-adapter-converter
+openai.chatgpt
 orta.vscode-jest
 pkief.material-icon-theme
 puszkarek.arasaka-inferno-vscode-theme
