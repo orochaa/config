@@ -1,0 +1,8 @@
+interface:
+  display_name: "To Source Comments"
+  short_description: "Add useful TSDoc to meaningful TypeScript changes"
+  default_prompt: >-
+    Use $to-source-comments to add valuable TSDoc comments to the meaningful
+    changes in this TypeScript diff.
+policy:
+  allow_implicit_invocation: false

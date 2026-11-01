@@ -17,6 +17,7 @@ This repository contains:
 - Shell configuration
 - Git configuration
 - VS Code configuration
+- Agent skills
 - Tool installation definitions
 - Setup and maintenance scripts
 

@@ -1,0 +1,8 @@
+interface:
+  display_name: 'To GitHub Review'
+  short_description: 'Format findings as copy-ready GitHub review comments'
+  default_prompt: >-
+    Use $to-github-review to format these review findings for manual insertion
+    into a GitHub review.
+policy:
+  allow_implicit_invocation: false

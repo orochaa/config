@@ -1,0 +1,9 @@
+interface:
+  display_name: 'Address Comments'
+  short_description: 'Address comments one at a time with approval gates'
+  default_prompt: >-
+    Use $address-comments to address comments from this session, a handoff,
+    or a remote pull request.
+
+policy:
+  allow_implicit_invocation: false

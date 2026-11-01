@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Review and Refine'
+  short_description: 'Review standards, spec, and safely improve a branch'
+  default_prompt: Use $review-and-refine to review and safely refine this branch.
+policy:
+  allow_implicit_invocation: false

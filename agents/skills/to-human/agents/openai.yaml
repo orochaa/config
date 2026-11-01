@@ -1,0 +1,5 @@
+interface:
+  display_name: 'To Human'
+  short_description: 'Write clear, simplified English for people'
+policy:
+  allow_implicit_invocation: false
