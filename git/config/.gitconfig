@@ -30,7 +30,7 @@
   ss = "!f(){ target=$(git sb); [ -n \"$target\" ] && git switch \"$target\" || echo \"Cancelled\"; }; f"
 	new = "!f(){ git main && git switch -c \"$1\"; }; f"
 	resume = "!f(){ [ -n \"$1\" ] && git fetch origin && git switch -c \"$1\" --track \"origin/$1\" || echo \"Target not found\"; }; f"
-	done = "!cur=$(git cur); git main && git branch -D \"$cur\""
+	done = "!cur=$(git cur); git switch $(git base) && git branch -D \"$cur\""
 	park = "!cur=$(git cur); git add --all && git commit -m \"__PARKED_WIP__:$cur\" && git main"
 	unpark = "!f(){ log=$(git log --all --grep='^__PARKED_WIP__:' --format='%s' -n 1); branch=${log#__PARKED_WIP__:}; [ -n \"$branch\" ] && git switch \"$branch\" && git undo || echo 'No parked branch found'; }; f"
 	parked = "!git l --all --grep='^__PARKED_WIP__:'"

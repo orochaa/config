@@ -65,17 +65,21 @@ alias up="source $HOME/.zshrc"
 alias cls="clear"
 alias ls="eza --icons=never --color=always --classify=always --group-directories-first"
 alias cd="z"
+alias xcopy="xclip -sel clipboard"
 
-alias format-db="npx prettier --ignore-path=.gitignore --write /home/unvoid/git/unvoid/when/packages/api/src/database/ && npx @biomejs/biome format --write /home/unvoid/git/unvoid/when/packages/api/src/database/"
+alias format-db="npx prettier --ignore-path=.gitignore --write /home/unvoid/git/unvoid/when/packages/api/src/database/ && lint /home/unvoid/git/unvoid/when/packages/api/src/database/"
+alias format-doc="npx prettier --write --print-width 80 --prose-wrap always"
+alias unformat-doc="npx prettier --write --prose-wrap never"
 alias lint="npx biome check --write --unsafe"
 alias nopoly="npx nolyfill install && pnpm install"
 
-alias gemini="gemini -m gemini-2.5-flash"
 alias ff="fastfetch"
 
 alias fman="compgen -c | fzf | xargs man"
 alias tree="tree -L 2 -a -I '.git' --charset X"
 alias fls="fd | fzf --multi"
+alias gs='gh stack'
+alias secret='openssl rand -hex 32'
 
 # Keybindings
 # Home
@@ -115,3 +119,49 @@ dev() {
   )"
   [[ -n "$project" ]] && code "$project"
 }
+
+fcp() {
+  local source="$1"
+  local destination="${2:-$PWD}"
+
+  (
+    cd "$source" || return 1
+
+    fd --hidden --exclude .git --print0 |
+      fzf \
+        --multi \
+        --read0 \
+        --print0 \
+        --preview '
+          if [[ -d {} ]]; then
+            eza --tree --level 2 --icons=never --color=always --group-directories-first {}
+          else
+            bat -n --color=always {}
+          fi
+        ' |
+      rsync -a --recursive --from0 --files-from=- ./ "$destination/"
+  )
+}
+
+killport() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: killport <port>"
+    return 1
+  fi
+
+  local port="$1"
+  local pids=("${(@f)$(lsof -ti TCP:"$port" -sTCP:LISTEN)}")
+
+  if (( ${#pids} == 0 )); then
+    echo "No process listening on port $port"
+    return 1
+  fi
+
+  kill -9 "${pids[@]}"
+  echo "Killed process(es) on port $port: ${pids[*]}"
+}
+
+# Playwright Fedora wrapper (https://github.com/CybLow/playwright-fedora)
+if [ -f "$HOME/.local/share/playwright-fedora/pw.bash" ]; then
+    source "$HOME/.local/share/playwright-fedora/pw.bash"
+fi

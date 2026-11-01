@@ -9,6 +9,9 @@ BorderActivate=9
 [ElectricBorders]
 BottomLeft=ApplicationLauncher
 
+[Plugins]
+shakecursorEnabled=false
+
 [Tiling][38d60c99-6c06-5370-8947-1810b7fb26a5]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
