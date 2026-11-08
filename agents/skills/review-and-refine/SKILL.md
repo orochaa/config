@@ -1,106 +1,109 @@
 ---
 name: review-and-refine
 description: >-
-  Review and safely improve a completed branch before pull-request review or
-  after implementation. Assess repository standards, the originating
-  specification, and refinement concerns, then validate the affected scope.
+  Reviews a completed branch on standards, spec, and refinement axes and saves
+  the findings to a review file; applies safe fixes and validates only when
+  asked to edit. Use when a finished branch needs review before a pull request
+  or after implementation.
 disable-model-invocation: true
 ---
 
 # Review and Refine
 
-Review the branch on three independent axes. A review session leaves source
-files unchanged by default: inspect and report findings, then save the review to
-a `.review.md` file. Change to a writable refinement session only when the user
-explicitly requests edits. The parent agent owns every edit and validation; each
-review sub-agent reports once and never changes the branch.
+Review the branch on three independent axes. The parent agent owns every edit
+and validation; each review sub-agent reports once and edits nothing.
 
 ## 1. Establish the review scope
 
-1. Use the base branch named by the user, or `main` when none is supplied.
-   Confirm it resolves with `git rev-parse <base>`.
-2. Capture these artifacts once:
-   - `git branch --show-current` and `git rev-parse HEAD` for the branch and
-     latest commit checked.
-   - `git diff <base>...HEAD` and `git log <base>..HEAD --oneline` for the
-     committed branch comparison.
-   - `git diff HEAD` and `git status --short` for staged and unstaged work.
-   - Contents of any untracked files in scope.
-3. Fail when the combined committed and working-tree scope is empty. Include
-   added, modified, renamed, copied, deleted, staged, unstaged, and untracked
-   files in the review.
-4. Build a guidance set for every affected scope before reviewing:
+1. Set the session mode. The mode is **read-only** unless the user's request
+   explicitly asks for edits; then it is **writable**. Switch to writable
+   mid-session only on a new explicit user request. Done when the mode is
+   recorded for the review file.
+2. Run `scripts/review-scope.sh [<base>]` from the repository root, using the
+   absolute path of this skill's folder. Pass the base branch the user named;
+   the script defaults to `main`. It covers added, modified, renamed, copied,
+   deleted, staged, unstaged, and untracked files. On exit 2, relay its
+   message and stop:
+   - Base does not resolve: ask the user for the base.
+   - Empty scope: tell the user there is nothing to review against `<base>`,
+     and write no review file.
+
+   Done when the script exits 0. Its output plus the commands
+   `git diff <base>...HEAD` and `git diff HEAD` form the **scope block**.
+3. Build the guidance set for every affected scope:
+   - Start from the script's `guidance:` paths, and add the docs they route to
+     for the changed areas.
    - Read the closest relevant documentation: package `README`s, feature
      specifications, and Markdown adjacent to the changed code.
-   - Read every task-specific skill that applies to the changed scope, and the
-     closest local or package style guide. These are the source of truth.
-   - Use broad repository documentation and the general style guide only to fill
-     a gap the local guidance does not cover; do not scan them by default.
-   - Read `docs/22-qa-checklist.md` to select relevant QA recommendations.
+   - Read every project skill (`.claude/skills/`, `.agents/skills/`) whose
+     description covers the changed area, and the closest local or package
+     style guide. Where guidance conflicts, these override broader docs.
+   - Use broad repository documentation and the general style guide only to
+     fill a gap the local guidance does not cover.
+   - Read any QA checklist the guidance set routes to; use it to select
+     relevant QA recommendations.
 
-## 2. Find the specification and standards
+   Done when the guidance set is written as a list of file paths and each
+   path is confirmed with `ls`.
 
-Find the originating specification in this order:
+## 2. Find the specification
 
-1. Issue references in commit messages using `docs/agents/issue-tracker.md`.
-2. A path the user supplied.
-3. A matching file under `docs/`, `specs/`, or `.scratch/`.
-4. Ask the user where the specification is. If none exists, record
-   `no spec available`; still run the Spec sub-agent.
+Find the originating specification; stop at the first hit:
 
-Use the guidance set as the Standards source. The Standards review also uses
-this Fowler smell baseline. A documented repository standard overrides the
-baseline, every smell is a judgement call rather than a hard violation, and
-tooling-enforced rules are out of scope.
+1. A path the user supplied.
+2. Issue references in commit messages, resolved with the issue-tracker doc
+   the guidance set names, if any.
+3. A file under `docs/`, `specs/`, or `.scratch/` whose name or title contains
+   the branch name or a commit-subject keyword.
+4. Ask the user. If none exists, record `no spec available` and skip the Spec
+   sub-agent.
 
-Keep every relevant finding visible. Mark each proposed repair or refinement
-that requires behavior, architecture, public surface, or validation beyond the
-task as **Scope expansion**.
+Record the spec path and issue URL; later steps reuse them.
 
-- **Mysterious Name** — a name does not reveal what it does or holds. → Rename
-  it; if no honest name comes, the design is murky.
-- **Duplicated Code** — the same logic shape appears in more than one changed
-  hunk or file. → Extract the shared shape and call it from both sites.
-- **Feature Envy** — a method reaches into another object's data more than its
-  own. → Move it onto the data it envies.
-- **Data Clumps** — the same fields or parameters travel together. → Bundle them
-  into one type and pass that.
-- **Primitive Obsession** — a primitive represents a domain concept deserving
-  its own type. → Give that concept a small type.
-- **Repeated Switches** — the same `switch` or `if` cascade on one type recurs.
-  → Use polymorphism or one shared map.
-- **Shotgun Surgery** — one logical change forces scattered edits. → Gather what
-  changes together into one module.
-- **Divergent Change** — one module changes for several unrelated reasons. →
-  Split it so each module changes for one reason.
-- **Speculative Generality** — an abstraction, parameter, or hook has no
-  specification need. → Delete it or inline it until a real need exists.
-- **Message Chains** — long `a.b().c().d()` navigation exposes an internal walk.
-  → Hide it behind one method on the first object.
-- **Middle Man** — a class or function mostly delegates onward. → Remove it and
-  call the real target directly.
-- **Refused Bequest** — a subclass or implementer ignores most inherited
-  behavior. → Prefer composition over that inheritance.
+The Standards source is the guidance set plus
+[`references/smell-baseline.md`](references/smell-baseline.md).
 
-## 3. Run exactly three parallel reviews
+## 3. Run the parallel reviews
 
-Spawn the following three sub-agents in parallel, once each. Give every agent
-the committed diff command, working-tree diff command, commit list, and
-untracked-file contents. Do not launch another review sub-agent after repairs.
-The reviews are read only: agents report findings and never edit files.
+Spawn the Standards and Refinement sub-agents, plus Spec when a specification
+exists, in parallel, once each. Give every agent the scope block. Sub-agents
+run the diff commands and read untracked files themselves. Brief every agent
+with these shared rules:
+
+- Review every changed file, tests included. Report findings; never edit
+  files.
+- Keep every relevant finding visible. Mark each repair or refinement that
+  requires behavior, architecture, public surface, or validation beyond the
+  task as **Scope expansion**.
+- Keep each finding to one line: `path:line`, rule or smell, a quote of at
+  most one line, and the repair. When findings exceed 40 lines, keep every
+  hard violation, then list the remaining findings by name and `path:line`
+  only. (40 lines keeps the report near its old 400-word budget without
+  dropping a finding.)
+
+Run one review round; the parent's validation verifies repairs, not new
+reviewers. If a sub-agent fails, returns nothing, or returns an incomplete
+report (Standards without its file list), resume that same agent once with
+the gap named. If it is still incomplete, mark that axis **incomplete**, with
+the reason, in the review file and the Report.
 
 ### Standards
 
-Provide the full list of standards-source files and the complete smell baseline
-above. Instruct the agent to:
+Pass the guidance-set file paths and the absolute path of
+`references/smell-baseline.md`; never pass a summary of the rules. Instruct
+the agent to:
 
-1. Report every documented-standard violation per file or hunk, citing the
+1. Read every standards file and the smell baseline before reporting.
+2. Report every documented-standard violation per file or hunk, citing the
    source file and rule.
-2. Report every baseline smell, naming it and quoting the hunk.
-3. Distinguish hard documented violations from smell judgement calls.
-4. Apply a repository standard over the baseline and skip tooling-enforced
-   rules.
-5. Keep the report under 400 words.
+3. Report every baseline smell, naming it and quoting the hunk.
+4. Report each function call used directly as a condition (for example,
+   `if (foo())`), suggesting a named variable for the result
+   (`const isReady = foo(); if (isReady)`), unless the guidance set allows it.
+5. Distinguish hard documented violations from smell judgement calls, applying
+   the baseline's precedence rules.
+6. Open the report with the list of standards files read. A report without
+   that list is incomplete.
 
 ### Spec
 
@@ -110,103 +113,80 @@ Provide the specification path or contents. Instruct the agent to:
 2. Report behavior not requested by the specification.
 3. Report requirements that appear implemented but incorrectly.
 4. Quote the relevant specification line for every finding.
-5. Report exactly `no spec available` if no specification is available.
-6. Keep the report under 400 words.
 
 ### Refinement
 
-Provide the applicable style guides and ask the agent to report only issues not
-already belonging to Standards or Spec. Instruct the agent to:
+Provide the applicable style guides and every project skill from the guidance
+set that covers the changed area; the agent applies each one. Ask the agent to
+report only issues not already belonging to Standards or Spec. Instruct the
+agent to:
 
-1. Review every changed file, including tests, documentation, exports, package
-   metadata, build configuration, and compatibility changes.
+1. Cover documentation, exports, package metadata, build configuration, and
+   compatibility changes as well as implementation.
 2. Identify concrete correctness, edge-case, public-API, type/runtime,
    immutability, error-handling, supported-environment, documentation, and
    test-coverage issues. Check asynchronous and stateful code for race
    conditions and related lifecycle failures, including relevant interleavings,
    stale results, cancellation or disposal, retries, late events, and cleanup.
-   For WebSocket sync changes, use `when-websocket-sync` to trace both peers,
-   recovery paths, and terminal connection behavior.
 3. Assess success, failure, boundary, invalid-runtime-input, and regression test
    coverage where relevant. Confirm each test belongs to its named unit.
-4. Quote the relevant hunk and suggest a compatibility-preserving repair. Mark
-   each recommendation that exceeds the task as **Scope expansion**.
-5. Extract function results from conditional expressions into named variables
-   before the condition (for example, `if (foo())` becomes
-   `const result = foo(); if (result)`). Name the variable for the returned
-   value.
-6. Keep the report under 400 words.
+4. Quote the relevant hunk and suggest a compatibility-preserving repair.
 
-## 4. Refine and validate
+## 4. Reconcile
 
-1. Keep the three reports separate; do not merge or rerank Standards and Spec.
-   Reconcile findings against the reviewed diff, marking each fixed or open.
-2. In a read only session, write the reports to the review file selected below.
-   Include the affected file paths, enough surrounding context to locate each
-   issue, the suggested change, and any pending decision. Include review scope,
-   specification status, and validation recommendations so a later session can
-   act without this conversation. Leave other repository files unchanged.
-3. Enter a writable refinement session only when the user explicitly requests
-   edits. Then apply safe, compatibility-preserving improvements: formatting,
-   clearer comments, documentation corrections, missing tests, explicit imports,
-   and focused cleanup.
-4. Do not silently rename public symbols, remove supported behavior, change
-   resolved public types, or alter ordering, persistence, or other consumer
-   contracts. Put each such decision in the review file and wait for user
-   direction. When the user supplies direction, implement only that decision and
-   validate its scope.
-5. When the user establishes a reusable review convention absent from the
-   applicable style guide, add it to that style guide during a writable session.
-6. In a writable session, run the narrowest complete validation: applicable
-   formatting and lint checks, typechecking, focused tests, and the relevant
-   package build. State only checks actually run. Recommend only QA checks
-   relevant to the diff.
-7. In a writable session, review the final diff. Confirm no unrelated or user
-   changes were overwritten, no generated output was accidentally included, and
-   `git diff --check` passes. Do not report automatic `tauri.conf.json` version
-   bumps as findings.
-8. In a writable session, record completed changes, validation results, and
-   remaining findings or decisions in the review file as directed below.
+Reconcile findings against the reviewed diff. Mark each finding open; in
+writable mode, mark it fixed once repaired. If HEAD moves during the review,
+record the SHA the sub-agents reviewed and list the newer commits as **not
+reviewed**.
 
-## Choose the review filepath
+## 5. Write the review file
 
-Identify the task or workstream under review. Name the file
-`{identification-in-kebab-case}.review.md`. For a review about a specific spec
-or task file, use that target's kebab-case basename in the
-`{spec|task}.review.md` pattern. For example, `plan.md` gets `plan.review.md`,
-while `sync-replay-task.md` gets `sync-replay-task.review.md`. For work without
-a specific target file, use a concise, distinctive workstream identifier. Apply
-this filename format in every location. If a matching review has a different
-filename, rename it while preserving its full contents and update references to
-the old path. Choose its directory by this order:
+1. Name the file by [`handoff`](../handoff/SKILL.md) step 2 and choose its
+   directory by step 4, reading `review` wherever those steps say `handoff`:
+   the suffix is `.review.md`, so `sync.spec.md` gets `sync.spec.review.md`.
+   Keep one file per review workstream.
+2. If the file exists, read it in full. Append a section headed
+   `## Review — <YYYY-MM-DD>`, and keep earlier sections verbatim. Record
+   resolutions or corrections in the new section, citing the earlier finding.
+3. Open the section with the mode, branch, base, and full SHA of the latest
+   commit checked. Link the spec and issue recorded in step 2, and any
+   `{target}.handoff.md` in the review file's directory. Link local files by
+   path relative to the review file and issues by URL.
+4. Use the Report headings as `###` sections. Give each finding its
+   `path:line`, a code quote, the suggested change, and `open` or `fixed`.
+   Include pending decisions and relevant validation recommendations.
 
-1. Use the directory of an existing review for the same workstream.
-2. Otherwise, if a relevant spec or task file exists, use the directory
-   containing the target file.
-3. Otherwise, if the repository has a `.scratch/` directory, use that directory.
-4. Otherwise, use `/tmp`.
+Done when a later agent could act on every finding without this conversation.
+In read-only mode, leave every other repository file unchanged and go to the
+Report.
 
-Use one file for one review workstream. If it exists, read it in full and append
-a dated section with this session's new findings, completed changes, validation
-results, and decisions. Preserve earlier entries verbatim. Record resolutions or
-corrections in the new section, referencing the earlier finding. For a new file,
-write the first section. In every section, record the reviewed branch, base
-branch, and full SHA of the latest commit actually checked. If HEAD changes
-during the review, check the new commits before advancing that SHA. Find the
-related spec and issue from the review scope, and look for a handoff for the
-same workstream in the target directory, repository, and `/tmp`. Add Markdown
-links to each available spec, issue, and handoff in every section. Link local
-files by path relative to the review file and issues by URL. Make the review
-standalone: a later agent must be able to address every finding without access
-to this conversation. Include the diff scope, specification status, each finding
-with affected paths and code context, the suggested change, pending decisions,
-and relevant validation recommendations. Mark unresolved items clearly.
+## 6. Writable: refine and validate
+
+1. Apply safe, compatibility-preserving improvements: formatting, clearer
+   comments, documentation corrections, missing tests, explicit imports, and
+   focused cleanup.
+2. Treat any change to a public name, supported behavior, resolved public
+   type, ordering, persistence, or other consumer contract as a **decision**:
+   record it in the review file and wait for user direction. With direction,
+   implement only that decision and validate its scope.
+3. When the user states a review convention as a rule to keep and the
+   applicable style guide lacks it, offer to add it there; add it on approval.
+4. Run the narrowest complete validation: applicable formatting and lint
+   checks, typechecking, focused tests, and the relevant package build. State
+   only checks actually run.
+5. Review the final diff. Confirm no unrelated or user changes were
+   overwritten, no generated output was accidentally included, and
+   `git diff --check` passes. Skip changes the guidance set marks as automated
+   (for example, generated version bumps).
+6. Add completed changes, validation results, and remaining findings or
+   decisions to this session's review-file section.
 
 ## Report
 
 Lead with whether the branch is ready for review. Present `## Standards` and
-`## Spec` first, keeping their reports separate and identifying findings fixed
-by the parent. Then present `## Refinements and validation` with completed
-cleanup, commands and results, checks not completed, and relevant QA
-recommendations. End with `## Decisions` for unresolved contract, rename, scope,
-or PR questions. Keep completed cleanup separate from decisions.
+`## Spec` first, keeping their reports separate; in writable mode, identify
+the findings the parent fixed. Then present `## Refinements and validation`:
+in writable mode, completed cleanup, commands and results, and checks not
+completed; in both modes, QA recommendations relevant to the diff. End with
+`## Decisions` for unresolved contract, rename, scope, or PR questions. Keep
+completed cleanup separate from decisions.

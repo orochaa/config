@@ -1,25 +1,54 @@
 ---
 name: implement
-description: 'Implement a piece of work based on a spec or set of tickets.'
+description:
+  Implements a spec or ticket set in approved, tested vertical slices. Use when
+  an approved spec or tickets are ready to build.
 disable-model-invocation: true
 ---
 
 # Implement
 
 Implement the supplied spec or tickets faithfully. The spec is the source of
-truth: do not add behavior outside it without the user's confirmation.
+truth: build exactly the behavior it covers, and ask before adding more.
+
+## Inputs
+
+Accept the spec or tickets in any of these forms:
+
+- A file path: read it in full.
+- A workstream directory `<dir>`: run
+  [`resolve-inputs.sh`](../grill-to-implementation/scripts/resolve-inputs.sh)
+  with `<dir>` as its only argument. It prints the spec, handoff, scoped
+  sub-handoffs, and tasks in order. Read each one it lists.
+- An issue number or URL: fetch its full body and comments.
+- Pasted content in the conversation.
+
+When no spec or ticket is supplied, ask for one before reading code.
+Implement tickets in **Blocked by** order; a ticket starts only when its
+blockers are done.
+
+The workstream's handoff is named by step 2 of the `handoff` skill (for
+`sync.spec.md`, `sync.spec.handoff.md`). A scoped sub-handoff
+`<root>.<scope>.handoff.md` belongs to the ticket of that scope. Note each
+handoff path for rule changes.
 
 ## Establish the work
 
 Before editing:
 
-1. Read the complete spec or ticket set, repository instructions, and every
-   applicable package or domain skill.
-2. Capture the current committed baseline and preserve unrelated worktree
-   changes.
-3. Identify each requirement, explicit non-goal, and required test coverage.
-4. Inspect the nearest implementation and tests to derive ordinary public test
-   seams.
+1. Read the complete input from **Inputs**, repository instructions, and
+   every applicable package or domain skill. Open the Key files of the spec or
+   ticket first; search the codebase only for what they leave out.
+2. Record `git rev-parse HEAD` and `git status --short` as the baseline.
+   Files already changed in the baseline stay out of every slice commit
+   unless the spec covers them.
+3. Write a requirement list in the conversation: each requirement, each
+   explicit non-goal, and the test that will cover it.
+4. Inspect the nearest implementation and tests to derive ordinary public
+   test seams.
+5. List the slices in order, naming which requirements each covers.
+
+This stage is done when every requirement maps to a slice and a test.
 
 A **decision edge** is an uncovered choice that changes product or domain
 behavior, or carries material risk: data or migration semantics, permissions or
@@ -32,47 +61,56 @@ implementation and test-seam decisions autonomously.
 
 ## Implement in slices
 
-Implement one independently coherent vertical slice at a time. Use a red → green
-loop where feasible, with tests based on the specification or another
-independent expected-value source.
+Implement one independently coherent vertical slice at a time, test-first,
+using the `tdd` skill for test quality. Under this skill, the spec's
+requirements are the agreed seams: derive ordinary seams without asking.
 
-Test every requirement in the spec. Add integration or E2E coverage when it is
-the relevant test level, but do not execute those tests when repository rules
-prohibit it. State the exact unrun command and that its behavioral execution
-remains unverified.
+Test every requirement in the spec. Add integration or E2E coverage when it
+is the relevant test level. When repository rules forbid running those
+tests, leave them unrun and list each exact command as unverified in the
+slice pause and the completion request.
 
-After each slice, run its focused validation and assess the achieved goal from
-the tests. Then pause and say:
+For each slice except the last:
 
-> `{Current slice} is validated. Should I proceed to {next slice}?`
+1. Run its focused validation. On failure, fix and rerun until it passes.
+2. Pause and ask:
+   > {Current slice} is validated. Should I commit it and proceed to
+   > {next slice}?
+3. On approval, commit the slice, then start the next one. On requested
+   changes, apply them and return to step 1.
 
-Do not mention commits at intermediate slice gates.
+The last slice skips this pause; the completion gate below covers it.
+
+When an existing test fails, fix the implementation, unless the spec
+changes the behavior the test asserts. Change an existing test's assertions
+only after the user approves the reason; quote the spec line that changes
+the behavior.
+
+### Changing an approved rule
+
+When the user asks to change a rule the spec or ticket already settled, first
+ask for approval. Quote the approved rule and the proposed change, and state
+the scope impact: affected slices, tests, and tickets.
+
+After approval, update the rule in its source (spec file, ticket file, or
+tracker issue) before changing code. When the workstream has a handoff,
+append a dated entry recording the change and its reason.
 
 ## Complete the implementation
 
-After the final slice, run `when-verify` for every directly changed package.
-Account for every requirement and non-goal: each requirement has relevant test
-coverage, or an explicit reason it cannot be automated.
+After the last slice:
 
-Then ask the user to inspect and approve the complete implementation without
-presenting an evidence table. Offer changes as an alternative. Do not begin
-formal code review until the user approves.
-
-After approval, check whether implementation work is pending commit. If it is,
-offer the commit action because it is required before formal code review. Commit
-only when the user requests it. If the user declines, keep the workflow open for
-a later commit request or change request.
-
-## Review, repair, and finish
-
-After the final requested commit, invoke `review-and-refine` once against the
-baseline captured before implementation.
-
-`review-and-refine` automatically repairs safe findings that remain within the
-specification. At a decision edge, ask the user before repairing. Rerun every
-affected focused validation after repairs, but do not invoke another review
-skill; use the available review context to confirm that repairs address its
-findings.
-
-Present the final review result and wait for the user's explicit approval before
-finishing.
+1. Run the repository's verification for every directly changed package:
+   its verify skill when one exists (for example `when-verify`), otherwise
+   the package's lint, type-check, and test commands. On failure, fix and
+   rerun until every command passes.
+2. Check the requirement list from "Establish the work": each requirement
+   has relevant test coverage or an explicit reason it cannot be automated,
+   and each non-goal remains unimplemented.
+3. Ask once for approval of the complete implementation. Quote each
+   verification command and its result, list any unrun integration or E2E
+   command, and keep the rest to a short prose summary. Offer changes as the
+   alternative.
+4. On requested changes, apply them and return to step 1.
+5. On approval, commit the last slice, report `Implementation is complete
+   and ready for review.`, and stop. The user chooses the next step.

@@ -1,8 +1,8 @@
 ---
 name: to-agents
 description:
-  Writing documents for agents. Use when creating or editing skills, or
-  modifying AGENTS.md or CLAUDE.md.
+  Writes documents agents consume. Use when creating or editing a skill, an
+  AGENTS.md or CLAUDE.md, or a doc an agent reaches through a pointer.
 ---
 
 Reference for writing any document an agent consumes — a skill, an `AGENTS.md` /
@@ -11,8 +11,32 @@ not: the same levers make each one predictable — the agent taking the same
 _process_ every run, not producing the same output.
 
 When the document you're writing is a skill, read
-[`SKILL-MECHANICS.md`](SKILL-MECHANICS.md) for frontmatter, invocation choice,
-and router skills.
+[`SKILL-MECHANICS.md`](SKILL-MECHANICS.md) for invocation choice,
+frontmatter and layout limits, and router skills.
+
+## Review pass
+
+After writing, review the whole document against each item, line by line:
+
+1. **Pointers**: each description or pointer front-loads its leading word
+   and names one trigger per branch.
+2. **Hierarchy**: material every branch needs is inline; material only some
+   branches reach sits behind a pointer. Each concept sits under one
+   heading.
+3. **Steps**: every step ends on a checkable, exhaustive completion
+   criterion.
+4. **Leading words**: each restated triad or gesturing sentence collapses
+   into one word.
+5. **Negation**: each prohibition becomes its positive target, or is paired
+   with one.
+6. **Pruning**: each meaning lives in one place; one-command lookups stay in
+   the environment; every sentence changes behaviour versus the default.
+7. **Format**: prose lines are 80 characters or fewer. Each sentence or
+   list item carries one action.
+
+The pass is done when every item has been checked against every line and
+each failure is fixed. For a skill, also run the lint in
+[`SKILL-MECHANICS.md`](SKILL-MECHANICS.md).
 
 ## Context pointers
 
@@ -66,9 +90,9 @@ the material:
    peer-set (every rule of a review on one rung) — a fine arrangement, not a
    smell.
 3. **Disclosed reference** — pushed out into a separate file, reached by a
-   context pointer, loaded only when the pointer fires. Spans a sibling file in
-   the same folder through fully external reference that lives anywhere and any
-   document can point at.
+   context pointer, loaded only when the pointer fires. It ranges from a
+   sibling file in the same folder to an external doc that lives anywhere
+   and any document can point at.
 
 Push too little down and the top bloats; push too much and you hide material the
 agent actually needs. That tension is the whole decision.
@@ -119,6 +143,13 @@ agent the work is done. Two properties make it a lever:
   exhaustiveness bar.
 
 The strongest criteria are both checkable and exhaustive.
+
+For a critical operation, make the criterion a **validation loop**: run a
+check, fix what it reports, rerun until it passes. A check the agent runs
+beats a criterion it judges.
+
+Give one default path plus an escape hatch. A menu of options hands the
+agent a fresh choice every run — variance by design.
 
 ## When to split
 
@@ -171,6 +202,9 @@ spoken. A prohibition earns its place only as a hard guardrail you cannot phrase
 positively; even then, pair it with the positive target so attention lands on
 what to do.
 
+Emphasis is the same lever turned up: `CRITICAL` and `MUST` make recent
+models over-apply a rule. State the rule plainly and give its reason.
+
 ## Pruning
 
 - Keep each meaning in a **single source of truth**: one authoritative place, so
@@ -185,6 +219,9 @@ what to do.
   convention, the reason behind a choice, the gotcha no config confesses. Leave
   the one-file, one-command lookups to the environment, where they cannot go
   stale.
+- A rule that must hold on every run belongs in a **guardrail** — a hook,
+  a lint rule, a script — where it is enforced rather than requested.
+  Prose is the fallback for judgement calls.
 - Check every line for **relevance**: does it still bear on what the document
   does? A line loses relevance by never bearing on the task (mere exposition, or
   a branch that should be disclosed) or by going stale as the behaviour or world
@@ -201,5 +238,3 @@ what to do.
   weak to beat the default (_be thorough_ when the agent is already
   thorough-ish) is a no-op, and the fix is a stronger word (_relentless_), not a
   different technique.
-- Keep agent-facing Markdown prose lines at 80 characters or fewer. Split
-  multi-action instructions into separate sentences or list items.

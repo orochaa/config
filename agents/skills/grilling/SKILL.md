@@ -11,11 +11,14 @@ it.
 
 Work the tree in **rounds**. The **frontier** is every decision whose
 prerequisites are already settled — the questions you can ask _now_ without
-guessing at answers you haven't heard yet. Ask the whole frontier in one round:
-number each question and give your recommended answer. Then wait for the user's
-answers before the next round.
+guessing at answers you haven't heard yet. Ask each round with the
+AskUserQuestion tool (or the platform's equivalent structured question tool),
+at most 4 questions per call. Send a larger frontier as
+consecutive calls in the same round. Put your recommendation first in each
+question's options, labelled `(Recommended)`. Then wait for the user's answers
+before the next round.
 
-Each question should be formatted like so:
+When no question tool is available, format each question like so:
 
 ```
 ❓ **Q1** - **<question title>**:

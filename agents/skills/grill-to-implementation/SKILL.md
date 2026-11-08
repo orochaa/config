@@ -1,44 +1,73 @@
 ---
 name: grill-to-implementation
 description: >-
-  Run a decision-by-decision grilling session that turns a ticket, spec, or
-  pasted requirements into an architecture-focused implementation contract.
+  Grills a ticket, spec, or pasted requirements decision by decision into an
+  approved implementation contract (architecture, interfaces, rules),
+  persisted to a spec and handoff each round. Use when requirements must
+  become implementation-ready interfaces before coding, or when given a
+  spec-and-tickets directory to grill. For open-ended stress-testing with no
+  persisted spec, use grilling.
 ---
 
 # Grill to implementation
 
-Run `/grilling` to resolve the decisions needed for a deterministic,
+Run the `grilling` skill to resolve the decisions needed for a deterministic,
 implementation-ready design. The audience is the coding agent that will
 implement the approved requirements.
 
-## Required inputs
+## Inputs
 
-Before grilling, identify all supplied source material and require at least two
-user-provided paths:
+Before grilling, identify all supplied source material.
 
-- One path for the persistent grilling handoff and decision history.
-- One or more paths for the persistent final spec. These are the canonical
-  spec targets and may already contain rules to extend or correct.
+When given a directory `<dir>`:
+
+1. Run `scripts/resolve-inputs.sh <dir>` and use the paths it prints:
+   - `spec:` is the spec, `<base>.spec.md` or else `<base>.md`.
+   - `handoff:` is the handoff, named by the naming rule in
+     [`../handoff/SKILL.md`](../handoff/SKILL.md) (step 2). Create it when
+     the script reports it `missing`.
+   - `subhandoff:` lines are scoped sub-handoffs. Each holds the history of
+     its own scope; read it with the task it covers.
+   - `task:` lines are the tasks in `NN` order.
+2. On exit 2, show the error and ask the user for the missing path.
+3. Write targets: the spec plus the task file the decision belongs to.
+   Shared rules live in the spec. Task-specific rules and interfaces live in
+   the task file, which links to the spec rule rather than copying it.
+
+Grill the tasks in `NN` order. A task is settled when every decision for it
+is recorded in the handoff and written to its task file, and its interface
+set is approved (see Finish).
+
+Otherwise, use these user-provided paths:
+
+- Handoff: one path for the decision history. It may not exist yet.
+- Spec targets: one or more paths for the final spec. They may already hold
+  rules to extend or correct.
+
+When a path is missing, ask for it before the interview. Offer as default
+the handoff name that [`../handoff/SKILL.md`](../handoff/SKILL.md) (step 2)
+gives the first spec target, beside it.
+
+Work only on the paths given in this invocation. Read and write no other
+`.scratch/*` workstream, even when the session name or an earlier handoff
+suggests one.
 
 The original requirements may be a ticket, a spec, pasted content, or a
 combination. Accept additional source paths and pasted context. Read the
-supplied artifacts before asking about facts they establish. If a required path
-is missing, ask for it before beginning the interview.
+supplied artifacts before asking about facts they establish.
 
-The user controls invocation of related spec, ticket, and handoff skills. Treat
-artifacts they provide from those workflows as source material or current
-session state. When the user explicitly invokes one of those skills, let that
-skill govern its own workflow and use the approved spec and handoff as context.
-Keep those skills' workflow instructions out of this skill.
+When the user invokes `/to-spec`, `/to-tickets`, or `/handoff` mid-session,
+follow that skill for its output. Then resume the round with the updated
+files as current state.
 
 ## Interview
 
-Use the `/grilling` design tree, round frontier, and question format. Ask all
-questions whose prerequisites are settled in one round, recommend an answer,
-and wait for the user's decisions before moving to the next frontier.
-Research facts from the supplied sources and available environment rather than
-asking the user to repeat them. Ask about decisions that cannot be established
-from evidence. Keep the interview at the architecture and contract level.
+Run the rounds with the `grilling` skill. Keep every question at the
+architecture and contract level.
+
+Before proposing a new type, service, or file name, grep for the existing
+naming family and construction pattern (classes vs `make*` functions), and cite
+the match in the question.
 
 Resolve enough detail for an implementer to make consistent choices about:
 
@@ -56,49 +85,67 @@ representation materially changes the interface. Do not turn the spec into
 line-by-line implementation instructions or prescribe private code structure
 without a concrete architectural need.
 
-## Round records and drafts
+## Each round
 
-At the end of each round, update both persistent artifacts:
+1. Ask the frontier questions (see Interview) and wait for answers.
+2. Append a dated handoff entry: scope, settled decisions with rationale,
+   evidence with source links, remaining questions, and spec changes. Mark
+   superseded decisions in the new entry; keep earlier entries intact.
+3. Write the newly settled rules to the spec target(s). Correct rules the
+   round resolved differently. State each requirement in one target only.
+   Add every file the round touched or researched to the Key files of the
+   spec or task it belongs to.
+4. Label every interface in the spec `proposed` or `approved`.
+5. Show the draft (see Drafts).
 
-- Append a dated handoff entry with the round's scope, settled decisions and
-  rationale, relevant evidence and source links, remaining questions, and spec
-  changes. Preserve earlier history; mark superseded decisions in a new entry.
-- Update the target spec file or files with the newly settled rules. Correct
-  existing rules when the round resolves them differently. Keep each target's
-  content coherent and avoid duplicating the same requirement across targets.
+A round is done when the handoff entry and spec edits are on disk and the
+draft is shown. The handoff is the chronological record; the spec is the
+current state, with each interface's status labelled.
 
-At the end of each round, show a concise draft of the proposed code interfaces
-and the main high-level rules they depend on. Also show the affected spec
-sections so the user can review what will be implemented. The user may request
-this view at any time by saying **"draft"**. A draft is a review artifact; it
-must not imply that an interface has been approved.
+The handoff follows the template in
+[`../handoff/SKILL.md`](../handoff/SKILL.md). Create it from that template
+when missing. Append each round entry to its task history, and refresh its
+snapshot, next steps, and open decisions each round.
 
-Get the user's explicit approval for the complete interface set before marking
-it approved or implementation-ready in the persistent spec. Record that approval
-in the handoff. If the user requests a change, revise the proposed interfaces
-and obtain approval for the revised set. Continue grilling on unresolved
-branches after recording the current round.
+## Drafts
 
-Persist round decisions and history as they are settled; do not wait until the
-whole interview ends. Keep the handoff as the chronological record and the spec
-file or files as the current approved result. The spec may contain settled rules
-while an interface is still proposed; label proposal and approval status
-clearly.
+A draft shows the proposed code interfaces, the main rules they depend on,
+and the affected spec sections. It is a review view and approves nothing.
 
-## Final result
+At the end of each round, show only the interfaces, rules, and spec sections
+the round added or changed. Show the full draft when the user says
+**"draft"** and at Finish.
 
-The final spec must give the coding agent the agreed requirements and contracts
-without requiring it to infer a material decision. Include the sections needed
-for this design, such as:
+## Finish
 
+Enter Finish when the grilling frontier is empty: every branch visited and
+no material decision open, except ones the user chose to leave open.
+
+1. Show the complete interface set with every rule it depends on.
+2. Ask for explicit approval of the whole set. On a requested change,
+   revise, persist the round, and ask again.
+3. Record the approval, with date and scope, in the handoff. Mark the
+   interfaces `approved` in the spec.
+4. Check the spec against the list below. Every left-open decision appears
+   in both spec and handoff with its implementation impact. Every approved
+   interface names the file it lives in, and that file is in Key files.
+   Every Key files path without `(new)` exists.
+5. Report the spec and handoff paths and any open decisions, then stop.
+   The user picks the next step, such as `/to-tickets` or `/implement`.
+
+The final spec gives the coding agent the agreed requirements and contracts
+without requiring it to infer a material decision. Include the sections
+needed for this design, such as:
+
+- TL;DR: the change and its outcome in one or two sentences.
 - Goal, problem, scope, and relevant constraints.
 - Architecture, component responsibilities, dependencies, and data flow.
 - Settled rules and behavior, including important state and failure cases.
 - Named code interfaces with approved signatures and contract semantics.
-- Compatibility considerations and observable acceptance requirements.
+- Key files, in the `to-spec` format
+  ([`../to-spec/SKILL.md`](../to-spec/SKILL.md)). Each task file carries the
+  full list for its own scope.
+- Compatibility, observable acceptance requirements, and test seams.
 
 Keep rationale where it explains a non-obvious choice. Mark genuine assumptions
 and unresolved items explicitly; do not present them as approved requirements.
-Do not finalize while a material decision remains open unless the user
-explicitly chooses to leave it unresolved. When they do, identify the
-implementation impact in the spec and handoff.

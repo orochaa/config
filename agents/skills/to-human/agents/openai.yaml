@@ -1,5 +1,5 @@
 interface:
   display_name: 'To Human'
-  short_description: 'Write clear, simplified English for people'
+  short_description: 'Rewrite text in clear, simplified English'
 policy:
   allow_implicit_invocation: false

@@ -80,7 +80,7 @@ DialogWidth=810
 activityId=
 formfactor=0
 immutability=1
-lastScreen=-1
+lastScreen=0
 location=0
 plugin=org.kde.plasma.systemtray
 popupHeight=436
@@ -324,7 +324,7 @@ plugin=org.kde.plasma.notifications
 
 [Containments][29][Applets][34][Applets][46]
 immutability=1
-plugin=org.kde.plasma.printmanager
+plugin=org.kde.plasma.dwellclicker
 
 [Containments][29][Applets][34][Applets][47]
 immutability=1
@@ -365,9 +365,9 @@ DialogWidth=810
 
 [Containments][29][Applets][34][General]
 disabledStatusNotifiers=TelegramDesktop,chrome_status_icon_1@ChatGPT
-extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.weather,org.kde.plasma.networkmanagement,org.kde.plasma.brightness
+extraItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.clipboard,org.kde.plasma.weather,org.kde.plasma.networkmanagement,org.kde.plasma.brightness,org.kde.plasma.dwellclicker
 hiddenItems=chrome_status_icon_1,steam,org.kde.plasma.clipboard,vlc,Slack_status_icon_1,1Password_status_icon_1,org.kde.plasma.networkmanagement,qBittorrent
-knownItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.bluetooth
+knownItems=org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.brightness,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardlayout,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.plasma.weather,org.kde.plasma.volume,org.kde.kscreen,org.kde.plasma.bluetooth,org.kde.plasma.dwellclicker
 shownItems=org.kde.plasma.weather,org.kde.plasma.brightness
 
 [Containments][29][Applets][75]

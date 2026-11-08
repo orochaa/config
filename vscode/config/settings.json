@@ -388,7 +388,7 @@
 	"terminal.integrated.enableMultiLinePasteWarning": "auto",
 	"terminal.integrated.shellIntegration.decorationsEnabled": "never",
 	"terminal.integrated.copyOnSelection": true,
-	"terminal.integrated.gpuAcceleration": "on",
+	"terminal.integrated.gpuAcceleration": "off",
 	"terminal.integrated.env.windows": {},
 	"terminal.integrated.env.linux": {},
 	"git.openRepositoryInParentFolders": "always",
@@ -736,5 +736,8 @@
 	"window.commandCenter": false,
 	"chat.titleBar.openInAgentsWindow.enabled": false,
 	"git.enableSmartCommit": true,
-	"git.confirmSync": false
+	"git.confirmSync": false,
+	"terminal.integrated.mouseWheelScrollSensitivity": 3,
+	"diffEditor.hideUnchangedRegions.enabled": true,
+	"diffEditor.useInlineViewWhenSpaceIsLimited": false
 }

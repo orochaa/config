@@ -65,21 +65,27 @@ Retain expand–migrate–contract for wide mechanical refactors. Keep each step
 working at its merge point; use an explicit stack and merge rule when that is
 impossible or when review size requires a split.
 
-### 4. Draft and review the breakdown
+### 4. Request approval for the breakdown
 
-Present the proposed tickets as a numbered list. Include each ticket's full
-draft, not only its title, blockers, and summary. Also show stack membership,
-merge order, and what works at every merge point.
+Present a numbered ticket breakdown for scope approval before writing or
+publishing complete ticket content. For each ticket, show its title, blockers,
+stack membership and merge order when relevant, merge-point behavior, and a
+minimal summary covering every change in its scope. Keep each summary concise
+while naming all behavior, contracts, and required shared, backend, frontend,
+documentation, and test changes.
 
-Review the breakdown for complete behavior, correct prerequisites, useful
-granularity, review size, independent mergeability, and focused acceptance and
-test coverage. Ask the user to correct gaps or tradeoffs and revise until they
-approve the complete breakdown. Do not finalize tickets with unresolved material
-requirements.
+Review the breakdown for complete scope coverage, correct prerequisites, useful
+granularity, review size, independent mergeability, and unresolved material
+requirements. Ask the user to correct gaps or tradeoffs and revise the
+breakdown until they approve its scope. Treat approval as sign-off on the
+breakdown and scope. Do not proceed while a material requirement remains
+unresolved.
 
-### 5. Publish after approval
+### 5. Write and publish the complete tickets
 
-Use the configured destination when one is available. If no destination
+After breakdown approval, expand each approved scope into a complete ticket
+using the template below, then publish it without another approval round. Use
+the configured destination when one is available. If no destination
 configuration exists, default to local files under
 `.scratch/<feature-slug>/issues/`.
 
@@ -143,7 +149,17 @@ when they prevent ambiguity or drift.
 ## Test strategy
 
 <Concise behavior, test layers, and coverage required for this ticket.>
+
+## Key files
+
+- `<path>` — <edit | read | test>: <what changes, or what to follow>
 ```
+
+Key files use the format of the `to-spec` Key files section
+([`../to-spec/SKILL.md`](../to-spec/SKILL.md)). List every file the ticket
+needs in full, taken from the spec's list plus anything the ticket adds; a
+ticket never says "see the spec" for its files. Confirm every path without
+`(new)` exists before publishing.
 
 Use a source-topic bullet for the parent issue or spec when one exists. The
 local file number and title identify local blockers; tracker issues use native

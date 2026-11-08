@@ -50,6 +50,12 @@ Every spec covers these elements:
 - **Test strategy** — what behavior to verify, useful test layers and seams,
   and relevant prior art. Prefer observable behavior over replaceable internal
   representations.
+- **Key files** — every file the implementation needs, so the implementer
+  starts without re-searching the codebase. One per line as
+  `` `path` — role ``, with a repository-relative path. Role is **edit** (what
+  changes; add `(new)` for files to create), **read** (the pattern or contract
+  to follow), or **test** (existing tests or the seam to extend). Confirm every
+  path without `(new)` exists before finalizing.
 
 State scope boundaries when they prevent ambiguity or scope drift. Keep one
 adaptive spec for frontend, backend, or cross-stack work. Omit empty sections
