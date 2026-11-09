@@ -6,6 +6,8 @@ ROOT="$(cd "$(dirname "$0")" && pwd)"
 CONFIG="$ROOT/skills"
 
 mkdir -p "$CONFIG"
-cp -a "$HOME/.agents/skills/." "$CONFIG/"
+rsync -a --delete --delete-excluded \
+  --exclude='.git*' \
+  "$HOME/.agents/skills/" "$CONFIG/"
 
 echo "✓ agent skills updated"
