@@ -15,10 +15,8 @@ Evals are out of scope; see [`evals-deferred.md`](evals-deferred.md).
 1. Confirm these exist under `~/.agents/skills/`: `_refinement/spec.md`,
    `_refinement/platform-facts.md`, `.git`, and `<name>/SKILL.md`.
    If any is missing, stop and report it.
-2. Check `~/.agents/.skill-lock.json`. If `<name>` is listed, the skill is
-   **upstream**: tag every suggestion `local-fork` or `upstream-candidate`.
 
-Done when: every path is confirmed and the upstream status is known.
+Done when: every path is confirmed.
 
 ## Phase 1 — Investigate
 
@@ -80,7 +78,7 @@ evidence.
 Write `~/.agents/skills/_refinement/reports/<name>.md` with these sections,
 in order:
 
-1. **Header**: skill name, date, upstream status, list of files read.
+1. **Header**: skill name, date, list of files read.
 2. **Process map**: an ASCII flow diagram (steps, gates as decision points,
    hand-offs, outputs), then a table with one row per step: inputs, action,
    outputs, gate or exit condition, failure points.
@@ -89,7 +87,6 @@ in order:
    - `ID`: `<name>-NN`
    - `Severity`: High, Med, or Low
    - `Category`: the lens that found it
-   - `Upstream`: `local-fork` or `upstream-candidate` (upstream skills only)
    - `Evidence`: `file:line` and a short quote
    - `Problem`: what is wrong and why it matters
    - `Change`: the exact proposed change, as before/after text or a full

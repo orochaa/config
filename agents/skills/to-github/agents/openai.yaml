@@ -1,0 +1,8 @@
+interface:
+  display_name: 'To GitHub'
+  short_description: 'Publish or refresh local specs and tickets as GitHub issues'
+  default_prompt: >-
+    Use $to-github to publish these local specs and tickets to GitHub, or
+    refresh the issues already published from them.
+policy:
+  allow_implicit_invocation: true

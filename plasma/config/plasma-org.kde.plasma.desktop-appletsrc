@@ -328,14 +328,14 @@ plugin=org.kde.plasma.dwellclicker
 
 [Containments][29][Applets][34][Applets][47]
 immutability=1
-plugin=org.kde.plasma.volume
+plugin=org.kde.plasma.printmanager
 
 [Containments][29][Applets][34][Applets][47][Configuration][General]
 migrated=true
 
 [Containments][29][Applets][34][Applets][48]
 immutability=1
-plugin=org.kde.plasma.weather
+plugin=org.kde.plasma.volume
 
 [Containments][29][Applets][34][Applets][48][Configuration][Appearance]
 showTemperatureInBadge=true
@@ -346,10 +346,17 @@ showWindInTooltip=false
 DialogHeight=630
 DialogWidth=810
 
+[Containments][29][Applets][34][Applets][48][Configuration][General]
+migrated=true
+
 [Containments][29][Applets][34][Applets][48][Configuration][WeatherStation]
 placeDisplayName=Caxias do Sul, Brazil, BR
 placeInfo=Caxias do Sul, Brazil, BR|3466537
 provider=bbcukmet
+
+[Containments][29][Applets][34][Applets][49]
+immutability=1
+plugin=org.kde.plasma.weather
 
 [Containments][29][Applets][34][Applets][52]
 immutability=1

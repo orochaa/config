@@ -1,0 +1,5 @@
+interface:
+  display_name: 'To Quick Ticket'
+  short_description: 'Create a quick ticket from a few requirements'
+policy:
+  allow_implicit_invocation: true

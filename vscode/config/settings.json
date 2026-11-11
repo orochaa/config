@@ -362,6 +362,7 @@
 		"*.tsx": "${capture}.*.tsx, ${capture}.*.ts",
 		"*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.*.map",
 		"*.jsx": "${capture}.js",
+		"*.md": "${capture}.*.md, ${capture}.*.json",
 		"tsconfig.json": "tsconfig.*.json",
 		"package.json": "package-lock*, yarn*, pnpm*, .npm*, eslint*, .eslint*, prettier*, .prettier*, biome*, tsconfig*, .nvm*, .editorconfig, turbo.json",
 		"vite.config.*": "tailwind*, postcss*",
