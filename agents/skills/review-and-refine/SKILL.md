@@ -1,25 +1,30 @@
 ---
 name: review-and-refine
 description: >-
-  Reviews a completed branch on standards, spec, and refinement axes and saves
-  the findings to a review file; applies safe fixes and validates only when
-  asked to edit. Use when a finished branch needs review before a pull request
-  or after implementation.
+  Reviews a completed branch or remote pull request on standards, spec, and
+  refinement axes and reports condensed findings; writes a review file, applies
+  safe fixes, and validates only when asked. Use when a finished branch or a
+  PR URL needs review before merge or after implementation.
 disable-model-invocation: true
 ---
 
 # Review and Refine
 
-Review the branch on three independent axes. The parent agent owns every edit
-and validation; each review sub-agent reports once and edits nothing.
+Review the branch, or the remote PR the user names, on three independent axes.
+The parent agent owns every edit and validation; each review sub-agent reports
+once and edits nothing. The full findings stay in context; the chat gets a
+condensed Report.
 
 ## 1. Establish the review scope
 
 1. Set the session mode. The mode is **read-only** unless the user's request
-   explicitly asks for edits; then it is **writable**. Switch to writable
-   mid-session only on a new explicit user request. Done when the mode is
-   recorded for the review file.
-2. Run `scripts/review-scope.sh [<base>]` from the repository root, using the
+   explicitly asks for edits; then it is **writable**. A remote PR is always
+   read-only. Switch to writable mid-session only on a new explicit user
+   request. Done when the mode is recorded for the Report.
+2. When the user names a PR (URL or number), follow
+   [`references/remote-pr.md`](references/remote-pr.md) in place of the rest of
+   this step; its scope block feeds every later step. Otherwise run
+   `scripts/review-scope.sh [<base>]` from the repository root, using the
    absolute path of this skill's folder. Pass the base branch the user named;
    the script defaults to `main`. It covers added, modified, renamed, copied,
    deleted, staged, unstaged, and untracked files. On exit 2, relay its
@@ -48,6 +53,9 @@ and validation; each review sub-agent reports once and edits nothing.
 
 ## 2. Find the specification
 
+For a remote PR, use the specification order in
+[`references/remote-pr.md`](references/remote-pr.md) instead.
+
 Find the originating specification; stop at the first hit:
 
 1. A path the user supplied.
@@ -67,7 +75,8 @@ The Standards source is the guidance set plus
 
 Spawn the Standards and Refinement sub-agents, plus Spec when a specification
 exists, in parallel, once each. Give every agent the scope block. Sub-agents
-run the diff commands and read untracked files themselves. Brief every agent
+run the diff commands and read untracked files themselves (for a remote PR,
+the pinned commands in `references/remote-pr.md`). Brief every agent
 with these shared rules:
 
 - Review every changed file, tests included. Report findings; never edit
@@ -139,28 +148,39 @@ writable mode, mark it fixed once repaired. If HEAD moves during the review,
 record the SHA the sub-agents reviewed and list the newer commits as **not
 reviewed**.
 
-## 5. Write the review file
+## 5. Hold the review
+
+Keep the review in context; write no file unless the user asks for one.
+
+1. Record the header: mode, branch or PR URL, base, full SHA of the latest
+   commit checked, and the spec and issue from step 2.
+2. Record every finding in full: number, `path:line`, rule or smell, code
+   quote, suggested change, and `open` or `fixed`. Include pending decisions
+   and relevant validation recommendations.
+
+Done when a later agent could act on every finding from this record alone.
+
+### Write the review file (on request)
 
 1. Name the file by [`handoff`](../handoff/SKILL.md) step 2 and choose its
    directory by step 4, reading `review` wherever those steps say `handoff`:
    the suffix is `.review.md`, so `sync.spec.md` gets `sync.spec.review.md`.
-   Keep one file per review workstream.
+   Name a remote PR's file `pr-<N>.review.md` when no spec file exists. Keep
+   one file per review workstream.
 2. If the file exists, read it in full. Append a section headed
    `## Review — <YYYY-MM-DD>`, and keep earlier sections verbatim. Record
    resolutions or corrections in the new section, citing the earlier finding.
-3. Open the section with the mode, branch, base, and full SHA of the latest
-   commit checked. Link the spec and issue recorded in step 2, and any
-   `{target}.handoff.md` in the review file's directory. Link local files by
-   path relative to the review file and issues by URL.
-4. Use the Report headings as `###` sections. Give each finding its
-   `path:line`, a code quote, the suggested change, and `open` or `fixed`.
-   Include pending decisions and relevant validation recommendations.
+3. Open the section with the step 5 header. Link any
+   `{target}.handoff.md` in the file's directory. Link local files by path
+   relative to the review file and issues by URL.
+4. Use the Report headings as `###` sections, with each finding in full.
 
-Done when a later agent could act on every finding without this conversation.
-In read-only mode, leave every other repository file unchanged and go to the
-Report.
+Done when the file holds every recorded finding. The file is the only
+repository change a read-only review makes.
 
 ## 6. Writable: refine and validate
+
+Skip this step in read-only mode and go to the Report.
 
 1. Apply safe, compatibility-preserving improvements: formatting, clearer
    comments, documentation corrections, missing tests, explicit imports, and
@@ -179,14 +199,23 @@ Report.
    `git diff --check` passes. Skip changes the guidance set marks as automated
    (for example, generated version bumps).
 6. Add completed changes, validation results, and remaining findings or
-   decisions to this session's review-file section.
+   decisions to the step 5 record.
 
 ## Report
 
-Lead with whether the branch is ready for review. Present `## Standards` and
-`## Spec` first, keeping their reports separate; in writable mode, identify
-the findings the parent fixed. Then present `## Refinements and validation`:
-in writable mode, completed cleanup, commands and results, and checks not
-completed; in both modes, QA recommendations relevant to the diff. End with
-`## Decisions` for unresolved contract, rename, scope, or PR questions. Keep
-completed cleanup separate from decisions.
+Print a condensed Report; the full record from step 5 stays in context.
+
+Lead with whether the branch or PR is ready for review. Present `## Standards`
+and `## Spec` first, keeping their reports separate. Then present
+`## Refinements and validation`: in writable mode, completed cleanup, commands
+and results, and checks not completed; in both modes, QA recommendations
+relevant to the diff. End with `## Decisions` for unresolved contract, rename,
+scope, or PR questions. Keep completed cleanup separate from decisions.
+
+List each finding as one numbered line:
+`N. path:line — name — repair (open|fixed)`. Number continuously across
+sections so the user can answer "fix 3" or "drop 5".
+
+Show a finding's quote, source rule, or full repair only when the user asks
+for it. Hand the full record to `.review.md` or
+[`to-github-review`](../to-github-review/SKILL.md) on request.

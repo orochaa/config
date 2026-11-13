@@ -1,6 +1,6 @@
 interface:
   display_name: 'Review and Refine'
-  short_description: 'Review standards, spec, and safely improve a branch'
-  default_prompt: Use $review-and-refine to review this branch and save the findings.
+  short_description: 'Review a branch or remote PR on standards, spec, and refinement'
+  default_prompt: Use $review-and-refine to review this branch or PR and report the findings.
 policy:
   allow_implicit_invocation: false

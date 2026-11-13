@@ -24,6 +24,10 @@ relevant implementation, domain terms, package guidance, ADRs, tests, and prior
 tickets. Group source links by topic, connecting each ticket requirement to its
 parent spec and relevant code, documentation, and test references.
 
+Take the slice order from the spec's Implementation order section
+([`../to-spec/SKILL.md`](../to-spec/SKILL.md)). When the spec has none, derive
+the slices from its layers and add them to the spec first.
+
 Resolve material requirements and dependencies before finalizing the breakdown.
 Do not create standalone discovery tickets. Ask the user about material choices
 that repository research cannot settle. If the user explicitly skips a choice,
@@ -74,6 +78,8 @@ minimal summary covering every change in its scope. Keep each summary concise
 while naming all behavior, contracts, and required shared, backend, frontend,
 documentation, and test changes.
 
+Show the slice order with the breakdown.
+
 Review the breakdown for complete scope coverage, correct prerequisites, useful
 granularity, review size, independent mergeability, and unresolved material
 requirements. Ask the user to correct gaps or tradeoffs and revise the
@@ -94,7 +100,11 @@ configuration exists, default to local files under
 - For a real issue tracker, create one issue per ticket in dependency order.
   Use native blocking or sub-issue links when available; otherwise record
   **Blocked by** in the issue. Apply the `ready-for-agent` label by default.
-- Preserve the parent issue. Do not close or modify it.
+- Preserve the parent issue. Do not close or modify it, except to replace
+  the spec's Implementation order lines with the published ticket links.
+- Every ticket carries the full Implementation order. Mark the slices the
+  ticket covers `← this ticket`, so an agent holding one ticket sees where
+  it starts and where the work finishes.
 
 When creating tickets on a tracker, publish blockers before dependents so the
 relationships can use real issue identifiers. Work the frontier: a ticket is
@@ -120,6 +130,12 @@ when they prevent ambiguity or drift.
 ## TL;DR
 
 <One or two sentences: what works when this ticket lands.>
+
+## Implementation order
+
+1. <slice> — <what exists when it lands>
+2. <slice> — <what exists when it lands> ← this ticket
+3. <slice> — <observable done criterion>
 
 ## Source topics
 

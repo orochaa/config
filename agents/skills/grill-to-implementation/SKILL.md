@@ -126,11 +126,18 @@ no material decision open, except ones the user chose to leave open.
    revise, persist the round, and ask again.
 3. Record the approval, with date and scope, in the handoff. Mark the
    interfaces `approved` in the spec.
-4. Check the spec against the list below. Every left-open decision appears
+4. Settle the Implementation order: the slices in build order, in the
+   `to-spec` format ([`../to-spec/SKILL.md`](../to-spec/SKILL.md)). Put it in
+   the spec. When tickets exist, put it in every task file too, and have the
+   spec list the tickets in that order. A slice order change updates the
+   spec and every task file in the same round.
+5. Check the spec against the list below. Every left-open decision appears
    in both spec and handoff with its implementation impact. Every approved
    interface names the file it lives in, and that file is in Key files.
-   Every Key files path without `(new)` exists.
-5. Report the spec and handoff paths and any open decisions, then stop.
+   Every Key files path without `(new)` exists. Implementation order has
+   the same slices in the spec and every task file, and its last slice names
+   the observable done criterion.
+6. Report the spec and handoff paths and any open decisions, then stop.
    The user picks the next step, such as `/to-tickets` or `/implement`.
 
 The final spec gives the coding agent the agreed requirements and contracts
@@ -142,6 +149,7 @@ needed for this design, such as:
 - Architecture, component responsibilities, dependencies, and data flow.
 - Settled rules and behavior, including important state and failure cases.
 - Named code interfaces with approved signatures and contract semantics.
+- Implementation order, the slices in build order.
 - Key files, in the `to-spec` format
   ([`../to-spec/SKILL.md`](../to-spec/SKILL.md)). Each task file carries the
   full list for its own scope.

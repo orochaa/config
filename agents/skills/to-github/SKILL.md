@@ -63,8 +63,29 @@ root of the source's repository (`git -C <source-dir> rev-parse
 
 Write every value you resolved outside the section into it: create the
 section, or the file, when missing, and leave the rest of the file as it is.
+**Defaults**: read the `## GitHub defaults` section of the same file. Its
+lists are ordered, and the first value leads:
+
+```markdown
+## GitHub defaults
+
+Ordered options for the issue fields; the first is the default.
+
+- Assignees: <login>, <login>
+- Milestones: <title>, <title>
+- Types: <name>, <name>
+```
+
+- **Section missing**: ask the user for the three lists with
+  AskUserQuestion, assuming no values for this repo, then write the section.
+- **Verify** every listed value against the issues repo:
+  - milestone: `gh api repos/<repo>/milestones --jq '.[].title'`
+  - type: `gh api orgs/<owner>/issue-types --jq '.[].name'`
+  - assignee: `gh api repos/<repo>/assignees/<login>` (exit 0 is assignable)
+- **A value fails**: stop and ask the user before going on.
+
 Done when the issue repo and every code repo's branch are known and
-registered.
+registered, and every listed default is verified.
 
 ## 3. Collect the items
 
@@ -152,7 +173,8 @@ Done when every item has a saved `.remote.md` and every link is classified.
 
 Show one plan:
 
-- Each item: create or refresh `#N`, title, labels, parent, blockers.
+- Each item: create or refresh `#N`, title, labels, milestone, type,
+  assignee, parent, blockers.
 - Remote edits, as diffs.
 - Drift items, each with its options: create or skip a missing issue;
   unlink or keep an orphan sub-issue.
@@ -161,6 +183,24 @@ Show one plan:
 
 The gate exits when the user approves the plan and has decided every remote
 edit and drift item. Revise and re-render on any change.
+
+**Fields**: the first round asks the three run-wide questions, which every
+item inherits (umbrella parent and sub-issues alike):
+
+- **Milestone** and **type**: the verified defaults in listed order, with the
+  recommended option inferred from the item's content (a defect report leads
+  with `Bug`). Without a signal, the first listed value leads.
+- **Assignee**: one choice from the verified defaults, the first listed value
+  recommended.
+- **Custom**: the fourth option, `Other`, takes a value typed by the user.
+  Verify it with the commands from step 2. On failure, re-ask with GitHub's
+  reason. A verified custom value serves this run only; the defaults section
+  stays as written.
+- **Override**: after the plan lists each item's fields, ask whether any item
+  takes other values, then verify them the same way.
+- **Refresh**: for each item whose issue already holds a milestone, type, or
+  assignee, show the current value next to the chosen one and ask whether to
+  overwrite. Untouched fields stay as they are.
 
 Guide the user through each decision with the AskUserQuestion tool: one
 decision per question, the recommended option first and labelled
@@ -176,9 +216,13 @@ must answer in free text.
 
 1. Create new issues in dependency order, parent first:
    `gh issue create -R <repo> --title <title> --body-file <body>
-   [--label <name>]...`. Refresh matched issues with `gh issue edit -R
-   <repo> --title <title> --body-file <body>`. Pass a body file holding the
-   body without front matter.
+   [--label <name>]... [--milestone <title>] [--assignee <login>]`, then set
+   the type: `gh api -X PATCH repos/<repo>/issues/<n> -f type=<name>`.
+   Refresh matched issues with `gh issue edit -R <repo> --title <title>
+   --body-file <body>`. Pass a body file holding the
+   body without front matter. A refresh edits a field only where the user
+   approved the overwrite: `--milestone <title>`, `--add-assignee`,
+   `--remove-assignee`, and the same `type` call.
 2. Look up each issue's database `id`, which relationship endpoints take
    instead of the number: `gh api repos/<repo>/issues/<n> --jq .id`.
 3. Sync relationships to the local umbrella:
@@ -199,6 +243,7 @@ written so far; never retry a create blindly, since it duplicates the issue.
 ## 8. Verify
 
 For each item, fetch the issue's title and body and compare them with its
-`.remote.md`. Fix and recheck until all match. Then reply with each issue URL
+`.remote.md`, and its milestone, type, and assignee with the approved
+choices. Fix and recheck until all match. Then reply with each issue URL
 and one tally line, for example `5 issues: 3 created, 2 refreshed, 4
 sub-issues, 3 blockers, 2 dead links`.

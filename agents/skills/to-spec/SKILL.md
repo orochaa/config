@@ -50,6 +50,14 @@ Every spec covers these elements:
 - **Test strategy** — what behavior to verify, useful test layers and seams,
   and relevant prior art. Prefer observable behavior over replaceable internal
   representations.
+- **Implementation order** — the slices in build order, so the implementer
+  knows the build order. One numbered line per slice as
+  `N. <slice> — <what exists when it lands>`, following the layers the design
+  touches (for example: register the shared protocol, implement the database
+  and projections, implement the commands, implement the integration tests).
+  The last line names the observable done criterion. When tickets exist, replace the lines with the
+  ticket links in the same order, each naming the slices it covers. A
+  `grill-to-implementation` handoff supplies the slices when one exists.
 - **Key files** — every file the implementation needs, so the implementer
   starts without re-searching the codebase. One per line as
   `` `path` — role ``, with a repository-relative path. Role is **edit** (what
@@ -77,8 +85,8 @@ the observable flow across the relevant layers.
 Use user stories only when actor and benefit clarify intent. Acceptance
 requirements remain the primary expression of behavior. Add examples, schemas,
 types, or pseudocode only when they resolve real ambiguity; keep guidance
-behavior-first. Leave implementation order to the implementer and do not add a
-separate completion checklist.
+behavior-first. Keep order in Implementation order and add no separate completion
+checklist.
 
 ## Revision sessions
 

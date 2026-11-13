@@ -112,10 +112,12 @@ pnpmc() {
 }
 
 dev() {
- local project
+  local project
   project="$(
-    fd . "$HOME/git" --min-depth 2 --max-depth 2 --type d \
-      | fzf --reverse --height=40% --preview 'eza --tree --level 2 --icons=never --color=never --classify=always --group-directories-first --git-ignore {} | head -200'
+    {
+      fd . "$HOME/git" --min-depth 2 --max-depth 2 --type d
+      echo "$HOME/.agents/skills"
+    } | fzf --reverse --height=40% --preview 'eza --tree --level 2 --icons=never --color=never --classify=always --group-directories-first --git-ignore {} | head -200'
   )"
   [[ -n "$project" ]] && code "$project"
 }
